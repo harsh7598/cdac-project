@@ -1,0 +1,42 @@
+.commonIcons {
+    font-size: 40px;
+    color: #ff4a57;
+    margin-bottom: 15px;
+  }
+
+  .commonIcons2 {
+    font-size: 70px;
+    color: #ff4a57;
+    margin-bottom: 15px;
+  }
+  .services__box {
+    background: #181313;
+    transition: all 0.5s linear;
+  }
+  .services__box:hover {
+    background: #ff4a57;
+  }
+
+  .services__box:hover .commonIcons {
+    color: #fff;
+  }
+
+  .services__box:hover .commonIcons2 {
+    color: #fff;
+  }
+  .services__box:hover .btn {
+    background-color: #1f1a1a;
+    color: white;
+  }
+  .btn{
+    transition: all 0.5s linear;
+  }
+
+  .backgrnd{
+    height: 200%;
+  }
+
+  .backgrndwc{
+    height: 180%;
+  }
+  
