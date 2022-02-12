@@ -61,5 +61,9 @@ public class Employee extends BaseEntity {
 	@JoinTable(name = "employee_event", joinColumns = { @JoinColumn(name = "emp_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "event_id") })
 	List<Event> asignEvents = new ArrayList<>();
-
+	
+	public Employee(String email,String password) {
+	this.email=email;
+	this.password=password;
+	}
 }
