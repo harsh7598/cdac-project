@@ -1,8 +1,8 @@
 import React, { useState } from "react"
-// import useHistory from "react";
+import { url } from '../common/constants'
+import axios from "axios";
 import "./EmpLogin.css";
 import { Link } from "react-router-dom";
-import employeeService from "../../services/employee.service"
 import { useHistory } from "react-router-dom";
 const LoginRegister = (props) => {
   
@@ -13,9 +13,8 @@ const LoginRegister = (props) => {
  // const [otp, setotp] = useState('')
 
   
-  const addCustomerToDB = () => {
-    localStorage.setItem('email', email);
-     if (email.length === 0) {
+  const addCustomerToDB = (e) => {
+    if (email.length === 0) {
       alert('enter email')
     } else if (password.length === 0) {
         alert('enter password')
@@ -24,35 +23,28 @@ const LoginRegister = (props) => {
       const data = new FormData()
       data.append('email', email)
       data.append('password', password)
-      console.log(email,password)
-      employeeService.create(data)
-      .then(response => {
-          console.log("employee added successfully", response.data);
-          history.push("/");
-      })
+    
       // axios.post(url + '/employee', data).then((response) => {
       //   const result = response.data
       //   console.log(result)
-        
-      //   if (result.status === 'success' && result.data!=null) {
-      //     alert('successfully Login...')
-      //     if(result.data.role==='User'){
-      //       localStorage.setItem('email',email);
-      //       props.isUser(true)
-      //       history.push('/about');
-      //     }
-      //     else{
-      //   //    props.isUser(true)
-      //       history.push('/services');
-      //     }
-      //   }
-      //    else {
-      //     console.log(result.error)
-      //     alert('Enter correct Email and Password')
-      //   }
-      // })
-     
-    }
+      // });
+    axios.get(url+'/employee');
+
+    // e.preventDefault();
+    // const loginCredential = {email,password};
+    // employeeService.getAll().then(Response =>{
+    //   console.log("employee");
+    // })
+
+    // employeeService.create(loginCredential)
+    //         .then(response => {
+    //             console.log("employee added successfully", response.data);
+    //             history.push("/");
+    //         })
+    //         .catch(error => {
+    //             console.log('something went wroing', error);
+    //         })
+     }
   }
   
   return (
@@ -62,10 +54,10 @@ const LoginRegister = (props) => {
 
           <form className="Emplogin-form-in ">
             <h1 className="fw-bold mb-4">Employee Login</h1>
-            <input type="email" className="my-3" placeholder="EMAIL" onChange={(e) => {
+            <input type="email" className="my-3" placeholder="EMAIL" value={email} onChange={(e) => {
             setemail(e.target.value)
           }} />
-            <input type="password" className="my-3" placeholder="PASSWORD" onChange={(e) => {
+            <input type="password" className="my-3" placeholder="PASSWORD" value={password} onChange={(e) => {
             setpassword(e.target.value)
           }}/>
             <div className="d-grid col-10  mx-auto">
