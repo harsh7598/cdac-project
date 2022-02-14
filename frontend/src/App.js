@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import './App.css';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HomePage from "./component/HomePage";
-import LoginRegister from "./component/login/LoginRegister";
+import CustLoginRegister from "./component/login/CustLoginRegister";
 import EmpLogin from "./component/login/EmpLogin";
 
 import Nav from "./component/Nav"
@@ -39,7 +39,7 @@ function App() {
           </Route> */}
           <Route exact path="/customer">
             <NavOther />
-            <LoginRegister/>
+            <CustLoginRegister/>
           </Route>
 
           <Route exact path="/employee">
