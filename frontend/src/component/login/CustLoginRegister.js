@@ -1,13 +1,18 @@
 import React, { useEffect,useState } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import axios from "axios";
 import "./LoginRegister.css";
+import NavSignOut from "../AfterLoginPage/NavSignOut";
+import CustomerWelcome from "../AfterLoginPage/CustomerWelcome";
+
 import log from "../../images/log.svg"
 import register from "../../images/register.svg"
-import { Link, useHistory } from "react-router-dom";
+import {Link,useHistory } from "react-router-dom";
 import {url} from"../common/constants";
 
 const CustLoginRegister = () => {
   const history = useHistory();
+  
   const [name, setname] = useState("");
   const [email, setemail] = useState("");
   const [contactNumber, setcontactNumber] = useState("");
@@ -16,13 +21,19 @@ const CustLoginRegister = () => {
   const [password, setpassword] = useState("");
   const [cPassword, setCpassword] = useState("");
   const login =(e)=>{
+    history.push("/customer/welcome");
+    <Link to={"/customer/welcome"}></Link>
     const customer={
       email,
       password
     }
     axios.post(url+"/customer",customer).then(Response=>{
       console.log(Response.data);
-      history.push("/customer/welcome")
+      axios.get(url+"/customer/welcome").then(Response=>{
+        if(Response.status===200){
+        }
+      })
+      
     })
  
   }
@@ -37,7 +48,7 @@ const CustLoginRegister = () => {
       adhaarNumber,
       password
     }
-      axios.post(url+"/home/custregistration",customer).then(Response=>{console.log(Response.data)})
+      axios.post(url+"/custregistration",customer).then(Response=>{console.log(Response.data)})
     }
     else{
       console.log("invalid password not matched");
@@ -86,18 +97,18 @@ const CustLoginRegister = () => {
           <div className="panel left-panel">
             <div className="content pt-5">
               <h2 className="pt-5 pb-3">New here ?</h2>
-              <Link className="btn btn-l transparent w-100" id="sign-up-btn"  >
+              <button className="btn btn-l transparent w-100" id="sign-up-btn"  >
                 Sign up
-            </Link>
+            </button>
             </div>
             <img src={log} className="image-l" alt="" />
           </div>
           <div className="panel right-panel">
             <div className="content pt-5">
               <h2 className="pt-5 pb-3">One of us ?</h2>
-              <Link className="btn btn-l transparent w-100" id="sign-in-btn">
+              <button className="btn btn-l transparent w-100" id="sign-in-btn" >
                 Sign In
-            </Link>
+            </button>
             </div>
             <img src={register} className="image-l" alt="" />
           </div>

@@ -52,14 +52,15 @@ public class Employee extends BaseEntity {
 	
 	private double salary;
 	
-	@Column(length = 25)
-	private String position;
 	private int points;	
+	
+	@Column(length = 20)
+	private String role;
 
-	@ManyToMany(fetch = FetchType.EAGER) //acceptable solution since max size of many(roles) is 2
-	@JoinTable(name="user_roles",joinColumns = @JoinColumn(name="user_id"),
-	inverseJoinColumns = @JoinColumn(name="role_id"))
-	private Set<Role> roles=new HashSet<>();
+//	@ManyToMany(fetch = FetchType.EAGER) //acceptable solution since max size of many(roles) is 2
+//	@JoinTable(name="user_roles",joinColumns = @JoinColumn(name="user_id"),
+//	inverseJoinColumns = @JoinColumn(name="role_id"))
+//	private Set<Role> roles=new HashSet<>();
 
 	@ManyToMany(cascade = { CascadeType.ALL })
 	@JoinTable(name = "employee_event", joinColumns = { @JoinColumn(name = "emp_id") }, inverseJoinColumns = {
@@ -70,4 +71,20 @@ public class Employee extends BaseEntity {
 	this.email=email;
 	this.password=password;
 	}
+
+	public Employee(String name, LocalDate dob, String email, String password, String contactNumber, String adharNumber,
+			String accountNumber, double salary, int points, String role) {
+		super();
+		this.name = name;
+		this.dob = dob;
+		this.email = email;
+		this.password = password;
+		this.contactNumber = contactNumber;
+		this.adharNumber = adharNumber;
+		this.accountNumber = accountNumber;
+		this.salary = salary;
+		this.points = points;
+		this.role = role;
+	}
+	
 }

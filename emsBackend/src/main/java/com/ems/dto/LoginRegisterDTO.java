@@ -17,5 +17,10 @@ public class LoginRegisterDTO {
 	private String adhaarNumber;
 	private String email;
 	private String password;
+	private String accountNumber;
+	private String role;
+	private int point;
 	private int priorityStatus;
+	private double salary;
+	
 }

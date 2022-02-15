@@ -53,10 +53,13 @@ public class Customer extends BaseEntity {
 	@Column(name = "priority_status")
 	private int priorityStatus;
 	
-	@ManyToMany(fetch = FetchType.EAGER) //acceptable solution since max size of many(roles) is 2
-	@JoinTable(name="user_roles",joinColumns = @JoinColumn(name="user_id"),
-	inverseJoinColumns = @JoinColumn(name="role_id"))
-	private Set<Role> roles=new HashSet<>();
+	@Column(length = 20)
+	private String role;
+	
+//	@ManyToMany(fetch = FetchType.EAGER) //acceptable solution since max size of many(roles) is 2
+//	@JoinTable(name="user_roles",joinColumns = @JoinColumn(name="user_id"),
+//	inverseJoinColumns = @JoinColumn(name="role_id"))
+//	private Set<Role> roles=new HashSet<>();
 
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
 	private List<Event> BookedEvent=new ArrayList<Event>();

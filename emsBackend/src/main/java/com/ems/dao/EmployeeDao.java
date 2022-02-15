@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.ems.pojos.Employee;
 
 public interface EmployeeDao extends JpaRepository<Employee, Long> {
-	Optional<Employee> findByEmail(String email);
+	Employee findByEmail(String email);
 }
