@@ -42,12 +42,6 @@ public class Event extends BaseEntity{
 	@Column(length = 20)
 	private String progress;
 	
-	
-	@ManyToOne
-	@JoinColumn(name = "cust_id",nullable = false)
-	private Customer customer;
-	
-	
 	@ManyToOne
 	@JoinColumn(name = "venue_id",nullable = false)
 	private Venue bookedVenue;
@@ -57,8 +51,8 @@ public class Event extends BaseEntity{
 	private Caters bookedCater;
 	
 	
-	@ManyToMany(mappedBy = "asignEvents")
-    private List<Employee> employees = new ArrayList<>();
+	@ManyToMany(mappedBy = "regevents")
+    private List<User> users = new ArrayList<>();
 
 	@ManyToMany(mappedBy = "events")
 	private List<Menu> menus = new ArrayList<>();

@@ -3,25 +3,24 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.ems.pojos.Employee;
+import com.ems.pojos.User;
 
-public class EmployeeDetailImpl implements UserDetails {
+public class UserDetailImpl implements UserDetails {
 	
 	
 	private static final long serialVersionUID = 1L;
 
-	private Employee employee;
+	private User user;
 	
-	public EmployeeDetailImpl(Employee employee) {
-		
+	public UserDetailImpl(User user) {
 		super();
-		this.employee=employee;
-		
-		
+		this.user=user;
 	}
 
 	@Override
@@ -29,7 +28,7 @@ public class EmployeeDetailImpl implements UserDetails {
 		
 		
 		List<GrantedAuthority> grantedAuthorities=new ArrayList<GrantedAuthority>();
-		grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_"+this.employee.getRole().toUpperCase()));
+		grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_"+this.user.getRole().toUpperCase()));
 //		System.out.println("inside details impl "+grantedAuthorities.get(0).getAuthority());
 		return grantedAuthorities;
 	}
@@ -37,13 +36,13 @@ public class EmployeeDetailImpl implements UserDetails {
 	@Override
 	public String getPassword() {
 		
-		return this.employee.getPassword();
+		return this.user.getPassword();
 	}
 
 	@Override
 	public String getUsername() {
 		
-		return this.employee.getEmail();
+		return this.user.getEmail();
 	}
 
 	@Override
@@ -70,8 +69,8 @@ public class EmployeeDetailImpl implements UserDetails {
 		return true;
 	}
 	
-	 public Employee getEmployeeDetails() {
-	        return employee;
+	 public User getUserDetails() {
+	        return user;
 	    }
 
 }

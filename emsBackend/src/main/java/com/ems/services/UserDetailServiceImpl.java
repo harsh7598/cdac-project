@@ -1,27 +1,29 @@
 package com.ems.services;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import com.ems.dao.EmployeeDao;
-import com.ems.pojos.Employee;
+import com.ems.dao.UserDao;
+import com.ems.pojos.User;
 
 @Service
-public class EmployeeDetailServiceImpl implements UserDetailsService {
+@Transactional
+public class UserDetailServiceImpl implements UserDetailsService {
 
 	@Autowired
-	private EmployeeDao empDao;
+	private UserDao userDao;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Employee employee=empDao.findByEmail(username);
-		if(employee==null) {
+		User user=userDao.findByEmail(username);
+		if(user==null) {
 			throw new UsernameNotFoundException(username+"not found");
 		}
-		return new EmployeeDetailImpl(employee);
+		return new UserDetailImpl(user);
 	}
 
 }

@@ -14,10 +14,8 @@ const LoginRegister = () => {
     e.preventDefault();
     const employee = {email,password};
     axios.post(url+"/home/empLogin",employee).then(Response=>{
-       console.log(Response.data)
-     
+      history.push("/");
     })
-    history.push("/");
     }
 
   return (

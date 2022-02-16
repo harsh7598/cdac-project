@@ -13,16 +13,16 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name="emp_todo")
-public class EmpTodo extends BaseEntity{
+@Table(name="user_todo")
+public class UserTodo extends BaseEntity{
 	@Column(length = 200)
 private String todo;
 	@Column(length = 20)
 private String status;
 	
 	@ManyToOne
-	@JoinColumn(name = "emp_id",nullable = false)
+	@JoinColumn(name = "user_id",nullable = false)
 	@MapsId
-	private Employee employee;
+	private User user;
 	
 }

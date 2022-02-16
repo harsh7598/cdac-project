@@ -21,20 +21,14 @@ const CustLoginRegister = () => {
   const [password, setpassword] = useState("");
   const [cPassword, setCpassword] = useState("");
   const login =(e)=>{
-    history.push("/customer/welcome");
-    <Link to={"/customer/welcome"}></Link>
     const customer={
       email,
       password
     }
     axios.post(url+"/customer",customer).then(Response=>{
       console.log(Response.data);
-      axios.get(url+"/customer/welcome").then(Response=>{
-        if(Response.status===200){
-        }
+        history.push("/customer/welcome")
       })
-      
-    })
  
   }
   const registerCustomer =(e)=>{
