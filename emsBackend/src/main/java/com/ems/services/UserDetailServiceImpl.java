@@ -7,6 +7,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import com.ems.custom_exception.EventManagementException;
 import com.ems.dao.UserDao;
 import com.ems.pojos.User;
 
@@ -18,7 +20,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user=userDao.findByEmail(username);
+		User user=userDao.findByEmail(username).orElseThrow(()->new UsernameNotFoundException("Resourse Not Found"));
 		if(user==null) {
 			throw new UsernameNotFoundException(username+"not found");
 		}

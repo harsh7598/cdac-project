@@ -3,6 +3,8 @@ package com.ems.services;
 
 
 
+import javax.management.RuntimeErrorException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ems.custom_exception.EventManagementException;
 import com.ems.dao.UserDao;
 import com.ems.dto.LoginRegisterDTO;
 import com.ems.pojos.User;
@@ -31,15 +34,10 @@ public class UserServicesIMPL implements IUserServices {
 	}
 
 	@Override
-	public ResponseEntity<?> validateUser(LoginRegisterDTO user) {
-		try {
-			User u=userDao.findByEmail(user.getEmail());
-		if(encoder.matches(user.getPassword(), u.getPassword())) 
-					return new ResponseEntity<>(u ,HttpStatus.OK);
-			return new ResponseEntity<>(u,HttpStatus.UNAUTHORIZED);
-			}catch(RuntimeException e){
-				return new ResponseEntity<>(e.getMessage(),HttpStatus.UNAUTHORIZED);
-			}
+	public User validateUser(LoginRegisterDTO user){
+	 User u=userDao.findByEmail(user.getEmail()).orElseThrow(()-> new EventManagementException("USER NOT FOUND"));
+	 if(encoder.matches(user.getPassword(), u.getPassword()))
+		return u;
+	 throw new EventManagementException("INVALID PASSWORD");
 	}
-
 }

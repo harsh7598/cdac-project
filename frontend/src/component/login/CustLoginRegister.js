@@ -12,6 +12,16 @@ import {url} from"../common/constants";
 
 const CustLoginRegister = () => {
   const history = useHistory();
+
+  const reset=()=>{
+    setname("");
+    setemail("");
+    setcontactNumber("");
+    setdob("");
+    setadhaarNumber("");
+    setpassword("");
+    setCpassword("");
+  }
   
   const [name, setname] = useState("");
   const [email, setemail] = useState("");
@@ -20,14 +30,20 @@ const CustLoginRegister = () => {
   const [adhaarNumber, setadhaarNumber] = useState("");
   const [password, setpassword] = useState("");
   const [cPassword, setCpassword] = useState("");
+  const [error, seterror] = useState("");
   const login =(e)=>{
     const customer={
       email,
       password
     }
-    axios.post(url+"/customer",customer).then(Response=>{
-      console.log(Response.data);
-        history.push("/customer/welcome")
+    axios.post(url+"/login",customer).then(Response=>{
+      console.log(Response.status);
+      if(Response.status===200)
+        history.push("/customer/welcome");
+      else{
+        // reset();
+        seterror("Invalid credentials")
+      }
       })
  
   }
@@ -69,6 +85,7 @@ const CustLoginRegister = () => {
           <div className="signin-signup">
             <form action="#" className="sign-in-form l-form">
               <h2 className="title fw-bold">Sign In</h2>
+              <div className="danger">{error}</div>
                 <input type="text" className="input-fields-l" placeholder="Email" value={email} onChange={(e)=>{setemail(e.target.value)}} />
                 <input type="password" className="input-fields-l" placeholder="Password" value={password}  onChange={(e)=>{setpassword(e.target.value)}} />
               <input type="submit" value="Login" className="btn-l solid" onClick={login}/>

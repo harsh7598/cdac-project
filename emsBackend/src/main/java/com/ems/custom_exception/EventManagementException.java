@@ -1,9 +1,9 @@
 package com.ems.custom_exception;
 
-public class EventManagementException extends Exception{
+public class EventManagementException extends RuntimeException{
 	private static final long serialVersionUID = 1L;
 
-	EventManagementException(String msg){
+	public EventManagementException(String msg){
 		super(msg);
 	}
 }
