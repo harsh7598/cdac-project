@@ -33,10 +33,10 @@ public class UserServicesIMPL implements IUserServices {
 	@Override
 	public ResponseEntity<?> validateUser(LoginRegisterDTO user) {
 		try {
-			userDao.findByEmail(user.getEmail());
-//			if(encoder.matches(user.getPassword(), u.getPassword())) 
-//					return new ResponseEntity<>(u ,HttpStatus.OK);
-			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+			User u=userDao.findByEmail(user.getEmail());
+		if(encoder.matches(user.getPassword(), u.getPassword())) 
+					return new ResponseEntity<>(u ,HttpStatus.OK);
+			return new ResponseEntity<>(u,HttpStatus.UNAUTHORIZED);
 			}catch(RuntimeException e){
 				return new ResponseEntity<>(e.getMessage(),HttpStatus.UNAUTHORIZED);
 			}

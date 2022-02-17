@@ -11,7 +11,6 @@ import com.ems.dao.UserDao;
 import com.ems.pojos.User;
 
 @Service
-@Transactional
 public class UserDetailServiceImpl implements UserDetailsService {
 
 	@Autowired

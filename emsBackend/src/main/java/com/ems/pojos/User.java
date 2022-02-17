@@ -16,11 +16,13 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "user")
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class User extends BaseEntity {
 	@Column(length = 20)
 	private String name;
