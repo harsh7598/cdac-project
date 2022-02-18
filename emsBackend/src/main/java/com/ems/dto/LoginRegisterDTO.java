@@ -24,5 +24,10 @@ public class LoginRegisterDTO {
 	private int point;
 	private int priorityStatus;
 	private double salary;
+	public LoginRegisterDTO(String email, String password) {
+		super();
+		this.email = email;
+		this.password = password;
+	}
 	
 }
