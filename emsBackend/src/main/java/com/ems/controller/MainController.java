@@ -10,22 +10,29 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ems.custom_exception.EventManagementException;
 import com.ems.dto.LoginRegisterDTO;
 import com.ems.pojos.User;
 import com.ems.services.IUserServices;
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 @RestController
 @RequestMapping
 public class MainController {
-
+	
 	@Autowired
 	IUserServices userServices;
 	
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
+	
+//	@PostMapping("/login")
+//	public void employeeLogin(@RequestBody LoginRegisterDTO user){
+//		
+//	}
 	
 	@PostMapping("/login")
 	public ResponseEntity<?> employeeLogin(@RequestBody LoginRegisterDTO user){
@@ -37,12 +44,16 @@ public class MainController {
 	}
 	
 	@PostMapping("/empRegistration")
-	public String EmployeeRegistration(@RequestBody LoginRegisterDTO data) {
-		userServices.addUser(new User(data.getName(), LocalDate.parse(data.getDob()), 
+	public ResponseEntity<?> EmployeeRegistration(@RequestBody LoginRegisterDTO data) {
+		try {
+		User user= new User(data.getName(), LocalDate.parse(data.getDob()), 
 				data.getContactNumber(), data.getAdhaarNumber(),
 				data.getEmail(),passwordEncoder.encode(data.getPassword()), 
-				data.getAccountNumber(), data.getRole(),data.getSalary()));
-		return "Employee Added Successfully";
+				data.getAccountNumber(), data.getRole(),data.getSalary());
+		return new ResponseEntity<> (userServices.addUser(user),HttpStatus.OK);
+	}catch (EventManagementException e) {
+		return new  ResponseEntity<>(e.getMessage(),HttpStatus.NON_AUTHORITATIVE_INFORMATION);
+	}
 	}
 
 	@PostMapping("/custregistration")

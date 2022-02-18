@@ -37,7 +37,7 @@ const CustLoginRegister = () => {
       password
     }
     axios.post(url+"/login",customer).then(Response=>{
-      console.log(Response.status);
+      console.log(Response.data);
       if(Response.status===200)
         history.push("/customer/welcome");
       else{
