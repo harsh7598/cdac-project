@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HomePage from "./component/HomePage";
 import CustLoginRegister from "./component/login/CustLoginRegister";
-import EmpLogin from "./component/login/EmpLogin";
+import EmployeeLogin from "./component/login/EmployeeLogin";
 
 import Nav from "./component/Nav"
 import NavOther from "./component/NavOther"
@@ -15,6 +15,7 @@ import NavSignOut from "./component/AfterLoginPage/NavSignOut";
 import CustomerWelcome from "./component/AfterLoginPage/CustomerWelcome";
 import BookEvent from "./component/AfterLoginPage/BookEvent";
 import EditEvent from "./component/AfterLoginPage/EditEvent";
+import EmployeeRegister from "./component/login/EmployeeRegister";
 function App() {
 
   return (
@@ -28,15 +29,9 @@ function App() {
             <About />
             <Contact />
 
-            {/* <LoginRegister /> */}
-
           </Route>
 
 
-          {/* <Route exact path="/customer">
-            <NavOther />
-            <LoginRegister />
-          </Route> */}
           <Route exact path="/customer">
             <NavOther />
             <CustLoginRegister/>
@@ -44,7 +39,12 @@ function App() {
 
           <Route exact path="/employee">
             <NavOther />
-            <EmpLogin />
+            <EmployeeLogin />
+          </Route>
+
+          <Route exact path="/regemployee">
+            <NavOther />
+            <EmployeeRegister />
           </Route>
 
           <Route exact path="/services">

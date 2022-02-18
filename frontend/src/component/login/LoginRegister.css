@@ -41,6 +41,18 @@ body {
   z-index: 5;
 }
 
+.signin-signup-mod {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 75%;
+  width: 50%;
+  transition: 1s 0.7s ease-in-out;
+  display: grid;
+  grid-template-columns: 1fr;
+  z-index: 5;
+}
+
 .l-form {
   display: flex;
   align-items: center;
@@ -81,22 +93,41 @@ form.sign-in-form {
   position: relative;
 } */
 .input-fields-l{
+  background-color: #eee;
   height: 50px;
   outline: none;
   border: none;
   border-radius: 55px;
+  padding: 12px 15px;
   margin: 10px 0;
+  width: 100%;
   font-weight: 500;
   font-size: 1.1rem;
-
 }
 
+
 .input-fields-r{
+  background-color: #eee;
   height: 40px;
   outline: none;
   border: none;
   border-radius: 55px;
+  padding: 12px 15px;
   margin: 7px 0;
+  width: 100%;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.input-fields-mod{
+  background-color: #eee;
+  height: 40px;
+  outline: none;
+  border: none;
+  border-radius: 55px;
+  padding: 1px 15px;
+  margin: 5px 0;
+  width: 100%;
   font-weight: 500;
   font-size: 1.1rem;
 
@@ -268,6 +299,10 @@ input::placeholder {
   left: 25%;
 }
 
+.container-l.sign-up-mode .signin-signup-mod {
+  left: 25%;
+}
+
 .container-l.sign-up-mode form.sign-up-form {
   opacity: 1;
   z-index: 2;
@@ -303,8 +338,20 @@ input::placeholder {
     transition: 1s 0.8s ease-in-out;
   }
 
+  .signin-signup-mod {
+    width: 100%;
+    top: 90%;
+    transform: translate(-50%, -100%);
+    transition: 1s 0.8s ease-in-out;
+  }
+
   .signin-signup,
   .container-l.sign-up-mode .signin-signup {
+    left: 50%;
+  }
+
+  .signin-signup-mod,
+  .container-l.sign-up-mode .signin-signup-mod {
     left: 50%;
   }
 
@@ -390,6 +437,11 @@ input::placeholder {
   }
 
   .container-l.sign-up-mode .signin-signup {
+    top: 15%;
+    transform: translate(-50%, 0);
+  }
+
+  .container-l.sign-up-mode .signin-signup-mod {
     top: 15%;
     transform: translate(-50%, 0);
   }
