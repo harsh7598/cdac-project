@@ -35,22 +35,7 @@ const EmployeeRegister = () => {
   const [password, setpassword] = useState("");
   const [cPassword, setCpassword] = useState("");
   const [error, seterror] = useState("");
-  const login = (e) => {
-    const customer = {
-      email,
-      password
-    }
-    axios.post(url + "/login", customer).then(Response => {
-      console.log(Response.status);
-      if (Response.status === 200)
-        history.push("/customer/welcome");
-      else {
-        // reset();
-        seterror("Invalid credentials")
-      }
-    })
-
-  }
+  
   const registerCustomer = (e) => {
     e.preventDefault();
     if (password == cPassword) {
