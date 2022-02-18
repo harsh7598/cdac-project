@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,16 +46,17 @@ public class MainController {
 	}
 
 	@PostMapping("/custregistration")
-	public String customerRegistration(@RequestBody LoginRegisterDTO data) {
+	public ResponseEntity<?> customerRegistration(@RequestBody LoginRegisterDTO data) {
+		try {
 		User user = new User(data.getName(), LocalDate.parse(data.getDob()), data.getContactNumber(), data.getAdhaarNumber(), data.getEmail(),
 				passwordEncoder.encode(data.getPassword()), 
-				data.getAccountNumber(), data.getRole());
-		userServices.addUser(user);
-		return "customer added successfully";
+				data.getAccountNumber(), "CUSTOMER");
+		//userServices.addUser(user);
+		return new ResponseEntity<> (userServices.addUser(user),HttpStatus.OK);
+		}catch (EventManagementException e) {
+			return new  ResponseEntity<>(e.getMessage(),HttpStatus.NON_AUTHORITATIVE_INFORMATION);
+		}
 	}
-	@GetMapping("/welcome")
-	public String rolecheck(){
-		return "welcome";
-	}
+
 	
 }

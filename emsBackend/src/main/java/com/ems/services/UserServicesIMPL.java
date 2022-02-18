@@ -1,8 +1,5 @@
 package com.ems.services;
 
-
-
-
 import javax.management.RuntimeErrorException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,24 +17,28 @@ import com.ems.pojos.User;
 @Service
 @Transactional
 public class UserServicesIMPL implements IUserServices {
-	
+
 	@Autowired
 	private UserDao userDao;
-	
+
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 
+//	@Override
+//	public User addUser(User user) {
+//		return userDao.save(user);
+//	}
+
 	@Override
-	public void addUser(User user) {
-		userDao.save(user);
-		
+	public User validateUser(LoginRegisterDTO user) {
+		User u = userDao.findByEmail(user.getEmail()).orElseThrow(() -> new EventManagementException("USER NOT FOUND"));
+		if (encoder.matches(user.getPassword(), u.getPassword()))
+			return u;
+		throw new EventManagementException("INVALID PASSWORD");
 	}
 
 	@Override
-	public User validateUser(LoginRegisterDTO user){
-	 User u=userDao.findByEmail(user.getEmail()).orElseThrow(()-> new EventManagementException("USER NOT FOUND"));
-	 if(encoder.matches(user.getPassword(), u.getPassword()))
-		return u;
-	 throw new EventManagementException("INVALID PASSWORD");
+	public User addUser(User user) {
+		return userDao.save(user);
 	}
 }
