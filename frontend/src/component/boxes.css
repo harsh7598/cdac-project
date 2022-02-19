@@ -28,6 +28,35 @@
     background-color: #1f1a1a;
     color: white;
   }
+
+  /* ----------------------------------------------------------- */
+  
+  .event__box {
+    background: #1a1a1a;
+    transition: all 0.5s linear;
+  }
+  .event__box:hover {
+    background: #fc1f1f;
+    
+    }
+
+  .event__box:hover .commonIcons {
+    color: #fff;
+  }
+
+  .event__box:hover .btn {
+    background-color: #1f1a1a;
+    color: rgb(0, 0, 0);
+  }
+
+  .list-items{
+    width: 90%;
+    margin: 0;
+    position: absolute;
+    left: 5%;
+  }
+
+
   .btn{
     transition: all 0.5s linear;
   }

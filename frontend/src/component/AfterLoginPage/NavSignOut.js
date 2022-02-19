@@ -12,7 +12,7 @@ const NavSignOut = () => {
           <Link className="navbar-brand" to={"/"}>
             <img src={logo} alt="not found" width="100" height="40"/>
           </Link>
-          <Link className="navbar-brand fs-3" to={"/"}>Event Management System</Link>
+          {/* <Link className="navbar-brand fs-3" to={"/"}>Event Management System</Link> */}
           <button
             className="navbar-toggler"
             type="button"

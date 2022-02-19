@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 const BookEvent = () => {
   const [addclass, setaddclass] = useState("");
   return (
-    <div className="backgrnd position-absolute top-50 start-50 translate-middle w-100">
-      {/* <div className={`container ${addclass}`} id="container"> */}
+    <div className="forms-container">
       <form className="Emplogin-form-in mt-3">
         <table className="col-12 mt-5">
           <thead>
@@ -42,7 +41,7 @@ const BookEvent = () => {
           </tbody>
         </table>
         <div className="d-grid col-10 mt-3 mx-auto">
-          <Link className="btn bg-danger btn-lg text-white my-3 px-5 py-2 rounded-pill" to={""}>Proceed</Link>
+          <Link className="btn bg-danger btn-lg text-white my-3 px-5 py-2 rounded-pill" to={"/customer/bookevent/selectvenue"}>Proceed</Link>
         </div>
       </form>
 

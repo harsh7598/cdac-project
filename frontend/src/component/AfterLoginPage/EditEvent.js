@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 const EditEvent = () => {
   const [addclass, setaddclass] = useState("");
   return (
-    <div className="backgrnd position-absolute top-50 start-50 translate-middle w-100">
-      {/* <div className={`container ${addclass}`} id="container"> */}
+    <div className="forms-container">
       <form className="Emplogin-form-in mt-3">
         <table className="col-12 mt-5">
           <thead>

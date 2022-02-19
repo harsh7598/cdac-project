@@ -33,22 +33,6 @@ const CustLoginRegister = () => {
   const [error, seterror] = useState("");
   const [errortype, seterrortype] = useState("");
 
-  // const login = (e) => {
-  //   const customer = {
-  //     email,
-  //     password
-  //   }
-  //   axios.post(url + "/login", customer).then(Response => {
-  //     console.log(Response.status);
-  //     if (Response.status === 200)
-  //       history.push("/customer/welcome");
-  //     else {
-  //       // reset();
-  //       seterror("Invalid credentials")
-  //     }
-  //   })
-
-  // }
 
   const login = (e) => {
     e.preventDefault();
