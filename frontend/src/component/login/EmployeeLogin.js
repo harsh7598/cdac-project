@@ -19,7 +19,15 @@ const EmployeeLogin = () => {
   const Login = (e) => {
     e.preventDefault();
     const employee = { email, password };
-    axios.post(url + "/login", employee).then((Response) => {
+    axios.get(url + "/login",{headers:{
+      // 'Access-Control-Allow-Origin':'*'
+    }
+    ,auth:{
+      'username':email,
+      'password':password
+
+    }
+  }).then((Response) => {
       console.log(Response.status);
       console.log(Response.data);
       if (Response.status == 200) {
@@ -30,13 +38,14 @@ const EmployeeLogin = () => {
         seterror(Response.data);
         seterrortype("alert-box");
       }
-    });
-  }
-  useEffect(() => {
-    const container = document.querySelector(".container-l");
+    }
+  );
 
   }
-  );
+ 
+  useEffect(() => {
+    const container = document.querySelector(".container-l");
+  });
   return (
     <div>
       <div className="container-l">
@@ -66,6 +75,5 @@ const EmployeeLogin = () => {
 
     </div>
   );
-};
-
+}
 export default EmployeeLogin;

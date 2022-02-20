@@ -3,6 +3,7 @@ package com.ems.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,49 +15,39 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
-	
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
 	@Autowired
 	UserDetailsService userDetailsService;
 
 	@Override
 	public AuthenticationManager authenticationManagerBean() throws Exception {
-		
+
 		return super.authenticationManagerBean();
 	}
-	
-	
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(userDetailsService);
 	}
-	
-//	@Bean
-//	public PasswordEncoder passwordEncoder() {
-//		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-//
-//		
-//	}
+
 	@Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-	
-	
+	public BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.cors().and().csrf().disable();
+		http.cors().disable();
+		http.csrf().disable();
+
 		http.authorizeRequests()
 		.antMatchers("/").permitAll()
-		.antMatchers("/login").hasRole("CUSTOMER")
-//		.and()
-//		.formLogin()
-//		.loginPage("/login")
-//		.permitAll()
-//		.and()
-//		.logout().invalidateHttpSession(true)
-//		.logoutUrl("/logout").logoutSuccessUrl("/logout-success")
+//		.antMatchers(HttpMethod.GET,"/{userId}").access("@userSecurity.hasUserId(authentication,#userId)")
+//		.and().formLogin().loginPage("/login")
+//		.and().logout().logoutUrl("/logout").invalidateHttpSession(true)
 		.and()
 		.httpBasic();
+		
 	}
 }
