@@ -18,6 +18,7 @@ import EditEvent from "./component/AfterLoginPage/EditEvent";
 import EmployeeRegister from "./component/login/EmployeeRegister";
 import SelectVenue from "./component/AfterLoginPage/SelectVenue";
 import SelectCaterer from "./component/AfterLoginPage/SelectCaterer";
+import SelectMedia from "./component/AfterLoginPage/SelectMedia";
 function App() {
 
   return (
@@ -85,6 +86,10 @@ function App() {
           <Route exact path="/customer/bookevent/selectcaterer">
             <NavSignOut />
             <SelectCaterer />
+          </Route>
+          <Route exact path="/customer/bookevent/selectmedia">
+            <NavSignOut />
+            <SelectMedia />
           </Route>
 
         </Switch>
