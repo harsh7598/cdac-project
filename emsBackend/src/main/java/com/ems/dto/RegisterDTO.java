@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class LoginRegisterDTO {
+public class RegisterDTO {
 	private int id;
 	private String name;
 	private String dob;
@@ -24,10 +24,9 @@ public class LoginRegisterDTO {
 	private int point;
 	private int priorityStatus;
 	private double salary;
-	public LoginRegisterDTO(String email, String password) {
+	public RegisterDTO(String email, String password) {
 		super();
 		this.email = email;
 		this.password = password;
 	}
-	
 }

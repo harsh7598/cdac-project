@@ -1,14 +1,11 @@
 package com.ems.services;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.ems.custom_exception.EventManagementException;
 import com.ems.dao.UserDao;
 import com.ems.pojos.User;
 
@@ -26,5 +23,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 		}
 		return new UserDetailImpl(user);
 	}
+	
+	
 
 }
