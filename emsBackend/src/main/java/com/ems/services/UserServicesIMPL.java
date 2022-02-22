@@ -22,6 +22,7 @@ public class UserServicesIMPL implements IUserServices {
 
 	@Override
 	public User validateUser(String email) {
+		System.out.println("in validate");
 		User u = userDao.findByEmail(email).orElseThrow(() -> new EventManagementException("USER NOT FOUND"));
 //		if (encoder.matches(credentials.getPassword(), u.getPassword()))
 			return u;

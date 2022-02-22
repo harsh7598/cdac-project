@@ -38,6 +38,7 @@ public class MainController {
 	@GetMapping("/login")
 	public ResponseEntity<?> employeeLogin(Authentication authentication,HttpSession session){
 		System.out.println("http session ID "+session.getId());
+	//	System.out.println("http session ID "+authentication.getCredentials());
 //		System.out.println(authentication);	
 		return new ResponseEntity<User>(userServices.validateUser(authentication.getName()), HttpStatus.OK);
 	}
