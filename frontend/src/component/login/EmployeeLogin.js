@@ -19,17 +19,9 @@ const EmployeeLogin = () => {
   const Login = (e) => {
     e.preventDefault();
     const employee = { email, password };
-    axios.get(url + "/login",{headers:{
-      // 'Access-Control-Allow-Origin':'*'
-    }
-    ,auth:{
-      'username':email,
-      'password':password
-
-    }
-  }).then((Response) => {
+    axios.post(url + "/login",employee).then((Response) => {
       console.log(Response.status);
-      console.log(Response.data);
+      console.log(Response.data.jwt);
       if (Response.status == 200) {
         history.push("/customer/welcome");
       } else {

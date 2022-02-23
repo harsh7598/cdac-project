@@ -17,9 +17,9 @@ import com.ems.dto.LoginDTO;
 import com.ems.dto.RegisterDTO;
 import com.ems.jwt_utils.JwtUtils;
 import com.ems.services.IUserServices;
-@CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping
+@CrossOrigin(origins = "http://localhost:3000")
 public class MainController {
 	
 	@Autowired
