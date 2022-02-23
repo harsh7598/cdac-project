@@ -24,11 +24,6 @@ public class UserServicesIMPL implements IUserServices {
 
 	@Override
 	public RegisterDTO registerUser(RegisterDTO request) {
-		// create User from request payload
-		/*
-		 * { "userName": "Rama", "email": "rama@gmail.com", "password": "ram#12345",
-		 * "roles": [ "ROLE_ADMIN" ] }
-		 */
 		User user = new User();
 		user.setEmail(request.getEmail());
 		user.setPassword(encoder.encode(request.getPassword()));//set encoded pwd

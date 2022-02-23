@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import authHeader from "../services/auth-header";
 import axios from "axios";
 import "./LoginRegister.css";
 import NavSignOut from "../AfterLoginPage/NavSignOut";
@@ -19,9 +20,10 @@ const EmployeeLogin = () => {
   const Login = (e) => {
     e.preventDefault();
     const employee = { email, password };
-    axios.post(url + "/login",employee).then((Response) => {
-      console.log(Response.status);
+    axios.post(url + "/login",employee,{authHeader}).then((Response) => {
       console.log(Response.data.jwt);
+      if(Response.data.jwt)
+        localStorage.setItem('user',JSON.stringify(Response.data));
       if (Response.status == 200) {
         history.push("/customer/welcome");
       } else {

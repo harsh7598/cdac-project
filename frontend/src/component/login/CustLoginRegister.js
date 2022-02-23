@@ -4,6 +4,8 @@ import axios from "axios";
 import "./LoginRegister.css";
 import NavSignOut from "../AfterLoginPage/NavSignOut";
 import CustomerWelcome from "../AfterLoginPage/CustomerWelcome";
+import authHeader from "../services/auth-header"
+
 
 import log from "../../images/log.svg"
 import register from "../../images/register.svg"
@@ -18,7 +20,7 @@ const CustLoginRegister = () => {
     setemail("");
     setcontactNumber("");
     setdob("");
-    setadhaarNumber("");
+    setadharNumber("");
     setpassword("");
     setCpassword("");
   }
@@ -27,19 +29,21 @@ const CustLoginRegister = () => {
   const [email, setemail] = useState("");
   const [contactNumber, setcontactNumber] = useState("");
   const [dob, setdob] = useState("");
-  const [adhaarNumber, setadhaarNumber] = useState("");
+  const [adharNumber, setadharNumber] = useState("");
   const [password, setpassword] = useState("");
   const [cPassword, setCpassword] = useState("");
+  const role="customer";
   const [error, seterror] = useState("");
   const [errortype, seterrortype] = useState("");
+
 
 
   const login = (e) => {
     e.preventDefault();
     const customer = { email, password };
-    axios.post(url + "/login", customer).then((Response) => {
-      console.log(Response.status);
-      console.log(Response.data);
+    axios.post(url + "/login",customer,{authHeader}).then((Response) => {
+      if(Response.data.jwt)
+        localStorage.setItem('user',JSON.stringify(Response.data));
       if (Response.status == 200) {
         history.push("/customer/welcome");
       } else {
@@ -48,7 +52,8 @@ const CustLoginRegister = () => {
         seterror(Response.data);
         seterrortype("alert-box");
       }
-    });
+    }
+  );
   }
 
   const registerCustomer = (e) => {
@@ -59,10 +64,11 @@ const CustLoginRegister = () => {
         email,
         contactNumber,
         dob,
-        adhaarNumber,
-        password
+        adharNumber,
+        password,
+        role
       }
-      axios.post(url + "/custregistration", customer).then(Response => { 
+      axios.post(url + "/registration", customer).then(Response => { 
         console.log(Response.data) 
         if (Response.status === 200)
         history.push("/customer/welcome");
@@ -108,7 +114,7 @@ const CustLoginRegister = () => {
                 <input type="email" className="input-fields-r" placeholder="Enter Email" value={email}  onChange={(e)=>{setemail(e.target.value)}}/>
                 <input type="text" className="input-fields-r" placeholder="Enter Contact Number" value={contactNumber}  onChange={(e)=>{setcontactNumber(e.target.value)}}/>
                 <input type="date" className="input-fields-r" placeholder="Enter Date of Birth" value={dob}  onChange={(e)=>{setdob(e.target.value)}}/>
-                <input type="text" className="input-fields-r" placeholder="Enter Aadhar Number" value={adhaarNumber}  onChange={(e)=>{setadhaarNumber(e.target.value)}}/>
+                <input type="text" className="input-fields-r" placeholder="Enter Aadhar Number" value={adharNumber}  onChange={(e)=>{setadharNumber(e.target.value)}}/>
                 <input type="password " className="input-fields-r" placeholder="Enter New Password" value={password}  onChange={(e)=>{setpassword(e.target.value)}}/>
                 <input type="password" className="input-fields-r" placeholder="Confirm Password" value={cPassword} onChange={(e)=>{setCpassword(e.target.value)}}/>
               <input type="submit" className="btn-l" value="Sign up" onClick={registerCustomer}/>
