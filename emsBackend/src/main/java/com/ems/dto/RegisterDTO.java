@@ -1,5 +1,7 @@
 package com.ems.dto;
 
+import java.time.LocalDate;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -14,9 +16,9 @@ import lombok.Setter;
 public class RegisterDTO {
 	private int id;
 	private String name;
-	private String dob;
+	private LocalDate dob;
 	private String contactNumber;
-	private String adhaarNumber;
+	private String adharNumber;
 	private String email;
 	private String password;
 	private String accountNumber;

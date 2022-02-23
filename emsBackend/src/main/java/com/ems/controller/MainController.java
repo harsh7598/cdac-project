@@ -1,25 +1,21 @@
 package com.ems.controller;
 
-import java.time.LocalDate;
-
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ems.custom_exception.EventManagementException;
-import com.ems.dao.UserDao;
+import com.ems.dto.AuthenticationResponse;
+import com.ems.dto.LoginDTO;
 import com.ems.dto.RegisterDTO;
-import com.ems.pojos.User;
+import com.ems.jwt_utils.JwtUtils;
 import com.ems.services.IUserServices;
 @CrossOrigin("http://localhost:3000")
 @RestController
@@ -27,54 +23,34 @@ import com.ems.services.IUserServices;
 public class MainController {
 	
 	@Autowired
-	IUserServices userServices;
+	private AuthenticationManager authManager;
 	
 	@Autowired
-	UserDao userdao;
+	private IUserServices userServices;
+	
+	@Autowired
+	private JwtUtils jwtUtils;
 	
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 
-	@GetMapping("/login")
-	public ResponseEntity<?> employeeLogin(Authentication authentication,HttpSession session){
-		System.out.println("http session ID "+session.getId());
-	//	System.out.println("http session ID "+authentication.getCredentials());
-//		System.out.println(authentication);	
-		return new ResponseEntity<User>(userServices.validateUser(authentication.getName()), HttpStatus.OK);
+	@PostMapping("/registration")
+	public ResponseEntity<?> userRegistration(@RequestBody RegisterDTO request) {
+		System.out.println("in user reg " + request);
+		return ResponseEntity.ok(userServices.registerUser(request));
 	}
-
-	@GetMapping("/logout")
-	public ResponseEntity<String> employeeLogout(HttpSession session){
-		session.invalidate();
-		return new ResponseEntity<String>("LOGOUT SUCCESS",HttpStatus.OK);
-	}
-
 	
-	@PostMapping("/empRegistration")
-	public ResponseEntity<?> EmployeeRegistration(@RequestBody RegisterDTO data) {
+	@PostMapping("/login")
+	public ResponseEntity<?> authenticateUser(@RequestBody LoginDTO request) {
+		System.out.println("in auth " + request);
 		try {
-		User user= new User(data.getName(), LocalDate.parse(data.getDob()), 
-				data.getContactNumber(), data.getAdhaarNumber(),
-				data.getEmail(),passwordEncoder.encode(data.getPassword()), 
-				data.getAccountNumber(), data.getRole(),data.getSalary());
-		return new ResponseEntity<> (userServices.addUser(user),HttpStatus.OK);
-	}catch (EventManagementException e) {
-		return new  ResponseEntity<>(e.getMessage(),HttpStatus.NON_AUTHORITATIVE_INFORMATION);
-	}
-	}
-
-	@PostMapping("/custregistration")
-	public ResponseEntity<?> customerRegistration(@RequestBody RegisterDTO data) {
-		try {
-		User user = new User(data.getName(), LocalDate.parse(data.getDob()), data.getContactNumber(), data.getAdhaarNumber(), data.getEmail(),
-				passwordEncoder.encode(data.getPassword()), 
-				data.getAccountNumber(), "CUSTOMER");
-		//userServices.addUser(user);
-		return new ResponseEntity<> (userServices.addUser(user),HttpStatus.OK);
-		}catch (EventManagementException e) {
-			return new  ResponseEntity<>(e.getMessage(),HttpStatus.NON_AUTHORITATIVE_INFORMATION);
+			Authentication authenticate = authManager.authenticate
+			(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));			
+			System.out.println("auth success " + authenticate);
+			return ResponseEntity.ok(new AuthenticationResponse(jwtUtils.generateJwtToken(authenticate)));
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("User authentication Failed", e);
 		}
 	}
-
-	
 }

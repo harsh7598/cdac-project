@@ -1,11 +1,15 @@
 package com.ems.services;
 
+import java.time.LocalDate;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ems.custom_exception.EventManagementException;
 import com.ems.dao.UserDao;
+import com.ems.dto.RegisterDTO;
 import com.ems.pojos.User;
 
 @Service
@@ -14,23 +18,31 @@ public class UserServicesIMPL implements IUserServices {
 
 	@Autowired
 	private UserDao userDao;
-
-//	@Override
-//	public User addUser(User user) {
-//		return userDao.save(user);
-//	}
+	
+	@Autowired
+	private PasswordEncoder encoder;
 
 	@Override
-	public User validateUser(String email) {
-		System.out.println("in validate");
-		User u = userDao.findByEmail(email).orElseThrow(() -> new EventManagementException("USER NOT FOUND"));
-//		if (encoder.matches(credentials.getPassword(), u.getPassword()))
-			return u;
-//		throw new EventManagementException("INVALID PASSWORD");
-	}
-
-	@Override
-	public User addUser(User user) {
-		return userDao.save(user);
+	public RegisterDTO registerUser(RegisterDTO request) {
+		// create User from request payload
+		/*
+		 * { "userName": "Rama", "email": "rama@gmail.com", "password": "ram#12345",
+		 * "roles": [ "ROLE_ADMIN" ] }
+		 */
+		User user = new User();
+		user.setEmail(request.getEmail());
+		user.setPassword(encoder.encode(request.getPassword()));//set encoded pwd
+		user.setDob((request.getDob()));
+		user.setAccountNumber(request.getAccountNumber());
+		user.setAdharNumber(request.getAdharNumber());
+		user.setContactNumber(request.getContactNumber());
+		user.setName(request.getName());
+		user.setRole(request.getRole());
+		user.setSalary(request.getSalary());
+		User persistentUser = userDao.save(user);
+		RegisterDTO dto = new RegisterDTO();
+		System.out.println(persistentUser.toString());
+		BeanUtils.copyProperties(persistentUser, dto);
+		return dto;
 	}
 }

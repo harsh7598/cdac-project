@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {authHeader} from "../services/auth-header"
 import { url } from "../common/constants";
 import axios from "axios";
 import "./EmpLogin.css";
@@ -15,9 +16,8 @@ const EmpLogin = () => {
   const Login = (e) => {
     e.preventDefault();
     const employee = { email, password };
-    axios.post(url + "/login", employee).then((Response) => {
-      console.log(Response.status);
-      console.log(Response.data);
+    axios.post(url + "/login", employee,{headers:{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Origin':'*','Contact-Type':'application/json'}}).then((response) => {
+      console.log(response.data.accessToken);
       if (Response.status == 200) {
         history.push("/");
       } else {

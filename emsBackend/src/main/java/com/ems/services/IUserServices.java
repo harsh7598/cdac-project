@@ -1,11 +1,8 @@
 package com.ems.services;
 
-import com.ems.pojos.User;
+import com.ems.dto.RegisterDTO;
 
 public interface IUserServices {
-
-	public User addUser(User user);
-
-	public User validateUser(String email);
+	public RegisterDTO registerUser(RegisterDTO request);
 
 }

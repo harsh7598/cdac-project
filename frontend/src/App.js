@@ -19,8 +19,7 @@ import EmployeeRegister from "./component/login/EmployeeRegister";
 import SelectVenue from "./component/AfterLoginPage/SelectVenue";
 import SelectCaterer from "./component/AfterLoginPage/SelectCaterer";
 import SelectMedia from "./component/AfterLoginPage/SelectMedia";
-function App() {
-
+function App() { 
   return (
     <div className="App">
       <BrowserRouter>
