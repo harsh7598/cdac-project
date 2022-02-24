@@ -13,13 +13,17 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "event")
 public class Event extends BaseEntity{
 	
@@ -29,10 +33,10 @@ public class Event extends BaseEntity{
 	@Enumerated(value = EnumType.STRING)
 	private EventType type;
 	private LocalDate date;
-	@Column(name="start_time")
-	private LocalDateTime startTime;
-	@Column(name="end_time")
-	private LocalDateTime endTime;
+//	@Column(name="start_time")
+//	private LocalDateTime startTime;
+//	@Column(name="end_time")
+//	private LocalDateTime endTime;
 	
 	@Column(name="guest_count")
 	private int guestCount;
@@ -48,6 +52,7 @@ public class Event extends BaseEntity{
 
 	@ManyToOne
 	@JoinColumn(name = "cater_id",nullable = false)
+//	@JoinColumn(name = "cater_id")
 	private Caters bookedCater;
 	
 	@ManyToMany(mappedBy = "regevents")
@@ -56,14 +61,15 @@ public class Event extends BaseEntity{
 	@ManyToMany(mappedBy = "events")
 	private List<Menu> menus = new ArrayList<>();
 
-	public Event(String name, EventType type, LocalDate date, LocalDateTime startTime, LocalDateTime endTime,
-			int guestCount) {
+	public Event(String name, EventType type, LocalDate date, int guestCount, Venue bookedVenue, Caters bookedCater) {
 		super();
 		this.name = name;
 		this.type = type;
 		this.date = date;
-		this.startTime = startTime;
-		this.endTime = endTime;
 		this.guestCount = guestCount;
+		this.bookedVenue = bookedVenue;
+		this.bookedCater = bookedCater;
 	}
+
+
 }

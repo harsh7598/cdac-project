@@ -3,14 +3,14 @@ import { Link, useHistory } from 'react-router-dom';
 import axios from "axios";
 // import employeeService from '../services/employee.service';
 
-const SelectVenue = () => {
-
-//   const [venues, setVenues] = useState([]);
-
-//   const init = () => {
+const SelectVenue = (props) => {
+  
+  //   const [venues, setVenues] = useState([]);
+  
+  //   const init = () => {
 //     axios.get()
 //       .then(response => {
-//         console.log('Printing Venues data', response.data);
+  //         console.log('Printing Venues data', response.data);
 //         setVenues(response.data);
 //       })
 //       .catch(error => {
@@ -43,8 +43,11 @@ const venues = [
     }
   ];
 
-  return (
+    const { data } = this.props.location
+    console.log(data);
 
+  return (
+    
 <div className="forms-container">
       <div className="py-5 text-white my-5">
       <div colSpan="2" className="fw-bold pt-5 display-6">
