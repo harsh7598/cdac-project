@@ -50,10 +50,20 @@ public class Event extends BaseEntity{
 	@JoinColumn(name = "cater_id",nullable = false)
 	private Caters bookedCater;
 	
-	
 	@ManyToMany(mappedBy = "regevents")
     private List<User> users = new ArrayList<>();
 
 	@ManyToMany(mappedBy = "events")
 	private List<Menu> menus = new ArrayList<>();
+
+	public Event(String name, EventType type, LocalDate date, LocalDateTime startTime, LocalDateTime endTime,
+			int guestCount) {
+		super();
+		this.name = name;
+		this.type = type;
+		this.date = date;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.guestCount = guestCount;
+	}
 }

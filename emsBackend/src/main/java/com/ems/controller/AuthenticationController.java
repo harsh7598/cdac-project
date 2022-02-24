@@ -16,7 +16,7 @@ public class AuthenticationController {
 	@GetMapping
 	public AuthenticationResponse authenticateUser(HttpServletRequest request)
 	{
-		System.out.println("in auth user "+request.getHeader("authorization"));			
+		System.out.println("in auth user "+request.getHeader("authorization").substring(7));			
 		return new AuthenticationResponse("Successful Authentication");
 	}
 }

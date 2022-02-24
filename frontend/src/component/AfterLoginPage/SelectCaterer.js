@@ -31,8 +31,7 @@ const caterers = [
       
     },
     {
-      id: 3
-    
+      id: 3 
     }
   ];
 

@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
 import authHeader from "../services/auth-header";
 import axios from "axios";
 import "./LoginRegister.css";
-import NavSignOut from "../AfterLoginPage/NavSignOut";
-import CustomerWelcome from "../AfterLoginPage/CustomerWelcome";
-
 import log from "../../images/log.svg"
-import register from "../../images/register.svg"
 import { Link, useHistory } from "react-router-dom";
 import { url } from "../common/constants";
 
