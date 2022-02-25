@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,6 +24,6 @@ public class Studio extends BaseEntity {
 	private String Contact;
 	private double cost;
 
-	@OneToMany(mappedBy = "studio", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "studio", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
 	List<MediaRequirement> bookedMedia = new ArrayList<>();
 }

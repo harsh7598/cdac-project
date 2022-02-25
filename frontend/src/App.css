@@ -13,6 +13,16 @@
   }
 }
 
+div.scroll {
+  background-color: #030303;
+  width: 600px;
+  height: 600px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: center;
+  padding: 20px;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

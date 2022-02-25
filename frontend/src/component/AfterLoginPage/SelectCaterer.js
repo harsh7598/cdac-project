@@ -1,39 +1,28 @@
 import { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import axios from "axios";
+import { url } from '../common/constants';
 // import employeeService from '../services/employee.service';
 
 const SelectCaterer = () => {
 
-//   const [caterers, setCaterers] = useState([]);
+  const [caterers, setCaterers] = useState([]);
 
-//   const init = () => {
-//     axios.get()
-//       .then(response => {
-//         console.log('Printing Caterers data', response.data);
-//         setCaterers(response.data);
-//       })
-//       .catch(error => {
-//         console.log('Something went wrong', error);
-//       }) 
-//   }
+  const init = () => {
+    axios.get(url+"/caters")
+      .then(Response => {
+        console.log('Printing Caterers data', Response.data);
+        setCaterers(Response.data);
+      })
+      .catch(error => {
+        console.log('Something went wrong', error);
+      }) 
+  }
 
-//   useEffect(() => {
-//     init();
-//   }, []);
+  useEffect(() => {
+    init();
+  }, []);
 
-const caterers = [
-    {
-      id: 1
-    },
-    {
-      id: 2
-      
-    },
-    {
-      id: 3 
-    }
-  ];
 
   return (
 
@@ -46,16 +35,13 @@ const caterers = [
           {caterers.map((caterer) => (
 
             <div key={caterer.id}>
-              <Link className="nav-link text-white py-1" to={caterer.link}>
+              {/* <Link className="nav-link text-white py-1" to={caterer.link}> */}
                 <div className="event__box py-2 px-2 border border-2 border-white">
                   <h4 className="text-start px-3">Name: {caterer.name}</h4>
                   <h4 className="text-start px-3">Contact: {caterer.contactNumber}</h4>
-                  <h4 className="text-start px-3">Speciality: {caterer.speciality}</h4>
-                
-
-                  
+                  <h4 className="text-start px-3">Speciality: {caterer.speciality}</h4>         
                 </div>
-              </Link>
+              {/* </Link> */}
                 <br></br>
             </div>
 

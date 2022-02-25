@@ -1,50 +1,50 @@
 import { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { url } from "../common/constants";
 import axios from "axios";
+import authHeader from "../services/auth-header"
 // import employeeService from '../services/employee.service';
 
-const SelectVenue = (props) => {
-  
-  //   const [venues, setVenues] = useState([]);
-  
-  //   const init = () => {
-//     axios.get()
-//       .then(response => {
-  //         console.log('Printing Venues data', response.data);
-//         setVenues(response.data);
-//       })
-//       .catch(error => {
-//         console.log('Something went wrong', error);
-//       }) 
-//   }
+const SelectVenue = () => {
+    const [venues, setVenues] = useState([]);  
+    const init = () => {
+    axios.get(url+"/venue")
+      .then(response => {
+          console.log('Printing Venues data', response.data);
+        setVenues(response.data);
+      })
+      .catch(error => {
+        console.log('Something went wrong', error);
+      }) 
+  }
 
-//   useEffect(() => {
-//     init();
-//   }, []);
+  useEffect(() => {
+    init();
+  }, []);
 
-const venues = [
-    {
-      id: 1,
-      icon: <p className="commonIcons2" />,
-      heading: "Book Event",
-      link: "bookevent"
-    },
-    {
-      id: 2,
-      icon: <p className="commonIcons2" />,
-      heading: "View Event",
-      link: "viewevent"
-    },
-    {
-      id: 3,
-      icon: <p className="commonIcons2" />,
-      heading: "Edit Event Information",
-      link: "editevent"
-    }
-  ];
+// const venues = [
+//     {
+//       id: 1,
+//       icon: <p className="commonIcons2" />,
+//       heading: "Book Event",
+//       link: "bookevent"
+//     },
+//     {
+//       id: 2,
+//       icon: <p className="commonIcons2" />,
+//       heading: "View Event",
+//       link: "viewevent"
+//     },
+//     {
+//       id: 3,
+//       icon: <p className="commonIcons2" />,
+//       heading: "Edit Event Information",
+//       link: "editevent"
+//     }
+//   ];
 
-    const { data } = this.props.location
-    console.log(data);
+    // const { data } = this.props.location
+    // console.log(data);
 
   return (
     

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
+import { Button } from "react-scroll";
+
 const BookEvent = () => {
   const [name, setname] = useState("");
   const [type, settype] = useState("");
   const [date, setdate] = useState("");
   const [guestCount, setguestCount] = useState("");
-
+  const history=useHistory();
 
   const eventdata = {
     name,
@@ -14,11 +16,8 @@ const BookEvent = () => {
     guestCount
   }
   const bookevent = (e) => {
-    e.preventDefault();
-   
-
-
-    
+    localStorage.setItem('eventdata',eventdata);
+    history.push("/customer/bookevent/selectmenu")
   }
 
   return (
@@ -54,7 +53,7 @@ const BookEvent = () => {
         </table>
         <div className="d-grid col-10 mt-3 mx-auto">
           {/* <Link className="btn bg-danger btn-lg text-white my-3 px-5 py-2 rounded-pill" to={"/customer/bookevent/selectvenue"} onClick={bookevent}>Proceed</Link> */}
-          <Link className="btn bg-danger btn-lg text-white my-3 px-5 py-2 rounded-pill" to={{pathname: "/customer/bookevent/selectvenue",data: eventdata }} >Proceed</Link>
+          <button className="btn bg-danger btn-lg text-white my-3 px-5 py-2 rounded-pill" onClick={bookevent} >Proceed</button>
        </div>
       </form>
 

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -26,7 +27,7 @@ public class Caters extends BaseEntity {
 	@Column(length = 20)
 	private String speciality;
 		
-	@OneToMany(mappedBy = "bookedCater",cascade = CascadeType.ALL,orphanRemoval = true)
+	@OneToMany(mappedBy = "bookedCater",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
 	private List<Event> BookedEvents;
 	
 }

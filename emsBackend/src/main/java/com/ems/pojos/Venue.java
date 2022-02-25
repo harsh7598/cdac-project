@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -43,7 +44,7 @@ public class Venue extends BaseEntity{
 	
 	private double cost;
 	
-	@OneToMany(mappedBy = "bookedVenue",cascade = CascadeType.ALL,orphanRemoval = true)
+	@OneToMany(mappedBy = "bookedVenue",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
 	private List<Event> BookedVenueByEvent;
 	
 	
