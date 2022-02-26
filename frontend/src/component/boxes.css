@@ -68,4 +68,9 @@
   .backgrndwc{
     height: 180%;
   }
-  
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 10px;
+  } 

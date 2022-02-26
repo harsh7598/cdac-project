@@ -19,6 +19,8 @@ import EmployeeRegister from "./component/login/EmployeeRegister";
 import SelectVenue from "./component/AfterLoginPage/SelectVenue";
 import SelectCaterer from "./component/AfterLoginPage/SelectCaterer";
 import SelectMedia from "./component/AfterLoginPage/SelectMedia";
+import SelectMenu from "./component/AfterLoginPage/SelectMenu";
+
 function App() { 
   return (
     <div className="App">
@@ -89,6 +91,10 @@ function App() {
           <Route exact path="/customer/bookevent/selectmedia">
             <NavSignOut />
             <SelectMedia />
+          </Route>
+          <Route exact path="/customer/bookevent/selectmenu">
+            <NavSignOut />
+            <SelectMenu />
           </Route>
 
         </Switch>
