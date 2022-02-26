@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -30,7 +31,7 @@ public class Menu extends BaseEntity {
 	private String MenuName;
 	private double price;
 
-	@ManyToMany(cascade = { CascadeType.ALL })
+	@ManyToMany(cascade = { CascadeType.ALL },fetch = FetchType.EAGER)
 	@JoinTable(name = "event_menus", joinColumns = { @JoinColumn(name = "menu_id") }, 
 	inverseJoinColumns = {@JoinColumn(name = "event_id") })
 	List<Event> events = new ArrayList<>();

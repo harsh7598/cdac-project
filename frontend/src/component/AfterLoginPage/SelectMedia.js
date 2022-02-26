@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 // import { Link, useHistory } from 'react-router-dom';
+import authHeader from "../services/auth-header";
 import axios from "axios";
 import { url } from '../common/constants';
 import { Button } from 'react-scroll';
@@ -24,9 +25,11 @@ const SelectMedia = () => {
       drone,
       crane
     }
-    var eventdata = localStorage.getItem("eventdata");
-    var menu=localStorage.getItem("menu");
-    axios.post(url + "/media", { eventdata,media,menu})
+    var eventdata = JSON.parse(localStorage.getItem("eventdata"));
+    var menu=JSON.parse(localStorage.getItem("menulist")); 
+   console.log(eventdata);
+   console.log(menu);
+    axios.post(url+"/eventinfo",{eventdata,media,menu},{authHeader})
       .then(Response => {
         console.log('Printing event data', Response.data);
       })
@@ -53,7 +56,7 @@ const SelectMedia = () => {
                 <input type="checkbox" name="album" id="album" onChange={() => setalbum(!album)} /><label htmlFor="album">Album</label>
                 <input type="checkbox" name="drone" id="drone" onChange={() => setdrone(!drone)} /><label htmlFor="drone">Drone</label>
                 <input type="checkbox" name="crane" id="crane" onChange={() => setcrane(!crane)} /><label htmlFor="crane">Crane</label>
-                <Button on onClick={selectmedia}></Button>
+                <button on onClick={selectmedia}>submit</button>
               </div>
             </div>
           </div>

@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ems.dao.MenuDao;
+import com.ems.pojos.CategoryType;
 import com.ems.pojos.Menu;
+import com.ems.pojos.SubCategoryType;
 
 @Service
 @Transactional
@@ -19,6 +21,22 @@ public class MenuServicesIMPL implements IMenuServices {
 	@Override
 	public List<Menu> getAllMenu() {
 		return menuDao.findAll();
+	}
+
+	@Override
+	public List<Menu> getByCategoryAndSubCategory(String category, String subCategory) {
+		return menuDao.findByCategoryAndSubCategory(CategoryType.valueOf(category),SubCategoryType.valueOf(subCategory));
+	}
+
+	@Override
+	public List<Menu> getByCategory(String category) {
+		
+		return menuDao.findByCategory(CategoryType.valueOf(category));
+	}
+
+	@Override
+	public List<Menu> getBySubCategory(String subCategory) {
+		return menuDao.findBySubCategory(SubCategoryType.valueOf(subCategory));
 	}
 
 }

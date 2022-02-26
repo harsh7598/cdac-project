@@ -6,6 +6,9 @@ import com.ems.pojos.Menu;
 
 public interface IMenuServices {
 	
-	List<Menu> getAllMenu();
+	List<Menu>getAllMenu();
+	List<Menu>getByCategoryAndSubCategory(String category,String subCategory);
+	List<Menu>getByCategory(String category);
+	List<Menu>getBySubCategory(String subCategory);
 
 }

@@ -10,7 +10,7 @@ import com.ems.pojos.Venue;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+//{name: 'dfg', type: 'dfha', date: '2022-02-16', guestCount: '100'}
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,8 +19,8 @@ private String name;
 private EventType type;
 private LocalDate date;
 private int guestCount;
-private Venue bookedVenue;
-private Caters bookedCater;
+//private Venue bookedVenue;
+//private Caters bookedCater;
 
 
 }
