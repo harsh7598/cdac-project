@@ -16,20 +16,43 @@ const SelectMedia = () => {
   const [album, setalbum] = useState(false);
   const [drone, setdrone] = useState(false);
   const [crane, setcrane] = useState(false);
+  
+  var eventdata = JSON.parse(localStorage.getItem("eventdata"));
+    var menus=JSON.parse(localStorage.getItem("menulist"));
+    var bookedVenue=JSON.parse(localStorage.getItem("venue"));
+    const [name, setname] = useState(eventdata.name);
+    const [type, settype] = useState(eventdata.type);
+    const [date, setdate] = useState(eventdata.date);
+    const [guestCount, setguestCount] = useState(eventdata.guestCount);
 
-  const selectmedia = () => {
-    const media={
+  const Selectmedia = () => {
+    
+    // console.log(); 
+    //   setname(eventdata.name);
+    //   setdate(eventdata.date)
+    //   settype(eventdata.type)
+    //   setguestCount(eventdata.guestCount)
+    const eventdetails={
+      name,
+      date,
+      type,
+      guestCount,
       Photography,
       videography,
       album,
       drone,
-      crane
+      crane,
+      bookedVenue,
+      menus
     }
-    var eventdata = JSON.parse(localStorage.getItem("eventdata"));
-    var menu=JSON.parse(localStorage.getItem("menulist")); 
-   console.log(eventdata);
-   console.log(menu);
-    axios.post(url+"/eventinfo",{eventdata,media,menu},{authHeader})
+
+    console.log(eventdetails)
+   
+  //  console.log(eventdata);
+  //  console.log(menus);
+  //  console.log(media);
+   const token=JSON.parse(localStorage.getItem("jwttoken"));
+    axios.post(url+"/eventinfo",eventdetails,{headers:{"authorization":`Bearer ${token}`}})
       .then(Response => {
         console.log('Printing event data', Response.data);
       })
@@ -56,7 +79,7 @@ const SelectMedia = () => {
                 <input type="checkbox" name="album" id="album" onChange={() => setalbum(!album)} /><label htmlFor="album">Album</label>
                 <input type="checkbox" name="drone" id="drone" onChange={() => setdrone(!drone)} /><label htmlFor="drone">Drone</label>
                 <input type="checkbox" name="crane" id="crane" onChange={() => setcrane(!crane)} /><label htmlFor="crane">Crane</label>
-                <button on onClick={selectmedia}>submit</button>
+                <button onClick={Selectmedia}>submit</button>
               </div>
             </div>
           </div>

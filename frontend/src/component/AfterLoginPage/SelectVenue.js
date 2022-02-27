@@ -6,46 +6,52 @@ import authHeader from "../services/auth-header"
 // import employeeService from '../services/employee.service';
 
 const SelectVenue = () => {
-  // const [venues, setVenues] = useState([]);
-  // const init = () => {
-  //   axios.get(url + "/venue")
-  //     .then(response => {
-  //       console.log('Printing Venues data', response.data);
-  //       setVenues(response.data);
-  //     })
-  //     .catch(error => {
-  //       console.log('Something went wrong', error);
-  //     })
-  // }
+  const history=useHistory();
+  const [venues, setVenues] = useState([]);
+  const init = () => {
+    axios.get(url + "/venue")
+      .then(response => {
+        console.log('Printing Venues data', response.data);
+        setVenues(response.data);
+        
+      })
+      .catch(error => {
+        console.log('Something went wrong', error);
+      })
+  }
+  const HandleVenue=(venue)=>{
+    localStorage.setItem('venue', JSON.stringify(venue));
+    history.push("/customer/bookevent/selectmenu")
+  }
 
-  // useEffect(() => {
-  //   init();
-  // }, []);
+  useEffect(() => {
+    init();
+  }, []);
 
-  const venues = [
-    {
-      id: 1,
-      name: <p className="commonIcons2" />,
-      location: "Book Event",
-      address: "bookevent",
-      maxCapacity: "bookevent",
-      category: "bookevent",
-      contact: "bookevent",
-      cost: "bookevent",
-      description: "bookevent"
-    },
-    {
-      id: 2,
-      name: <p className="commonIcons2" />,
-      location: "Book Event",
-      address: "bookevent",
-      maxCapacity: "bookevent",
-      category: "bookevent",
-      contact: "bookevent",
-      cost: "bookevent",
-      description: "bookevent"
-    },
-  ];
+  // const venues = [
+  //   {
+  //     id: 1,
+  //     name: <p className="commonIcons2" />,
+  //     location: "Book Event",
+  //     address: "bookevent",
+  //     maxCapacity: "bookevent",
+  //     category: "bookevent",
+  //     contact: "bookevent",
+  //     cost: "bookevent",
+  //     description: "bookevent"
+  //   },
+  //   {
+  //     id: 2,
+  //     name: <p className="commonIcons2" />,
+  //     location: "Book Event",
+  //     address: "bookevent",
+  //     maxCapacity: "bookevent",
+  //     category: "bookevent",
+  //     contact: "bookevent",
+  //     cost: "bookevent",
+  //     description: "bookevent"
+  //   },
+  // ];
 
   // const { data } = this.props.location
   // console.log(data);
@@ -93,7 +99,7 @@ const SelectVenue = () => {
                   <h4 className="text-start px-3">Description: {venue.description}</h4>
                 </div>
                 <div className="grid-child">
-                  <button type="submit" className="btn-warning mx -5 w-50 h-100" >Add</button>
+                  <button type="submit" className="btn-warning mx -5 w-50 h-100" onClick={()=>{HandleVenue(venue)}}>Add</button>
                 </div>
               </div>
 

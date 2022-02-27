@@ -28,10 +28,19 @@ public class EventController {
 	
 	@PostMapping("/bookevent")
 	public ResponseEntity<?> bookEvent(@RequestBody EventDTO event,HttpServletRequest request) {
-		String token=request.getHeader("authorization");
-		System.out.println(token);
+		//String token=request.getHeader("Authorization");
+//		System.out.println(token);
 //		System.out.println(request.getUserPrincipal().getName());
 //	s	return null;
 	return ResponseEntity.ok(eventServices.registerEvent(event,request.getUserPrincipal().getName()));
 	}
+	
+	@PostMapping("/eventinfo")
+	public ResponseEntity<?> registerEvent(@RequestBody EventDTO eventdata,HttpServletRequest request){
+		System.out.println("ksgkjsnfkjgnfkjghkjsfnkljn"+eventdata.toString());
+		//System.out.println(media);
+//		menuList.forEach((e)->System.out.println(e));
+		return ResponseEntity.ok(eventServices.registerEvent(eventdata,request.getUserPrincipal().getName()));
+	}
+	
 }

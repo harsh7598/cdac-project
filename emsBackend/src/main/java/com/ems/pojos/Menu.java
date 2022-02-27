@@ -14,13 +14,19 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "menu")
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Menu extends BaseEntity {
 	@Enumerated(value = EnumType.STRING)
 	private CategoryType category;
@@ -30,7 +36,6 @@ public class Menu extends BaseEntity {
 	@Column(name = "menu_name ", length = 20)
 	private String MenuName;
 	private double price;
-
 	@ManyToMany(cascade = { CascadeType.ALL },fetch = FetchType.EAGER)
 	@JoinTable(name = "event_menus", joinColumns = { @JoinColumn(name = "menu_id") }, 
 	inverseJoinColumns = {@JoinColumn(name = "event_id") })

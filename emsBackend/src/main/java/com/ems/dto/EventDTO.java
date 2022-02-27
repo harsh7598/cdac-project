@@ -2,9 +2,11 @@ package com.ems.dto;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.ems.pojos.Caters;
 import com.ems.pojos.EventType;
+import com.ems.pojos.Menu;
 import com.ems.pojos.Venue;
 
 import lombok.AllArgsConstructor;
@@ -15,12 +17,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EventDTO {
+private int id;
 private String name;
 private EventType type;
 private LocalDate date;
 private int guestCount;
-//private Venue bookedVenue;
-//private Caters bookedCater;
-
+private boolean photography;
+private boolean videography;
+private boolean album;
+private boolean drone;
+private boolean crane;
+private List<Menu> menus;
+private Venue bookedVenue;
 
 }

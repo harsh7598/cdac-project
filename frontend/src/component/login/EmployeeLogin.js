@@ -18,7 +18,7 @@ const EmployeeLogin = () => {
     axios.post(url + "/login",employee,{authHeader}).then((Response) => {
       console.log(Response.data.jwt);
       if(Response.data.jwt)
-        localStorage.setItem('user',JSON.stringify(Response.data));
+        localStorage.setItem('jwttoken',JSON.stringify(Response.data.jwt));
       if (Response.status == 200) {
         history.push("/customer/welcome");
       } else {

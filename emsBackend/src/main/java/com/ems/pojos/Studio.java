@@ -25,5 +25,5 @@ public class Studio extends BaseEntity {
 	private double cost;
 
 	@OneToMany(mappedBy = "studio", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
-	List<MediaRequirement> bookedMedia = new ArrayList<>();
+	List<Event> bookedByEvent = new ArrayList<>();
 }
