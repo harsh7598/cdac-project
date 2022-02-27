@@ -18,7 +18,7 @@ const BookEvent = () => {
   const bookevent = (e) => {
     
     localStorage.setItem('eventdata',JSON.stringify(eventdata));
-    history.push("/customer/bookevent/selectmenu")
+    history.push("/customer/bookevent/selectvenue")
   }
 
   return (

@@ -74,3 +74,20 @@
     grid-template-columns: 1fr 2fr;
     grid-gap: 10px;
   } 
+
+  .scrollable{
+    height: 365px;
+  scrollbar-color: red rgb(255, 255, 255);
+    overflow: hidden;
+    overflow-y: scroll;
+  }
+
+  .top-fix{
+    background: rgb(255, 255, 255);
+    color: black;
+    border-bottom: solid white 2px;
+    position: sticky;
+    top: 0;
+  }
+
+ 
