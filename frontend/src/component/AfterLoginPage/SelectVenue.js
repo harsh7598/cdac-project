@@ -7,7 +7,7 @@ import authHeader from "../services/auth-header"
 
 const SelectVenue = () => {
   const history=useHistory();
-  const [venues, setVenues] = useState([]);
+  const [Venues, setVenues] = useState([]);
   const init = () => {
     axios.get(url + "/venue")
       .then(response => {
@@ -19,8 +19,8 @@ const SelectVenue = () => {
         console.log('Something went wrong', error);
       })
   }
-  const HandleVenue=(venue)=>{
-    localStorage.setItem('venue', JSON.stringify(venue));
+  const HandleVenue=(venueDetails)=>{
+    localStorage.setItem('submitVenue', JSON.stringify(venueDetails));
     history.push("/customer/bookevent/selectmenu")
   }
 
@@ -28,65 +28,17 @@ const SelectVenue = () => {
     init();
   }, []);
 
-  // const venues = [
-  //   {
-  //     id: 1,
-  //     name: <p className="commonIcons2" />,
-  //     location: "Book Event",
-  //     address: "bookevent",
-  //     maxCapacity: "bookevent",
-  //     category: "bookevent",
-  //     contact: "bookevent",
-  //     cost: "bookevent",
-  //     description: "bookevent"
-  //   },
-  //   {
-  //     id: 2,
-  //     name: <p className="commonIcons2" />,
-  //     location: "Book Event",
-  //     address: "bookevent",
-  //     maxCapacity: "bookevent",
-  //     category: "bookevent",
-  //     contact: "bookevent",
-  //     cost: "bookevent",
-  //     description: "bookevent"
-  //   },
-  // ];
-
-  // const { data } = this.props.location
-  // console.log(data);
-
+  
   return (
-
     <div className="forms-container">
       <div className="py-5 text-white my-5">
         <div className="fw-bold pt-5 display-6">
           Select a Venue
         </div>
         <div className="py-4 list-items">
-          {venues.map((venue) => (
+          {Venues.map((venue) => (
 
             <div key={venue.id}>
-
-
-              {/* <div className="event__box py-2 px-2 border border-2 border-white">
-                <table className="col-12">
-                  <tbody>
-                    <tr><td><h4 className="text-start px-3">Name: {venue.name}</h4></td><td></td></tr>
-                    <tr><td><h4 className="text-start px-3">Location: {venue.location}</h4></td>
-                    <td rowSpan="8"><button type="submit" className="btn-warning mx -5 w-50 h-100" >Add</button></td></tr>
-                    <tr><td><h4 className="text-start px-3">Address: {venue.address}</h4></td><td></td></tr>
-                    <tr><td><h4 className="text-start px-3">Capacity: {venue.maxCapacity}</h4></td><td></td></tr>
-                    <tr><td><h4 className="text-start px-3">Category: {venue.category}</h4></td><td></td></tr>
-                    <tr><td><h4 className="text-start px-3">Contact: {venue.contact}</h4></td><td></td></tr>
-                    <tr><td><h4 className="text-start px-3">Cost: {venue.cost}</h4></td><td></td></tr>
-                    <tr><td><h4 className="text-start px-3">Description: {venue.description}</h4></td><td></td></tr>
-
-                  </tbody>
-                </table>
-              </div> */}
-
-
               <div className="event__box py-2 px-2 border border-2 border-white grid-containe">
                 <div className="grid-child">
                   <h4 className="text-start px-3">Name: {venue.name}</h4>
@@ -99,7 +51,7 @@ const SelectVenue = () => {
                   <h4 className="text-start px-3">Description: {venue.description}</h4>
                 </div>
                 <div className="grid-child">
-                  <button type="submit" className="btn-warning mx -5 w-50 h-100" onClick={()=>{HandleVenue(venue)}}>Add</button>
+                  <button type="button" className="btn btn-warning mx -5 w-50 h-100" onClick={()=>{HandleVenue(venue)}}>Add</button>
                 </div>
               </div>
 

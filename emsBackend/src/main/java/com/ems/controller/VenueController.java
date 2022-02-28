@@ -20,7 +20,7 @@ public class VenueController {
 	private IVenueServices venueServices;
 	
 	@GetMapping("/venue")
-	public List<Venue> getAllVenues(){
+	public List<Venue> getVenues(){
 		return venueServices.getAllVenues(); 
 	}
 }

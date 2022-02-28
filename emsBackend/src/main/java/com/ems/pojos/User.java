@@ -16,11 +16,14 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "user")
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(callSuper=false)
 @AllArgsConstructor
 @NoArgsConstructor
@@ -81,4 +84,14 @@ public class User extends BaseEntity {
 		this.password = password;
 		this.role = role;
 	}
+
+
+	@Override
+	public String toString() {
+		return "User [name=" + name + ", dob=" + dob + ", contactNumber=" + contactNumber + ", adharNumber="
+				+ adharNumber + ", email=" + email + ", password=" + password + ", accountNumber=" + accountNumber
+				+ ", role=" + role + ", salary=" + salary + ", regevents=" + regevents + "]";
+	}
+	
+	
 }

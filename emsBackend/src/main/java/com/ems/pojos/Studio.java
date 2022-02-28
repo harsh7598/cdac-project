@@ -23,7 +23,7 @@ public class Studio extends BaseEntity {
 	@Column(length = 10)
 	private String Contact;
 	private double cost;
-
-	@OneToMany(mappedBy = "studio", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
-	List<Event> bookedByEvent = new ArrayList<>();
+//
+//	@OneToMany(mappedBy = "studio", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
+//	List<Event> bookedByEvent = new ArrayList<>();
 }

@@ -36,8 +36,8 @@ public class Menu extends BaseEntity {
 	@Column(name = "menu_name ", length = 20)
 	private String MenuName;
 	private double price;
-	@ManyToMany(cascade = { CascadeType.ALL },fetch = FetchType.EAGER)
-	@JoinTable(name = "event_menus", joinColumns = { @JoinColumn(name = "menu_id") }, 
-	inverseJoinColumns = {@JoinColumn(name = "event_id") })
-	List<Event> events = new ArrayList<>();
+//	@ManyToMany(cascade = { CascadeType.ALL },fetch = FetchType.EAGER)
+//	@JoinTable(name = "event_menus", joinColumns = { @JoinColumn(name = "menu_id") }, 
+//	inverseJoinColumns = {@JoinColumn(name = "event_id") })
+//	List<Event> events = new ArrayList<>();
 }

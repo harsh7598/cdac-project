@@ -29,7 +29,6 @@ import lombok.ToString;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Table(name = "event")
 public class Event extends BaseEntity{
 	
@@ -63,7 +62,7 @@ public class Event extends BaseEntity{
 	private Studio studio;
 	
 	@ManyToOne
-	@JoinColumn(name = "venue_id",nullable = false)
+	@JoinColumn(name = "venue_id")
 	private Venue bookedVenue;
 
 	@ManyToOne
@@ -74,11 +73,16 @@ public class Event extends BaseEntity{
 	@ManyToMany(mappedBy = "regevents")
     private List<User> users = new ArrayList<>();
 
-	@ManyToMany(mappedBy="events")
+	@ManyToMany(cascade = { CascadeType.ALL },fetch = FetchType.EAGER)
+	@JoinTable(name = "event_menus", joinColumns = { @JoinColumn(name = "event_id") }, 
+	inverseJoinColumns = {@JoinColumn(name = "menu_id") })
 	List<Menu> menus = new ArrayList<>();
+	
+//	@ManyToMany(mappedBy="events")
+//	List<Menu> menus = new ArrayList<>();
 
 	public Event(String name, EventType type, LocalDate date, int guestCount, boolean photography, boolean videography,
-			boolean album, boolean drone, boolean crane, Venue bookedVenue,List<Menu> menus) {
+			boolean album, boolean drone, boolean crane, Venue bookedVenue) {
 		super();
 		this.name = name;
 		this.type = type;
@@ -90,7 +94,15 @@ public class Event extends BaseEntity{
 		this.drone = drone;
 		this.crane = crane;
 		this.bookedVenue = bookedVenue;
-		this.menus=menus;
+	}
+
+	@Override
+	public String toString() {
+		return "Event [name=" + name + ", type=" + type + ", date=" + date + ", guestCount=" + guestCount
+				+ ", totalCost=" + totalCost + ", status=" + status + ", progress=" + progress + ", photography="
+				+ photography + ", videography=" + videography + ", album=" + album + ", drone=" + drone + ", crane="
+				+ crane + ", studio=" + studio + ", bookedVenue=" + bookedVenue + ", bookedCater=" + bookedCater
+				+ ", users=" + users + ", menus=" + menus + "]";
 	}
 
 

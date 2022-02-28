@@ -37,7 +37,7 @@ public class EventController {
 	
 	@PostMapping("/eventinfo")
 	public ResponseEntity<?> registerEvent(@RequestBody EventDTO eventdata,HttpServletRequest request){
-		System.out.println("ksgkjsnfkjgnfkjghkjsfnkljn"+eventdata.toString());
+		System.out.println(eventdata.toString());
 		//System.out.println(media);
 //		menuList.forEach((e)->System.out.println(e));
 		return ResponseEntity.ok(eventServices.registerEvent(eventdata,request.getUserPrincipal().getName()));

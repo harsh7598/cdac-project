@@ -35,36 +35,16 @@ public class EventServicesIMPL implements IEventServices {
 
 	@Override
 	public EventDTO registerEvent(EventDTO event, String email) {
-//		Venue v = venueDao.getById(1);
-//		Caters c = catererDao.getById(1);
 		Event e = new Event(event.getName(), event.getType(), event.getDate(), event.getGuestCount(),event.isPhotography(), event.isVideography(),
-				event.isAlbum(),event.isDrone(), event.isCrane(),event.getBookedVenue(),event.getMenus());
+				event.isAlbum(),event.isDrone(), event.isCrane(),event.getBookedVenue());
 		User u = userDao.findByEmail(email).orElseThrow();
-		Menu menu=menuDao.findById(event.getMenus().get(0).getId()).orElseThrow();
-		System.out.println(menu);
-		//List<Event> list= new ArrayList();
-		//list.add(e);
-		//userDao.addEvent(list, u.getId());
-		System.out.println(u.toString());
 		u.getRegevents().add(e);
-		e.getUsers().add(u);
-		e.getMenus().add(menu);
-		menu.getEvents().add(e);
-		menuDao.save(menu);
-		eventDao.save(e);
-		userDao.save(u);
-		
-		//Event persistanceEvent = eventDao.save(e);
-		//BeanUtils.copyProperties(persistanceEvent, event);
+		e.getUsers().add(u);	
+		List<Menu> menus=new ArrayList<Menu>();
+		event.getMenus().forEach((p)->menus.add(menuDao.findById(p.getId()).orElseThrow()));
+		e.getMenus().addAll(menus);
+		eventDao.
 		return event;
 	}
-
-//	@Override
-//	public ResponseEntity<?>RegisterEvent(EventDTO event) {
-//		Event e=new Event(event.getEventName(),EventType.valueOf(event.getEventType()),event.getDate(),
-//				event.getStartTime(),event.getEndTime(),event.getGuestCount());
-//		Event persistanceEvent=eventDao.save(e);
-//		return ResponseEntity<?>(HttpStatus.ok);
-//	}
 
 }

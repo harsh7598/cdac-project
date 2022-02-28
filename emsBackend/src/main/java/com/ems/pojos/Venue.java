@@ -3,6 +3,7 @@ package com.ems.pojos;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -44,8 +45,8 @@ public class Venue extends BaseEntity{
 	
 	private double cost;
 	
-	@OneToMany(mappedBy = "bookedVenue",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
-	private List<Event> BookedVenueByEvent;
-	
+//	@OneToMany(mappedBy = "bookedVenue",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//	private List<Event> BookedVenueByEvent= new ArrayList<Event>();
+//	
 	
 }

@@ -19,7 +19,7 @@ const SelectMedia = () => {
   
   var eventdata = JSON.parse(localStorage.getItem("eventdata"));
     var menus=JSON.parse(localStorage.getItem("menulist"));
-    var bookedVenue=JSON.parse(localStorage.getItem("venue"));
+    var bookedVenue=JSON.parse(localStorage.getItem("submitVenue"));
     const [name, setname] = useState(eventdata.name);
     const [type, settype] = useState(eventdata.type);
     const [date, setdate] = useState(eventdata.date);
