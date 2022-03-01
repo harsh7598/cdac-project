@@ -32,19 +32,29 @@ public class EventServicesIMPL implements IEventServices {
 	VenueDao venueDao;
 	@Autowired
 	CatererDao catererDao;
-
+	
 	@Override
 	public EventDTO registerEvent(EventDTO event, String email) {
 		Event e = new Event(event.getName(), event.getType(), event.getDate(), event.getGuestCount(),event.isPhotography(), event.isVideography(),
 				event.isAlbum(),event.isDrone(), event.isCrane(),event.getBookedVenue());
 		User u = userDao.findByEmail(email).orElseThrow();
 		u.getRegevents().add(e);
-		e.getUsers().add(u);	
+		//e.getUsers().add(u);	
 		List<Menu> menus=new ArrayList<Menu>();
 		event.getMenus().forEach((p)->menus.add(menuDao.findById(p.getId()).orElseThrow()));
 		e.getMenus().addAll(menus);
-		eventDao.
+		//eventDao.
 		return event;
 	}
+
+	@Override
+	public List<Event> getByUsers(String email) {
+		System.out.println(email);
+		User u = userDao.findByEmail(email).orElseThrow();
+		//System.out.println(u.getRegevents().toString());
+		return u.getRegevents();
+	}
+	
+	
 
 }

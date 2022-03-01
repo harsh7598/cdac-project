@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,6 +42,12 @@ public class EventController {
 		//System.out.println(media);
 //		menuList.forEach((e)->System.out.println(e));
 		return ResponseEntity.ok(eventServices.registerEvent(eventdata,request.getUserPrincipal().getName()));
+	}
+	
+	@GetMapping("/regevents")
+	public ResponseEntity<?> getEvents(HttpServletRequest request){
+		System.out.println(request.getUserPrincipal().getName());
+		return ResponseEntity.ok(eventServices.getByUsers(request.getUserPrincipal().getName()));
 	}
 	
 }

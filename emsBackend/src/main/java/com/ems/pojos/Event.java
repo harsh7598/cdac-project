@@ -70,8 +70,8 @@ public class Event extends BaseEntity{
 //	@JoinColumn(name = "cater_id")
 	private Caters bookedCater;
 	
-	@ManyToMany(mappedBy = "regevents")
-    private List<User> users = new ArrayList<>();
+//	@ManyToMany(mappedBy = "regevents")
+//    private List<User> users = new ArrayList<>();
 
 	@ManyToMany(cascade = { CascadeType.ALL },fetch = FetchType.EAGER)
 	@JoinTable(name = "event_menus", joinColumns = { @JoinColumn(name = "event_id") }, 
@@ -102,7 +102,7 @@ public class Event extends BaseEntity{
 				+ ", totalCost=" + totalCost + ", status=" + status + ", progress=" + progress + ", photography="
 				+ photography + ", videography=" + videography + ", album=" + album + ", drone=" + drone + ", crane="
 				+ crane + ", studio=" + studio + ", bookedVenue=" + bookedVenue + ", bookedCater=" + bookedCater
-				+ ", users=" + users + ", menus=" + menus + "]";
+				+ ", menus=" + menus + "]";
 	}
 
 
