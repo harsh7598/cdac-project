@@ -32,7 +32,7 @@ const CustLoginRegister = () => {
   const [adharNumber, setadharNumber] = useState("");
   const [password, setpassword] = useState("");
   const [cPassword, setCpassword] = useState("");
-  const role="customer";
+  const role="CUSTOMER";
   const [error, seterror] = useState("");
   const [errortype, seterrortype] = useState("");
 
@@ -43,7 +43,7 @@ const CustLoginRegister = () => {
     const customer = { email, password };
     axios.post(url + "/login",customer,{authHeader}).then((Response) => {
       if(Response.data.jwt)
-        localStorage.setItem('user',JSON.stringify(Response.data));
+        localStorage.setItem('jwttoken',JSON.stringify(Response.data.jwt));
       if (Response.status == 200) {
         history.push("/customer/welcome");
       } else {
@@ -71,7 +71,7 @@ const CustLoginRegister = () => {
       axios.post(url + "/registration", customer).then(Response => { 
         console.log(Response.data) 
         if (Response.status === 200)
-        history.push("/customer/welcome");
+        history.push("/customer");
       else {
         // reset();
         seterror("Invalid credentials")

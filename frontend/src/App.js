@@ -21,6 +21,7 @@ import SelectCaterer from "./component/AfterLoginPage/SelectCaterer";
 import SelectMedia from "./component/AfterLoginPage/SelectMedia";
 import SelectMenu from "./component/AfterLoginPage/SelectMenu";
 import ViewEvent from "./component/AfterLoginPage/ViewEvent";
+import EmployeeWelcome from "./component/AfterLoginPage/EmployeeWelcome";
 
 function App() { 
   return (
@@ -72,6 +73,10 @@ function App() {
           <Route exact path="/customer/welcome">
             <NavSignOut />
             <CustomerWelcome />
+          </Route>
+          <Route exact path="/employee/welcome">
+            <NavSignOut />
+            <EmployeeWelcome />
           </Route>
           <Route exact path="/customer/bookevent">
             <NavSignOut />

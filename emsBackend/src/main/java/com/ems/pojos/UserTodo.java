@@ -22,7 +22,6 @@ private String status;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id",nullable = false)
-	@MapsId
 	private User user;
 	
 }

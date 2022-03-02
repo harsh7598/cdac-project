@@ -20,7 +20,7 @@ const EmployeeLogin = () => {
       if(Response.data.jwt)
         localStorage.setItem('jwttoken',JSON.stringify(Response.data.jwt));
       if (Response.status == 200) {
-        history.push("/customer/welcome");
+        history.push("/employee/welcome");
       } else {
         setemail("");
         setpassword("");

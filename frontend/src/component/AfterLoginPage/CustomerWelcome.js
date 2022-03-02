@@ -34,7 +34,6 @@ const CustomerWelcome = () => {
 
         <div className="row py-5">
           {state.map((info) => (
-
             <div className="col-12 col-md-4 py-5 px-4 h-100" key={info.id}>
               <Link className="nav-link text-white" to={info.link}>
                 <div className="services__box py-5 px-2 h-100 border border-2 border-white">

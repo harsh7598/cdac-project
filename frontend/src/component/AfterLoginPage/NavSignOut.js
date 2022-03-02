@@ -5,6 +5,10 @@ import React from "react";
 
 
 const NavSignOut = () => {
+
+  const handlesignOut=()=>{
+    localStorage.clear();
+  }
   return (
     <>
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-black py-3 px-5 fs-5 ">
@@ -37,7 +41,7 @@ const NavSignOut = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/">
+                <Link className="nav-link" to="/" onClick={handlesignOut}>
                   Sign Out
                 </Link>
               </li>
