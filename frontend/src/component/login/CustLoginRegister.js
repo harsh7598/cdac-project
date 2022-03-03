@@ -2,8 +2,8 @@ import React, { useEffect,useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import axios from "axios";
 import "./LoginRegister.css";
-import NavSignOut from "../AfterLoginPage/NavSignOut";
-import CustomerWelcome from "../AfterLoginPage/CustomerWelcome";
+import NavSignOut from "../Customer/NavSignOut";
+import CustomerWelcome from "../Customer/CustomerWelcome";
 import authHeader from "../services/auth-header"
 
 

@@ -15,8 +15,7 @@ const BookEvent = () => {
     date,
     guestCount
   }
-  const bookevent = (e) => {
-    
+  const bookevent = () => { 
     localStorage.setItem('eventdata',JSON.stringify(eventdata));
     history.push("/customer/bookevent/selectvenue")
   }
@@ -35,7 +34,7 @@ const BookEvent = () => {
           <tbody>
             <tr>
               <td className="text-start col-4 fs-4">Event Name:</td>
-              <td><input type="text" className="my-2" value={name} placeholder="Enter Event Name" onChange={(e)=>{setname(e.target.value)}}/></td>
+              <td><input type="text" className="my-2" value={name} placeholder="Enter Event Name" disabled onChange={(e)=>{setname(e.target.value)}}/></td>
             </tr>
             <tr>
               <td className="text-start col-2 fs-4">Event Type:</td>

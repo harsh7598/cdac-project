@@ -1,5 +1,4 @@
 import React, { useEffect, useState} from "react";
-// import "./LoginRegister.css";
 import {useHistory } from "react-router-dom";
 import axios from "axios";
 import { url } from '../common/constants';

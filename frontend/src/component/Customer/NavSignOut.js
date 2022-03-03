@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "../../images/logonav.jpg";
 import React from "react";
-// import{Link} from "react-scroll";
 
 
 const NavSignOut = () => {

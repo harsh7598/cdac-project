@@ -5,8 +5,6 @@ import { SiEventstore } from "react-icons/si";
 import { FaEdit } from "react-icons/fa";
 import { MdEditCalendar, MdOutlinePreview } from "react-icons/md";
 const CustomerWelcome = () => {
-  const [addclass, setaddclass] = useState("");
-
   const state = [
     {
       id: 1,
@@ -24,7 +22,7 @@ const CustomerWelcome = () => {
       id: 3,
       icon: <FaEdit className="commonIcons2" />,
       heading: "Edit Event Information",
-      link: "editevent"
+      link: "vieweventupdate"
     }
   ];
   return (

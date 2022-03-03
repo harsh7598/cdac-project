@@ -1,16 +1,11 @@
 import { useEffect, useState } from 'react';
-// import { Link, useHistory } from 'react-router-dom';
-import authHeader from "../services/auth-header";
 import axios from "axios";
 import { url } from '../common/constants';
-import { Button } from 'react-scroll';
-import { MdNoPhotography } from 'react-icons/md';
+
 // import employeeService from '../services/employee.service';
 
 const SelectMedia = () => {
 
-
-  const [studio, setstudio] = useState([]);
   const [Photography, setphotography] = useState(false);
   const [videography, setvideography] = useState(false);
   const [album, setalbum] = useState(false);
@@ -84,22 +79,6 @@ const SelectMedia = () => {
             </div>
           </div>
         </div>
-        {/* <div className='col-6 scroll'>
-            {studio.map((studiodata) => (
-
-              <div key={studiodata.id}>
-                 <Link className="nav-link text-white py-1" to={caterer.link}> 
-                <div className="event__box py-2 px-2 border border-2 border-white">
-                  <h4 className="text-start px-3">Name: {studiodata.name}</h4>
-                  <h4 className="text-start px-3">Contact: {studiodata.contact}</h4>
-                  <h4 className="text-start px-3">Cost: {studiodata.cost}</h4>
-                </div>
-                 </Link>
-                <br></br>
-              </div>
-            ))}
-          </div> */}
-
       </div>
     </div>
 

@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
 import axios from "axios";
 import { url } from '../common/constants';
-// import employeeService from '../services/employee.service';
+
 
 const SelectCaterer = () => {
 

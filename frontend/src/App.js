@@ -4,24 +4,23 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HomePage from "./component/HomePage";
 import CustLoginRegister from "./component/login/CustLoginRegister";
 import EmployeeLogin from "./component/login/EmployeeLogin";
-
-import Nav from "./component/Nav"
 import NavOther from "./component/NavOther"
 import Services from "./component/Services";
 import About from "./component/About";
 import Contact from "./component/Contact";
 import Packages from "./component/Packages";
-import NavSignOut from "./component/AfterLoginPage/NavSignOut";
-import CustomerWelcome from "./component/AfterLoginPage/CustomerWelcome";
-import BookEvent from "./component/AfterLoginPage/BookEvent";
-import EditEvent from "./component/AfterLoginPage/EditEvent";
+import NavSignOut from "./component/Customer/NavSignOut";
+import CustomerWelcome from "./component/Customer/CustomerWelcome";
+import BookEvent from "./component/Customer/BookEvent";
+import EditEvent from "./component/Customer/EditEvent";
 import EmployeeRegister from "./component/login/EmployeeRegister";
-import SelectVenue from "./component/AfterLoginPage/SelectVenue";
-import SelectCaterer from "./component/AfterLoginPage/SelectCaterer";
-import SelectMedia from "./component/AfterLoginPage/SelectMedia";
-import SelectMenu from "./component/AfterLoginPage/SelectMenu";
-import ViewEvent from "./component/AfterLoginPage/ViewEvent";
-import EmployeeWelcome from "./component/AfterLoginPage/EmployeeWelcome";
+import SelectVenue from "./component/Customer/SelectVenue";
+import SelectCaterer from "./component/Customer/SelectCaterer";
+import SelectMedia from "./component/Customer/SelectMedia";
+import SelectMenu from "./component/Customer/SelectMenu";
+import ViewEvent from "./component/Customer/ViewEvent";
+import EmployeeWelcome from "./component/Employee/EmployeeWelcome";
+import ViewEventUpdate from "./component/Customer/viewEventUpdate";
 
 function App() { 
   return (
@@ -105,6 +104,10 @@ function App() {
           <Route exact path="/customer/viewevent">
             <NavSignOut />
             <ViewEvent />
+          </Route> 
+          <Route exact path="/customer/vieweventupdate">
+            <NavSignOut />
+            <ViewEventUpdate/>
           </Route>
 
         </Switch>
