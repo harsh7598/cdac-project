@@ -21,6 +21,7 @@ import SelectMenu from "./component/Customer/SelectMenu";
 import ViewEvent from "./component/Customer/ViewEvent";
 import EmployeeWelcome from "./component/Employee/EmployeeWelcome";
 import ViewEventUpdate from "./component/Customer/viewEventUpdate";
+import BookEventUp from "./component/Customer/BookEventUP";
 
 function App() { 
   return (
@@ -80,6 +81,10 @@ function App() {
           <Route exact path="/customer/bookevent">
             <NavSignOut />
             <BookEvent />
+          </Route>
+          <Route exact path="/customer/bookeventup">
+            <NavSignOut />
+            <BookEventUp />
           </Route>
           <Route exact path="/customer/editevent">
             <NavSignOut />
