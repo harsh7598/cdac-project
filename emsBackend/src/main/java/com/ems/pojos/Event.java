@@ -17,6 +17,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,6 +31,7 @@ import lombok.ToString;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
 @Table(name = "event")
 public class Event extends BaseEntity{
 	
@@ -67,7 +70,6 @@ public class Event extends BaseEntity{
 
 	@ManyToOne
 	@JoinColumn(name = "cater_id")
-//	@JoinColumn(name = "cater_id")
 	private Caters bookedCater;
 	
 //	@ManyToMany(mappedBy = "regevents")
@@ -104,6 +106,4 @@ public class Event extends BaseEntity{
 				+ crane + ", studio=" + studio + ", bookedVenue=" + bookedVenue + ", bookedCater=" + bookedCater
 				+ ", menus=" + menus + "]";
 	}
-
-
 }

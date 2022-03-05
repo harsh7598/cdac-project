@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { url } from "../common/constants";
 import axios from "axios";
 
-const BookEventUp = () => {
-
+const EditEventUp = () => {
+    const token=JSON.parse(localStorage.getItem("jwttoken"));
     useEffect(() => {
         init();
         showmenulist();
@@ -12,6 +12,7 @@ const BookEventUp = () => {
 
     // states    
     const history = useHistory();
+    const {id} = useParams();
     // menu States
     const [category, setcategory] = useState("ALL");
     const [subCategory, setsubCategory] = useState("ALL");
@@ -23,7 +24,7 @@ const BookEventUp = () => {
     const [date, setdate] = useState("");
     const [guestCount, setguestCount] = useState("");
     // media states
-    const [Photography, setphotography] = useState(false);
+    const [photography, setphotography] = useState(false);
     const [videography, setvideography] = useState(false);
     const [album, setalbum] = useState(false);
     const [drone, setdrone] = useState(false);
@@ -48,9 +49,28 @@ const BookEventUp = () => {
         setmenus(newMenus);
     };
 
-    // getting info at initial functions
-    // getting venues
     const init = () => {
+        if (id) {
+            axios.get(`${url}/updateevent/${id}`)
+                .then(Response => {
+                    console.log(Response.data);
+                    setname(Response.data.name);
+                    setmenus(Response.data.menus);
+                    settype(Response.data.type);
+                    setdate(Response.data.date);
+                    setguestCount(Response.data.guestCount);
+                    setBookedvenue(Response.data.bookedVenue);
+                    setphotography(Response.data.photography);
+                    setvideography(Response.data.videography);
+                    setalbum(Response.data.album);
+                    setcrane(Response.data.crane);
+                    setdrone(Response.data.drone);
+                })
+                .catch(error => {
+                    console.log('Something went wrong', error);
+                })
+        }
+
         axios.get(url + "/venue")
             .then(response => {
                 console.log('Printing Venues data', response.data);
@@ -60,6 +80,7 @@ const BookEventUp = () => {
                 console.log('Something went wrong', error);
             })
     }
+
     //getting menus
     const showmenulist = () => {
         axios.get(url + "/menucategory", { params: { category, subCategory } }).then(Response => {
@@ -74,11 +95,12 @@ const BookEventUp = () => {
     //register event
     const handleSubmit = () => {
         const eventdetails={
+            id,
             name,
             date,
             type,
             guestCount,
-            Photography,
+            photography,
             videography,
             album,
             drone,
@@ -87,8 +109,8 @@ const BookEventUp = () => {
             menus
           }
           console.log(eventdetails);
-          const token=JSON.parse(localStorage.getItem("jwttoken"));
-          axios.post(url+"/eventinfo",eventdetails,{headers:{"authorization":`Bearer ${token}`}})
+         
+          axios.put(url+"/eventinfo",eventdetails,{headers:{"authorization":`Bearer ${token}`}})
           .then(Response => {
             console.log('Printing event data', Response.data);
           })
@@ -100,11 +122,11 @@ const BookEventUp = () => {
     return (
         <>
             <div className="container position-absolute top-50 start-50 translate-middle my-5">
-                <div className="accordion " id="accordionExample">
+                <div className="accordion" id="accordionExample">
                     {/* general Details item */}
-                    <div className="accordion-item bg-black">
+                    <div className="accordion-item">
                         <h2 className="accordion-header" id="headingOne">
-                            <button className="accordion-button bg-black" type="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+                            <button className="accordion-button" type="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
                                 EVENT GENERAL DETAILS
                             </button>
                         </h2>
@@ -128,7 +150,6 @@ const BookEventUp = () => {
                                                 <td className="text-start col-2 fs-4">Event Type:</td>
                                                 <td>
                                                     <select className="form-select" aria-label="Default select example" onChange={(e) => { settype(e.target.value) }}>
-                                                        <option hidden>SELECT EVENT TYPE</option>
                                                         <option value="BIRTHDAYPARTY">BIRTHDAYPARTY</option>
                                                         <option value="ENGAGEMENT">ENGAGEMENT</option>
                                                         <option value="COLLAGE_EVENT">COLLAGE_EVENT</option>
@@ -149,9 +170,6 @@ const BookEventUp = () => {
                                     <button className="btn btn-primary m-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                         NEXT
                                     </button>
-                                    {/* <div className="d-grid col-10 mt-3 mx-auto">
-                                        <button className="btn bg-danger btn-lg text-white my-3 px-5 py-2 rounded-pill" onClick={bookevent} >Proceed</button>
-                                    </div> */}
                                 </form>
                             </div>
                         </div>
@@ -165,6 +183,10 @@ const BookEventUp = () => {
                         </h2>
                         <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
+                                <div>
+                                <h4 className="text-start px-3">Name: {bookedVenue.name}</h4>
+                                <h4 className="text-start px-3">Address: {bookedVenue.address}, {bookedVenue.location}.</h4>
+                                </div>
                                 <div className="scrollable">
                                     {Venues.map((venue) => (
                                         <div key={venue.id}>
@@ -219,7 +241,6 @@ const BookEventUp = () => {
                                                         );
                                                     })}
                                                 </div>
-                                                {/* <button type="submit" className="btn-danger mx-5 w-50 mt-2 py-1" onClick={submitMenu}>submit</button> */}
                                             </div>
                                             <div className="grid-child">
                                                 <span className="row justify-content-center">
@@ -254,7 +275,6 @@ const BookEventUp = () => {
                                                     {menuList.map((m) => (
                                                         <div key={m.id}>
                                                             <div className="event__box py-1 my-2 px-2 border border-1 border-white d-flex justify-content-between">
-                                                                {/* <h5 className="mx-2 border " >{m.id}</h5> */}
                                                                 <table className="col-8">
                                                                     <tbody><tr>
                                                                         <td className="text-start col-6"><h5 className="mx-2 " >{m.menuName}</h5></td>
@@ -262,8 +282,6 @@ const BookEventUp = () => {
                                                                         <td></td>
                                                                     </tr></tbody>
                                                                 </table>
-                                                                {/* <h5 className="mx-2 border" >{m.category}</h5>
-                                                                 <h5 className="mx-2 border" >{m.subCategory}</h5> */}
                                                                 <button type="submit" className="btn-warning mx-5 w-25" onClick={() => handleAddFormSubmit(m)}>Add</button>
                                                             </div>
                                                         </div>
@@ -291,11 +309,14 @@ const BookEventUp = () => {
                             <div id="collapseFour" className="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                                 <div className="accordion-body">
                                     <div>
-                                        <input type="checkbox" name="photography" id="photography" onChange={() => setphotography(!Photography)} /><label htmlFor="photography">Photography</label>
-                                        <input type="checkbox" name="videography" id="videography" onChange={() => setvideography(!videography)} /><label htmlFor="videography">Videography</label>
-                                        <input type="checkbox" name="album" id="album" onChange={() => setalbum(!album)} /><label htmlFor="album">Album</label>
-                                        <input type="checkbox" name="drone" id="drone" onChange={() => setdrone(!drone)} /><label htmlFor="drone">Drone</label>
-                                        <input type="checkbox" name="crane" id="crane" onChange={() => setcrane(!crane)} /><label htmlFor="crane">Crane</label>
+                                        
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="photography" id="photography" checked={photography} onChange={() => setphotography(!photography)} /><label htmlFor="photography">Photography</label>
+                                        <input type="checkbox" name="videography" id="videography" checked={videography} onChange={() => setvideography(!videography)} /><label htmlFor="videography">Videography</label>
+                                        <input type="checkbox" name="album" id="album" checked={album} onChange={() => setalbum(!album)} /><label htmlFor="album">Album</label>
+                                        <input type="checkbox" name="drone" id="drone" checked={drone} onChange={() => setdrone(!drone)} /><label htmlFor="drone">Drone</label>
+                                        <input type="checkbox" name="crane" id="crane" checked={crane} onChange={() => setcrane(!crane)} /><label htmlFor="crane">Crane</label>
                                     </div>
 
                                 </div>
@@ -312,4 +333,4 @@ const BookEventUp = () => {
     );
 };
 
-export default BookEventUp;
+export default EditEventUp;

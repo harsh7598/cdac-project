@@ -1,6 +1,8 @@
 package com.ems.services;
 
-import org.springframework.beans.BeanUtils;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,12 +13,9 @@ import com.ems.dao.MenuDao;
 import com.ems.dao.UserDao;
 import com.ems.dao.VenueDao;
 import com.ems.dto.EventDTO;
-import com.ems.pojos.Caters;
 import com.ems.pojos.Event;
 import com.ems.pojos.Menu;
 import com.ems.pojos.User;
-import com.ems.pojos.Venue;
-import java.util.*;
 
 @Service
 @Transactional
@@ -38,21 +37,38 @@ public class EventServicesIMPL implements IEventServices {
 		Event e = new Event(event.getName(), event.getType(), event.getDate(), event.getGuestCount(),event.isPhotography(), event.isVideography(),
 				event.isAlbum(),event.isDrone(), event.isCrane(),event.getBookedVenue());
 		User u = userDao.findByEmail(email).orElseThrow();
-		u.getRegevents().add(e);
-		//e.getUsers().add(u);	
+		u.getRegevents().add(e);	
 		List<Menu> menus=new ArrayList<Menu>();
 		event.getMenus().forEach((p)->menus.add(menuDao.findById(p.getId()).orElseThrow()));
 		e.getMenus().addAll(menus);
-		//eventDao.
 		return event;
+	}
+	
+	@Override
+	public Event updateEvent(EventDTO event) {
+		Event e = new Event(event.getName(), event.getType(), event.getDate(), event.getGuestCount(),event.isPhotography(), event.isVideography(),
+				event.isAlbum(),event.isDrone(), event.isCrane(),event.getBookedVenue());
+		e.setId(event.getId());
+		System.out.println("fsjhgjhb");
+		List<Menu> menus=new ArrayList<Menu>();
+		System.out.println(e);
+		event.getMenus().forEach((p)->menus.add(menuDao.findById(p.getId()).orElseThrow()));
+		e.getMenus().addAll(menus);
+		eventDao.save(e);
+		return e;
 	}
 
 	@Override
 	public List<Event> getByUsers(String email) {
 		System.out.println(email);
 		User u = userDao.findByEmail(email).orElseThrow();
-		//System.out.println(u.getRegevents().toString());
 		return u.getRegevents();
+	}
+
+	@Override
+	public Event getById(int id) {
+	System.out.println(eventDao.getById(id));
+		return eventDao.getById(id);
 	}
 	
 	

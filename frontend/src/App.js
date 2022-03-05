@@ -22,6 +22,7 @@ import ViewEvent from "./component/Customer/ViewEvent";
 import EmployeeWelcome from "./component/Employee/EmployeeWelcome";
 import ViewEventUpdate from "./component/Customer/viewEventUpdate";
 import BookEventUp from "./component/Customer/BookEventUP";
+import EditEventUp from "./component/Customer/EditEventUp";
 
 function App() { 
   return (
@@ -113,6 +114,10 @@ function App() {
           <Route exact path="/customer/vieweventupdate">
             <NavSignOut />
             <ViewEventUpdate/>
+          </Route>
+          <Route exact path="/updateevent/:id">
+            <NavSignOut />
+            <EditEventUp/>
           </Route>
 
         </Switch>

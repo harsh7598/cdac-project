@@ -37,7 +37,7 @@ const ViewEvent = () => {
         {events.map((event) => (
             <div className="accordion-item" key={event.id}>
               <h2 className="accordion-header" id="headingOne">
-                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" aria-expanded="false" data-bs-target={"#collapse"+event.id} aria-expanded="false" aria-controls={"collapse"+event.id}>
+                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" aria-expanded="false" data-bs-target={"#collapse"+event.id}  aria-controls={"collapse"+event.id}>
                 <h4 >Event Name: </h4><h4>{event.name}</h4>
                 </button>
               </h2>

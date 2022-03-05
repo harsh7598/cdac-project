@@ -2,12 +2,11 @@ package com.ems.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ems.dto.EventDTO;
 import com.ems.jwt_utils.JwtUtils;
+import com.ems.pojos.Event;
 import com.ems.services.IEventServices;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -36,12 +36,27 @@ public class EventController {
 	return ResponseEntity.ok(eventServices.registerEvent(event,request.getUserPrincipal().getName()));
 	}
 	
+	@GetMapping("/updateevent/{id}")
+	public Event getEventById(@PathVariable int id){
+		System.out.println(id);
+		System.out.println(eventServices.getById(id));
+		return eventServices.getById(id);
+	}
+	
+	
 	@PostMapping("/eventinfo")
 	public ResponseEntity<?> registerEvent(@RequestBody EventDTO eventdata,HttpServletRequest request){
 		System.out.println(eventdata.toString());
 		//System.out.println(media);
 //		menuList.forEach((e)->System.out.println(e));
 		return ResponseEntity.ok(eventServices.registerEvent(eventdata,request.getUserPrincipal().getName()));
+	}
+	@PutMapping("/eventinfo")
+	public ResponseEntity<?> updateEvent(@RequestBody EventDTO eventdata,HttpServletRequest request){
+		System.out.println(eventdata.toString());
+		//System.out.println(media);
+//		menuList.forEach((e)->System.out.println(e));
+		return ResponseEntity.ok(eventServices.updateEvent(eventdata));
 	}
 	
 	@GetMapping("/regevents")
