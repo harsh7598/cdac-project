@@ -24,4 +24,9 @@ UserDao userDao;
 		
 		return userTodoDao.findByUser(userDao.findByEmail(email).orElseThrow());
 	}
+
+	@Override
+	public UserTodo updateTask(UserTodo task) {
+		return userTodoDao.save(task);
+	}
 }

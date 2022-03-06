@@ -1,4 +1,3 @@
-import React, { useEffect } from "react"
 import './App.css';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HomePage from "./component/HomePage";
@@ -21,8 +20,7 @@ import SelectMenu from "./component/Customer/SelectMenu";
 import ViewEvent from "./component/Customer/ViewEvent";
 import EmployeeWelcome from "./component/Employee/EmployeeWelcome";
 import ViewEventUpdate from "./component/Customer/viewEventUpdate";
-import BookEventUp from "./component/Customer/BookEventUP";
-import EditEventUp from "./component/Customer/EditEventUp";
+import EditEventUp from "./component/Customer/EditEvent";
 
 function App() { 
   return (
@@ -35,25 +33,8 @@ function App() {
             <Packages />
             <About />
             <Contact />
-
           </Route>
-
-
-          <Route exact path="/customer">
-            <NavOther />
-            <CustLoginRegister/>
-          </Route>
-
-          <Route exact path="/employee">
-            <NavOther />
-            <EmployeeLogin />
-          </Route>
-
-          <Route exact path="/regemployee">
-            <NavOther />
-            <EmployeeRegister />
-          </Route>
-
+          
           <Route exact path="/services">
             <NavOther />
             <Services />
@@ -71,21 +52,21 @@ function App() {
             <Contact />
           </Route>
 
+         
+
+          <Route exact path="/customer">
+          <NavOther />
+            <CustLoginRegister/>
+          </Route>
+          
           <Route exact path="/customer/welcome">
             <NavSignOut />
             <CustomerWelcome />
           </Route>
-          <Route exact path="/employee/welcome">
-            <NavSignOut />
-            <EmployeeWelcome />
-          </Route>
+
           <Route exact path="/customer/bookevent">
             <NavSignOut />
             <BookEvent />
-          </Route>
-          <Route exact path="/customer/bookeventup">
-            <NavSignOut />
-            <BookEventUp />
           </Route>
           <Route exact path="/customer/editevent">
             <NavSignOut />
@@ -115,6 +96,28 @@ function App() {
             <NavSignOut />
             <ViewEventUpdate/>
           </Route>
+          <Route exact path="/updateevent/:id">
+            <NavSignOut />
+            <EditEventUp/>
+          </Route>
+         
+
+          <Route exact path="/employee">
+            <NavOther />
+            <EmployeeLogin />
+          </Route>
+
+          <Route exact path="/regemployee">
+            <NavOther />
+            <EmployeeRegister />
+          </Route>
+
+          <Route exact path="/employee/welcome">
+            <NavSignOut />
+            <EmployeeWelcome />
+          </Route>
+
+         
           <Route exact path="/updateevent/:id">
             <NavSignOut />
             <EditEventUp/>

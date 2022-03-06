@@ -10,7 +10,7 @@ const CustomerWelcome = () => {
       id: 1,
       icon: <MdEditCalendar className="commonIcons2" />,
       heading: "Book Event",
-      link: "bookeventup"
+      link: "bookevent"
     },
     {
       id: 2,

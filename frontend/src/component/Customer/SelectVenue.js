@@ -37,7 +37,6 @@ const SelectVenue = () => {
         </div>
         <div className="py-4 list-items">
           {Venues.map((venue) => (
-
             <div key={venue.id}>
               <div className="event__box py-2 px-2 border border-2 border-white grid-containe">
                 <div className="grid-child">
