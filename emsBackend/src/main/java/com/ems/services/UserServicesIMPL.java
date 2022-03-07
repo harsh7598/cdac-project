@@ -40,4 +40,10 @@ public class UserServicesIMPL implements IUserServices {
 		BeanUtils.copyProperties(persistentUser, dto);
 		return dto;
 	}
+	
+	@Override
+	public String accessUsername(String email) {
+		User u = userDao.findByEmail(email).orElseThrow();
+		return u.getName();
+	}
 }
