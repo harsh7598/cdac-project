@@ -16,11 +16,16 @@ const EmployeeLogin = () => {
     e.preventDefault();
     const employee = { email, password };
     axios.post(url + "/login",employee,{authHeader}).then((Response) => {
+      console.log(Response.data.role);
       console.log(Response.data.jwt);
-      if(Response.data.jwt)
+      if(Response.data.jwt&&Response.status == 200){
         localStorage.setItem('jwttoken',JSON.stringify(Response.data.jwt));
-      if (Response.status == 200) {
-        history.push("/employee/welcome");
+        if(Response.data.role=='[ROLE_MANAGER]')
+        history.push("manager/welcome");
+        else if(Response.data.role=='[ROLE_EMPLOYEE]')
+          history.push("employee/welcome")
+        else if(Response.data.role=='[ROLE_ADMIN]')
+          console.log("in admin")
       } else {
         setemail("");
         setpassword("");

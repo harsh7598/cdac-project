@@ -21,6 +21,8 @@ import ViewEvent from "./component/Customer/ViewEvent";
 import EmployeeWelcome from "./component/Employee/EmployeeWelcome";
 import ViewEventUpdate from "./component/Customer/viewEventUpdate";
 import EditEventUp from "./component/Customer/EditEvent";
+import ManagerWelcome from './component/Employee/ManagerWelcome';
+import ViewEventManager from './component/Employee/viewEventManager';
 
 function App() { 
   return (
@@ -106,7 +108,6 @@ function App() {
             <NavOther />
             <EmployeeLogin />
           </Route>
-
           <Route exact path="/regemployee">
             <NavOther />
             <EmployeeRegister />
@@ -123,6 +124,14 @@ function App() {
             <EditEventUp/>
           </Route>
 
+          <Route exact path="/manager/welcome">
+            <NavOther />
+            <ManagerWelcome />
+          </Route>
+          <Route exact path="/manager/viewevent">
+            <NavOther />
+            <ViewEventManager />
+          </Route>
         </Switch>
         {/* <NavOther/> */}
       </BrowserRouter >

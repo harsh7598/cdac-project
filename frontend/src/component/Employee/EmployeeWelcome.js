@@ -8,7 +8,7 @@ const [tasks, setTasks] = useState([]);
 const init=()=>{
   const token=JSON.parse(localStorage.getItem("jwttoken"));
   axios.get(url+"/asigntasks",{headers:{"authorization":`Bearer ${token}`}}).then(Response => {
-    console.log('Printing Menu data', Response.data);
+    console.log('Printing task data', Response.data);
     setTasks(Response.data);
   })
   .catch(error => {

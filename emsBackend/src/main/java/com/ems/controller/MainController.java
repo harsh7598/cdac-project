@@ -47,7 +47,7 @@ public class MainController {
 			Authentication authenticate = authManager.authenticate
 			(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));			
 			System.out.println("auth success " + authenticate);
-			return ResponseEntity.ok(new AuthenticationResponse(jwtUtils.generateJwtToken(authenticate)));
+			return ResponseEntity.ok(new AuthenticationResponse(jwtUtils.generateJwtToken(authenticate),authenticate.getAuthorities().toString()));
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException("User authentication Failed", e);
