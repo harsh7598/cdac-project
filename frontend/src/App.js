@@ -13,8 +13,8 @@ import CustomerWelcome from "./component/Customer/CustomerWelcome";
 import BookEvent from "./component/Customer/BookEvent";
 import EditEvent from "./component/Customer/EditEvent";
 import EmployeeRegister from "./component/login/EmployeeRegister";
-import SelectVenue from "./component/Customer/SelectVenue";
-import SelectCaterer from "./component/Customer/SelectCaterer";
+import SelectVenue from "./component/Employee/SelectVenue";
+import SelectCaterer from "./component/Employee/SelectCaterer";
 import SelectMedia from "./component/Customer/SelectMedia";
 import SelectMenu from "./component/Customer/SelectMenu";
 import ViewEvent from "./component/Customer/ViewEvent";
@@ -23,6 +23,9 @@ import ViewEventUpdate from "./component/Customer/viewEventUpdate";
 import EditEventUp from "./component/Customer/EditEvent";
 import ManagerWelcome from './component/Employee/ManagerWelcome';
 import ViewEventManager from './component/Employee/viewEventManager';
+import ViewEmployee from './component/Employee/ViewEmployee';
+import AvailbleServices from './component/Employee/AvailableServices';
+import SelectStudio from './component/Employee/SelectStudio';
 
 function App() { 
   return (
@@ -74,11 +77,11 @@ function App() {
             <NavSignOut />
             <EditEvent />
           </Route>
-          <Route exact path="/customer/bookevent/selectvenue">
+          <Route exact path="/manager/viewvenue">
             <NavSignOut />
             <SelectVenue />
           </Route>
-          <Route exact path="/customer/bookevent/selectcaterer">
+          <Route exact path="/manager/viewcaterer">
             <NavSignOut />
             <SelectCaterer />
           </Route>
@@ -108,8 +111,20 @@ function App() {
             <NavOther />
             <EmployeeLogin />
           </Route>
+          <Route exact path="/manager/viewemployees">
+            <NavSignOut />
+            <ViewEmployee />
+          </Route>
+          <Route exact path="/manager/viewstudio">
+            <NavSignOut />
+            <SelectStudio />
+          </Route>
+          <Route exact path="/manager/viewallservices">
+            <NavSignOut />
+            <AvailbleServices/>
+          </Route>
           <Route exact path="/regemployee">
-            <NavOther />
+            <NavSignOut />
             <EmployeeRegister />
           </Route>
 

@@ -11,7 +11,12 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -57,6 +62,11 @@ public class User extends BaseEntity {
 			@JoinColumn(name = "event_id") })
 	List<Event> regevents = new ArrayList<>();
 	
+
+	@OneToMany()
+	@JoinColumn(name="todo_id")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	List<UserTodo> todoList=new ArrayList<UserTodo>();
 	
 	public User(String name, LocalDate dob, String contactNumber, String adharNumber, String email, String password
 			,String accountNumber,String role,double salary) {
@@ -91,7 +101,5 @@ public class User extends BaseEntity {
 		return "User [name=" + name + ", dob=" + dob + ", contactNumber=" + contactNumber + ", adharNumber="
 				+ adharNumber + ", email=" + email + ", password=" + password + ", accountNumber=" + accountNumber
 				+ ", role=" + role + ", salary=" + salary + ", regevents=" + regevents + "]";
-	}
-	
-	
+	}	
 }

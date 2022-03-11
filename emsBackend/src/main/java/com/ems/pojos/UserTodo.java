@@ -1,5 +1,6 @@
 package com.ems.pojos;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -19,9 +20,9 @@ public class UserTodo extends BaseEntity{
 private String todo;
 	@Column(length = 20)
 private String status;
-	
-	@ManyToOne
-	@JoinColumn(name = "user_id",nullable = false)
-	private User user;
+//	
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	@JoinColumn( name = "user_id",nullable = false)
+//	private User user;
 	
 }

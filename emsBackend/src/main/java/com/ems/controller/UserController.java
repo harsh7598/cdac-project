@@ -7,13 +7,17 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ems.dao.UserTodoDao;
+import com.ems.pojos.Event;
+import com.ems.pojos.User;
 import com.ems.pojos.UserTodo;
 import com.ems.services.IUserServices;
 import com.ems.services.UserTodoServices;
@@ -27,11 +31,11 @@ public class UserController {
 	@Autowired
 	IUserServices userService;
 	
-	@GetMapping("/asigntasks")
-	public List<UserTodo> AsignTasks (HttpServletRequest request){
-		return userTodoServices.showEmployeeTodo(request.getUserPrincipal().getName());
-		
-	}
+//	@GetMapping("/asigntasks")
+//	public List<UserTodo> AsignTasks (HttpServletRequest request){
+//		return userTodoServices.showEmployeeTodo(request.getUserPrincipal().getName());
+//		
+//	}
 	
 	@GetMapping("/nameaccess")
 	public String accessName(HttpServletRequest request)
@@ -43,4 +47,17 @@ public class UserController {
 	public ResponseEntity<?>updateTask(@RequestBody UserTodo task){
 		return ResponseEntity.ok(userTodoServices.updateTask(task));
 	}
+	
+	@GetMapping("/allemployees")
+	public List<User>getEmployees(){
+		return userService.getEmployees();
+	}
+	
+	@DeleteMapping("/deleteemployee/{id}")
+	public void deleteEmployee(@PathVariable int id){
+		System.out.println(id);
+		userService.deleteEmployee(id);
+		
+	}
+	
 }

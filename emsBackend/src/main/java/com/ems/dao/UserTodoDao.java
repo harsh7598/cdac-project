@@ -7,5 +7,5 @@ import com.ems.pojos.User;
 import java.util.List;
 
 public interface UserTodoDao extends JpaRepository<UserTodo, Integer>{
-	List<UserTodo> findByUser(User user);
+	//List<UserTodo> findByUser(User user);
 }

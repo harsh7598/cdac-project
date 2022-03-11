@@ -19,11 +19,6 @@ const SelectVenue = () => {
         console.log('Something went wrong', error);
       })
   }
-  const HandleVenue=(venueDetails)=>{
-    localStorage.setItem('submitVenue', JSON.stringify(venueDetails));
-    history.push("/customer/bookevent/selectmenu")
-  }
-
   useEffect(() => {
     init();
   }, []);
@@ -48,9 +43,6 @@ const SelectVenue = () => {
                   <h4 className="text-start px-3">Contact: {venue.contact}</h4>
                   <h4 className="text-start px-3">Cost: {venue.cost}</h4>
                   <h4 className="text-start px-3">Description: {venue.description}</h4>
-                </div>
-                <div className="grid-child">
-                  <button type="button" className="btn btn-warning mx -5 w-50 h-100" onClick={()=>{HandleVenue(venue)}}>Add</button>
                 </div>
               </div>
 

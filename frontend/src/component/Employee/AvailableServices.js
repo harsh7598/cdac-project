@@ -4,25 +4,25 @@ import { Link } from "react-router-dom";
 import { SiEventstore } from "react-icons/si";
 import { FaEdit } from "react-icons/fa";
 import { MdEditCalendar, MdOutlinePreview } from "react-icons/md";
-const ManagerWelcome = () => {
+const AvailbleServices = () => {
   const state = [
     {
       id: 1,
       icon: <MdEditCalendar className="commonIcons2" />,
-      heading: "view Employees",
-      link: "viewemployees"
+      heading: "Caterer's",
+      link: "viewcaterer"
     },
     {
       id: 2,
       icon: <MdOutlinePreview className="commonIcons2" />,
-      heading: "View Event",
-      link: "viewevent"
+      heading: "Venue's",
+      link: "viewvenue"
     },
     {
       id: 3,
       icon: <FaEdit className="commonIcons2" />,
-      heading: "Availble Services",
-      link: "viewallservices"
+      heading: "Studio's",
+      link: "viewstudio"
     }
   ];
   return (
@@ -49,4 +49,4 @@ const ManagerWelcome = () => {
   );
 };
 
-export default ManagerWelcome;
+export default AvailbleServices;

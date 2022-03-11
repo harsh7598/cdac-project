@@ -1,6 +1,7 @@
 package com.ems.services;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,4 +47,16 @@ public class UserServicesIMPL implements IUserServices {
 		User u = userDao.findByEmail(email).orElseThrow();
 		return u.getName();
 	}
+	
+	@Override
+	public List<User> getEmployees(){
+		return userDao.findByRole("EMPLOYEE");
+	}
+
+	@Override
+	public void deleteEmployee(int id) {
+		userDao.deleteById(id);
+		
+	}
+	
 }

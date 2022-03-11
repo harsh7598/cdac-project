@@ -29,7 +29,7 @@ const EmployeeRegister = () => {
   const [password, setpassword] = useState("");
   const [cPassword, setCpassword] = useState("");
   const [error, seterror] = useState("");
-  
+
   const registerCustomer = (e) => {
     e.preventDefault();
     if (password == cPassword) {
@@ -44,7 +44,10 @@ const EmployeeRegister = () => {
         role,
         salary
       }
-      axios.post(url + "/registration", customer).then(Response => { console.log(Response.data)})
+      axios.post(url + "/registration", customer).then(Response => {
+        console.log(Response.data);
+        history.push("/manager/viewemployees")
+      })
     }
     else {
       console.log("invalid password not matched");
@@ -58,42 +61,59 @@ const EmployeeRegister = () => {
             <form action="#" className="sign-in-form l-form">
               <h2 className="title fw-bold">Register New Employee</h2>
               <table>
-                <tr>
-                  <td colSpan={2}>
-                    <input type="text" className="input-fields-mod" placeholder="Enter Full Name" value={name} onChange={(e) => { setname(e.target.value) }} />
-                  </td></tr>
-                <tr><td colSpan={2}>
-                  <input type="email" className="input-fields-mod" placeholder="Enter Email" value={email} onChange={(e) => { setemail(e.target.value) }} />
-                </td></tr>
-                <tr>
-                  <td><input type="text" className="input-fields-mod" placeholder="Enter Contact Number" value={contactNumber} onChange={(e) => { setcontactNumber(e.target.value) }} />
-                  </td>
-                  <td><input type="date" className="input-fields-mod" placeholder="Enter Date of Birth" value={dob} onChange={(e) => { setdob(e.target.value) }} /></td>
-                </tr>
-
-                <tr><td colSpan={2}>
-                  <input type="text" className="input-fields-mod" placeholder="Enter Aadhar Number" value={adharNumber} onChange={(e) => { setadharNumber(e.target.value) }} />
-                </td></tr>
-                <tr><td colSpan={2}>
-                  <input type="text" className="input-fields-mod" placeholder="Enter Account Number" value={accountNumber} onChange={(e) => { setaccountNumber(e.target.value) }} />
-                </td></tr>
-                <tr><td>
-                  <select name="roles" id="roles" className="input-fields-mod" onChange={(e) => { setrole(e.target.value) }}>
-                    <option value="" disabled selected hidden>Choose Role</option>
-                    <option value="EMPLOYEE">EMPLOYEE</option>
-                    <option value="MANAGER">MANAGER</option>
-                    <option value="ADMIN">ADMIN</option>
-                  </select>
-                </td>
-                  <td>
-                    <input type="text" className="input-fields-mod" placeholder="Enter Salary" value={salary} onChange={(e) => { setsalary(e.target.value) }} />
-                  </td> </tr>
-                <tr><td colSpan={2}>
-                  <input type="password " className="input-fields-mod" placeholder="Enter New Password" value={password} onChange={(e) => { setpassword(e.target.value) }} />
-                </td></tr>
-                <tr><td colSpan={2}>
-                  <input type="password" className="input-fields-mod" placeholder="Confirm Password" value={cPassword} onChange={(e) => { setCpassword(e.target.value) }} />
-                </td></tr>
+                <tbody>
+                  <tr>
+                    <td colSpan={2}>
+                      <input type="text" className="input-fields-mod" placeholder="Enter Full Name" value={name} onChange={(e) => { setname(e.target.value) }} />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colSpan={2}>
+                      <input type="email" className="input-fields-mod" placeholder="Enter Email" value={email} onChange={(e) => { setemail(e.target.value) }} />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="text" className="input-fields-mod" placeholder="Enter Contact Number" value={contactNumber} onChange={(e) => { setcontactNumber(e.target.value) }} />
+                    </td>
+                    <td>
+                      <input type="date" className="input-fields-mod" placeholder="Enter Date of Birth" value={dob} onChange={(e) => { setdob(e.target.value) }} />
+                    </td>
+                  </tr>
+                    <tr>
+                      <td colSpan={2}>
+                        <input type="text" className="input-fields-mod" placeholder="Enter Aadhar Number" value={adharNumber} onChange={(e) => { setadharNumber(e.target.value) }} />
+                      </td>
+                  </tr>
+                  <tr>
+                    <td colSpan={2}>
+                      <input type="text" className="input-fields-mod" placeholder="Enter Account Number" value={accountNumber} onChange={(e) => { setaccountNumber(e.target.value) }} />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <select name="roles" id="roles" className="input-fields-mod" onChange={(e) => { setrole(e.target.value) }}>
+                        <option value="" hidden>Choose Role</option>
+                        <option value="EMPLOYEE">EMPLOYEE</option>
+                        <option value="MANAGER">MANAGER</option>
+                        <option value="ADMIN">ADMIN</option>
+                      </select>
+                    </td>
+                    <td>
+                      <input type="text" className="input-fields-mod" placeholder="Enter Salary" value={salary} onChange={(e) => { setsalary(e.target.value) }} />
+                    </td>
+                    </tr>
+                  <tr>
+                    <td colSpan={2}>
+                      <input type="password" className="input-fields-mod" placeholder="Enter New Password" value={password} onChange={(e) => { setpassword(e.target.value) }} />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colSpan={2}>
+                      <input type="password" className="input-fields-mod" placeholder="Confirm Password" value={cPassword} onChange={(e) => { setCpassword(e.target.value) }} />
+                    </td>
+                  </tr>
+                </tbody>
               </table>
               <input type="submit" className="btn-l" value="Register" onClick={registerCustomer} />
             </form>

@@ -20,10 +20,10 @@ UserTodoDao userTodoDao;
 @Autowired
 UserDao userDao;
 
-	public List<UserTodo> showEmployeeTodo(String email){
-		
-		return userTodoDao.findByUser(userDao.findByEmail(email).orElseThrow());
-	}
+//	public List<UserTodo> showEmployeeTodo(String email){
+//		
+//		return userTodoDao.findByUser(userDao.findByEmail(email).orElseThrow());
+//	}
 
 	@Override
 	public UserTodo updateTask(UserTodo task) {
