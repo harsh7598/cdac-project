@@ -26,6 +26,9 @@ import ViewEventManager from './component/Employee/viewEventManager';
 import ViewEmployee from './component/Employee/ViewEmployee';
 import AvailbleServices from './component/Employee/AvailableServices';
 import SelectStudio from './component/Employee/SelectStudio';
+import AssignCaterer from './component/Employee/AssignCaterer';
+import AssignStudio from './component/Employee/AssignStudio';
+import AssignEmployee from './component/Employee/AssignEmployee';
 
 function App() { 
   return (
@@ -146,6 +149,18 @@ function App() {
           <Route exact path="/manager/viewevent">
             <NavOther />
             <ViewEventManager />
+          </Route>
+          <Route exact path="/assigncaters/:id">
+            <NavSignOut />
+            <AssignCaterer/>
+          </Route>
+          <Route exact path="/assignstudio/:id">
+            <NavSignOut />
+            <AssignStudio/>
+          </Route>
+          <Route exact path="/assignemployee/:id">
+            <NavSignOut />
+            <AssignEmployee/>
           </Route>
         </Switch>
         {/* <NavOther/> */}

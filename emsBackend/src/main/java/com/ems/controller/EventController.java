@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ems.dto.EventDTO;
 import com.ems.jwt_utils.JwtUtils;
 import com.ems.pojos.Event;
+import com.ems.pojos.User;
 import com.ems.services.IEventServices;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -42,7 +43,14 @@ public class EventController {
 		System.out.println(eventServices.getById(id));
 		return eventServices.getById(id);
 	}
-	
+	@PutMapping("/assignemployee/{id}")
+	public void assignEmployee(@PathVariable int id,@RequestBody User user){
+		 eventServices.assignEmployee(id, user);
+	}
+	@PutMapping("/unassignemployee/{id}")
+	public void unassignEmployee(@PathVariable int id,@RequestBody User user){
+		eventServices.unassignEmployee(id, user);
+	}
 	
 	@PostMapping("/eventinfo")
 	public ResponseEntity<?> registerEvent(@RequestBody EventDTO eventdata,HttpServletRequest request){

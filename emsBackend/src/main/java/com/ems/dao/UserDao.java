@@ -13,6 +13,8 @@ public interface UserDao extends JpaRepository<User, Integer>{
 	Optional<User> findByEmail(String email);
 //	@Query("select u.id, u.email,u.name from User u where role=?1")
 	List<User> findByRole(String role);
+	List<User>findByEventAndRole(Event event,String role);
+	
 	
 //	@Query("insert into user_event values(userId, eventId)")
 //	@Query("update user set regevents=event where id=userId")

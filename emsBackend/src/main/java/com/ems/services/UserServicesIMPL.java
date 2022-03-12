@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ems.dao.UserDao;
 import com.ems.dto.RegisterDTO;
+import com.ems.pojos.Event;
 import com.ems.pojos.User;
 
 @Service
@@ -59,4 +60,5 @@ public class UserServicesIMPL implements IUserServices {
 		
 	}
 	
+
 }

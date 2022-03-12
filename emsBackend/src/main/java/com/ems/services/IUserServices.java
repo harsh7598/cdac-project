@@ -9,5 +9,6 @@ public interface IUserServices {
 	public RegisterDTO registerUser(RegisterDTO request);
 	public String accessUsername(String email);
 	public List<User> getEmployees();
-public void deleteEmployee(int id);
+	public void deleteEmployee(int id);
+	
 }

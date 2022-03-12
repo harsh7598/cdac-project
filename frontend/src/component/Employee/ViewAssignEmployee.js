@@ -1,20 +1,23 @@
 import { useEffect, useState } from 'react';
 import axios from "axios";
 import { url } from '../common/constants';
-import { Link } from 'react-router-dom';
+import { Link,useParams } from 'react-router-dom';
 
 
-const ViewEmployee = () => {
+const ViewAssignEmployee = () => {
     const [Employee, setEmployee] = useState([]);
-    const [Id, setId] = useState();
+    const [Emp, setEmp] = useState('');
+    const {id} = useParams()
+    const token=JSON.parse(localStorage.getItem("jwttoken"));
+  
 
     useEffect(() => {
         init();
     }, []);
-    const HandleRemove = (id) => {
+    const HandleRemove = (Emp) => {
         console.log("id is" + id);
-        axios.delete(url + "/deleteemployee/" + id).then(Response => {
-            console.log('delete Employee successfully');
+        axios.put(url + "/unassignemployee/" + id,Emp,{headers:{"authorization":`Bearer ${token}`}}).then(Response => {
+            console.log('unassign Employee successfully');
             init();
         })
             .catch(error => {
@@ -22,10 +25,18 @@ const ViewEmployee = () => {
             })
     }
 
+    const AssignEmp=(emp)=>{
+        axios.put(url+"/assignemployee/"+id,emp,{headers:{"authorization":`Bearer ${token}`}}).then(Response => {
+            console.log('assign Employee successfully',);
+          })
+          .catch(error => {
+            console.log('Something went wrong', error);
+          }) 
+    }
 
 
     const init = () => {
-        axios.get(url + "/allemployees")
+        axios.get(url + "/assignemployees/"+id)
             .then(Response => {
                 console.log('Printing Employee data', Response.data);
                 setEmployee(Response.data);
@@ -42,7 +53,6 @@ const ViewEmployee = () => {
                 <div  className="fw-bold pt-5 display-6">
                     Employees
                 </div>
-                <Link className='btn btn-l w-50 mt-4' to='/regemployee' >register new Employee</Link>
                 <div className="py-3 list-items">
                     <table className="col-12 table-bordered text-start text-white">
                         <thead>
@@ -68,7 +78,8 @@ const ViewEmployee = () => {
                                     <td><h4 className="text-start px-3">{emp.email}</h4></td>
                                     {/* <td><button className='btn-l float-md-right' onClick={() => { HandleRemove(emp.id) }}>Remove Employee</button></td> */}
                                     <td className='text-center'>
-                                        <button className='btn-l' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => setId(emp.id)}>Remove Employee</button>
+                                        <button className='btn-l' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => setEmp(emp)}>Unassign Employee</button>
+                                        {/* <button className='btn-l' onClick={()=>AssignEmp(emp)}>ASSIGN</button> */}
                                     </td> 
                                 </tr>
                             ))}
@@ -88,7 +99,7 @@ const ViewEmployee = () => {
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" className="btn btn-primary " onClick={() => { HandleRemove(Id) }} data-bs-dismiss="modal">Yes</button>
+                                    <button type="button" className="btn btn-primary " onClick={() => { HandleRemove(Emp) }} data-bs-dismiss="modal">Yes</button>
                                 </div>
                             </div>
                         </div>
@@ -99,4 +110,4 @@ const ViewEmployee = () => {
     );
 }
 
-export default ViewEmployee;
+export default ViewAssignEmployee;

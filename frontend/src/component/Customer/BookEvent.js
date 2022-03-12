@@ -91,6 +91,7 @@ const BookEvent = () => {
           axios.post(url+"/eventinfo",eventdetails,{headers:{"authorization":`Bearer ${token}`}})
           .then(Response => {
             console.log('Printing event data', Response.data);
+            history.push("/customer/welcome")
           })
           .catch(error => {
             console.log('Something went wrong', error);

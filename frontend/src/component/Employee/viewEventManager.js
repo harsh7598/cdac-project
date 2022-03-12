@@ -43,55 +43,136 @@ const ViewEventManager = () => {
                                 </button>
                             </h2>
                             <div id={"collapse" + event.id} className="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                <div className="accordion-body">
-                                    <div className="event__box py-2 px-2 border border-2 border-white">
-                                        <h3 className="text-start px-3">Basic Details : </h3>
-                                        <table className="col-8 table-bordered text-starttext-white"><tbody>
-                                            <tr>
-                                                <td><h4 >Event Name: </h4></td>
-                                                <td><h4>{event.name}</h4></td>
-                                            </tr>
-                                            <tr>
-                                                <td><h4 >Event Type: </h4></td>
-                                                <td><h4>{event.type}</h4></td>
-                                            </tr>
-                                            <tr>
-                                                <td><h4 >Event Date: </h4>
-                                                </td><td><h4>{event.date}</h4></td>
-                                            </tr>
-                                            <tr>
-                                                <td><h4 >Guest Count:</h4></td>
-                                                <td><h4>{event.guestCount}</h4></td>
-                                            </tr>
-                                        </tbody></table>
-                                        <h3  >Venue Details : </h3>
-                                        <h4>Name: {event.bookedVenue.name}</h4>
-                                        <h4>Location: {event.bookedVenue.location}</h4>
-                                        <h4>Address: {event.bookedVenue.address}</h4>
-                                        <h4>Capacity: {event.bookedVenue.maxCapacity}</h4>
-                                        <h4>Category: {event.bookedVenue.category}</h4>
-                                        <h4>Contact: {event.bookedVenue.contact}</h4>
-                                        <h4>Cost: {event.bookedVenue.cost}</h4>
-                                        <h4>Description: {event.bookedVenue.description}</h4>
+                                <div className="accordion-body" id="fordownload">
+                                    <div className="bg-black py-2 px-2 border border-2 border-white"  >
+                                        {/* <div className="event__box py-2 px-2 border border-2 border-white"> */}
+                                        <h3 className="text-start p-3">Basic Details : </h3>
+                                        <div className="d-flex justify-content-center">
+                                            <table className="col-10 table-bordered text-starttext-white"><tbody>
+                                                <tr>
+                                                    <td className="bg-white text-black"><h4 >Event Name: </h4></td>
+                                                    <td className="bg-white text-black"><h4 >Event Type: </h4></td>
+                                                    <td className="bg-white text-black"><h4 >Event Date: </h4></td>
+                                                    <td className="bg-white text-black"><h4 >Guest Count:</h4></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><h4>{event.name}</h4></td>
+                                                    <td><h4>{event.type}</h4></td>
+                                                    <td><h4>{event.date}</h4></td>
+                                                    <td><h4>{event.guestCount}</h4></td>
+                                                </tr>
+                                            </tbody></table>
 
-                                        <h3>Food Menu List : </h3>
-                                        {event.menus.map((menu) => (
-                                            <div key={menu.id}>
-                                                <h4 className="text-start px-3">{menu.menuName} <span className="text-secondary">(Price: {menu.price}/person)</span></h4>
-                                            </div>
-                                        ))}
-                                        <h3 className="text-start px-3">Media Details : </h3>
-                                        <h4 className="text-start px-3">Photography: {event.photography.toString()}</h4>
-                                        <h4 className="text-start px-3">Videography: {event.videography.toString()}</h4>
-                                        <h4 className="text-start px-3">Album: {event.album.toString()}</h4>
-                                        <h4 className="text-start px-3">Drone Shoot: {event.drone.toString()}</h4>
-                                        <h4 className="text-start px-3">Crane Shoot: {event.crane.toString()}</h4>
-                                        <h4 className="text-start px-3">Studio: {event.studio}</h4>
-                                        <h4 className="text-start px-3">Studio: {event.bookedCater}</h4>
-                                        <h4 className="text-start px-3">Studio: {event.studio}</h4>
+                                        </div>
+                                        <h3 className="text-start p-3">Venue Details : </h3>
+                                        <div className="d-flex justify-content-center">
+                                            {/* <table className="col-10 table-bordered text-starttext-white"><tbody>
+                           <tr>
+                               <td><h4>Name: </h4></td>
+                               <td><h4>Address: </h4></td>
+                               <td><h4>Capacity: </h4></td>
+                               <td> <h4>Category: </h4></td>
+                               <td><h4>Cost: </h4></td>
+                           </tr>
+                           <tr>
+                               <td><h4>{event.bookedVenue.name}</h4></td>
+                               <td><h4>{event.bookedVenue.address}</h4></td>
+                               <td><h4>{event.bookedVenue.maxCapacity}</h4></td>
+                               <td><h4>{event.bookedVenue.category}</h4></td>
+                               <td><h4>{event.bookedVenue.cost}</h4></td>
+                           </tr>
+                           <tr>
+                           </tr>
+                           <tr>
+                           </tr>
+                           <tr>
+                               <td><h4>Contact: </h4></td>
+                               <td><h4>{event.bookedVenue.contact}</h4></td>
+                           </tr>
+                           <tr>
+                           </tr>
+                           <tr>
+                               <td><h4>Description: </h4></td>
+                               <td><h4>{event.bookedVenue.description}</h4></td>
+                           </tr>
+                       </tbody></table> */}
+
+
+
+
+                                            <table className="col-10 table-bordered text-starttext-white"><tbody>
+                                                <tr>
+                                                    <td><h4>Name: </h4></td>
+                                                    <td><h4>{event.bookedVenue.name}</h4></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><h4>Location: </h4></td>
+                                                    <td><h4>{event.bookedVenue.location}</h4></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><h4>Address: </h4></td>
+                                                    <td><h4>{event.bookedVenue.address}</h4></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><h4>Capacity: </h4></td>
+                                                    <td><h4>{event.bookedVenue.maxCapacity}</h4></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <h4>Category: </h4></td>
+                                                    <td><h4>{event.bookedVenue.category}</h4></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><h4>Contact: </h4></td>
+                                                    <td><h4>{event.bookedVenue.contact}</h4></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><h4>Cost: </h4></td>
+                                                    <td><h4>{event.bookedVenue.cost}</h4></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><h4>Description: </h4></td>
+                                                    <td><h4>{event.bookedVenue.description}</h4></td>
+                                                </tr>
+
+                                            </tbody></table>
+                                        </div>
+
+                                        <h3 className="text-start p-3">Food Menu List : </h3>
+                                        <div className="d-flex justify-content-center">
+                                            <table className="col-10 table-bordered text-starttext-white"><tbody>
+                                                <tr><td>
+                                                    {event.menus.map((menu) => (
+                                                        <div key={menu.id}>
+                                                            <h4 className="text-start px-3">{menu.menuName} <span className="text-secondary">(Price: {menu.price}/person)</span></h4>
+                                                        </div>
+                                                    ))}
+                                                </td></tr>
+                                            </tbody></table>
+                                        </div>
+                                        <h3 className="text-start p-3">Media Details : </h3>
+                                        <div className="d-flex justify-content-center">
+                                            <table className="col-10 table-bordered text-starttext-white"><tbody>
+                                                <tr><td className="bg-white text-black"><h4>Photography: </h4></td>
+                                                    <td className="bg-white text-black"><h4>Videography: </h4></td>
+                                                    <td className="bg-white text-black"><h4>Album: </h4></td>
+                                                    <td className="bg-white text-black"><h4>Drone Shoot: </h4></td>
+                                                    <td className="bg-white text-black"><h4>Crane Shoot: </h4></td>
+                                                </tr>
+
+
+                                                <tr>
+                                                    <td><h4>{event.photography ? "Yes" : "No"}</h4></td>
+                                                    <td><h4>{event.videography ? "Yes" : "No"}</h4></td>
+                                                    <td><h4>{event.album ? "Yes" : "No"}</h4></td>
+                                                    <td><h4>{event.drone ? "Yes" : "No"}</h4></td>
+                                                    <td><h4>{event.crane ? "Yes" : "No"}</h4></td>
+                                                </tr>
+                                            </tbody></table>
+                                        </div>
                                         <Link className="btn btn-info" to={`/updateevent/${event.id}`}>Update</Link>
                                         <Link className="btn btn-info" to={`/assigncaters/${event.id}`}>assign Caters</Link>
                                         <Link className="btn btn-info" to={`/assignemployee/${event.id}`}>assign Employee</Link>
+                                        <Link className="btn btn-info" to={`/viewassignemployee/${event.id}`}>view assign Employee</Link>
                                         <Link className="btn btn-info" to={`/assignstudio/${event.id}`}>assign Studio</Link>
                                     </div>
                                     <br></br>

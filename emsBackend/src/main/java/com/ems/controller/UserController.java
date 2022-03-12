@@ -53,6 +53,11 @@ public class UserController {
 		return userService.getEmployees();
 	}
 	
+	@GetMapping("/assignemployees/{id}")
+	public List<User>getEmployees(@PathVariable int id){
+		return userService.getEmployees();
+	}
+	
 	@DeleteMapping("/deleteemployee/{id}")
 	public void deleteEmployee(@PathVariable int id){
 		System.out.println(id);

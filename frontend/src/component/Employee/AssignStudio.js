@@ -1,0 +1,63 @@
+import { useEffect, useState } from 'react';
+import axios from "axios";
+import { url } from '../common/constants';
+import { useHistory, useParams } from "react-router-dom";
+
+const AssignStudio = () => {
+
+  const [Studio, setStudio] = useState([]);
+  const {id} = useParams()
+  const token=JSON.parse(localStorage.getItem("jwttoken"));
+
+
+  const init = () => {
+    axios.get(url+"/studio")
+      .then(Response => {
+        console.log('Printing studio data', Response.data);
+        setStudio(Response.data);
+      })
+      .catch(error => {
+        console.log('Something went wrong', error);
+      }) 
+  }
+
+  const handleStudio=(studio)=>{
+    axios.put(url+"/assignstudio/"+id,studio,{headers:{"authorization":`Bearer ${token}`}}).then(Response => {
+        console.log('assign Studio successfully',);
+      })
+      .catch(error => {
+        console.log('Something went wrong', error);
+      }) 
+  }
+
+  useEffect(() => {
+    init();
+  }, []);
+
+
+  return (
+
+<div className="forms-container">
+      <div className="py-5 text-white my-5">
+      <div colSpan="2" className="fw-bold pt-5 display-6">
+              Studios
+              </div>
+        <div className="py-4 list-items">
+          {Studio.map((std) => (
+            <div key={std.id} onClick={()=>handleStudio(std)}>              
+                <div className="event__box py-2 px-2 border border-2 border-white">
+                  <h4 className="text-start px-3">Name: {std.name}</h4>
+                  <h4 className="text-start px-3">Contact: {std.contactNumber}</h4>
+                  <h4 className="text-start px-3">Cost: {std.cost}</h4>         
+                </div>
+                <br></br>
+            </div>
+
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default AssignStudio;

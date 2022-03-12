@@ -70,6 +70,17 @@ public class EventServicesIMPL implements IEventServices {
 	System.out.println(eventDao.getById(id));
 		return eventDao.getById(id);
 	}
+
+	@Override
+	public void assignEmployee(int id, User user) {
+		user.getRegevents().add(getById(id));
+		userDao.save(user);
+	}
+	@Override
+	public void unassignEmployee(int id, User user) {
+		user.getRegevents().remove(getById(id));
+		userDao.save(user);
+	}
 	
 	
 

@@ -1,17 +1,28 @@
 import { useEffect, useState } from 'react';
 import axios from "axios";
 import { url } from '../common/constants';
+import { useHistory, useParams } from "react-router-dom";
 
 
-const SelectCaterer = () => {
+const AssignCaterer = () => {
 
   const [caterers, setCaterers] = useState([]);
+  const {id} = useParams()
+  const token=JSON.parse(localStorage.getItem("jwttoken"));
 
   const init = () => {
     axios.get(url+"/caters")
       .then(Response => {
         console.log('Printing Caterers data', Response.data);
         setCaterers(Response.data);
+      })
+      .catch(error => {
+        console.log('Something went wrong', error);
+      }) 
+  }
+  const handleCaterer=(cater)=>{
+    axios.put(url+"/assigncaterer/"+id,cater,{headers:{"authorization":`Bearer ${token}`}}).then(Response => {
+        console.log('assign Caterers successfully',);
       })
       .catch(error => {
         console.log('Something went wrong', error);
@@ -33,14 +44,12 @@ const SelectCaterer = () => {
         <div className="py-4 list-items">
           {caterers.map((caterer) => (
 
-            <div key={caterer.id}>
-              {/* <Link className="nav-link text-white py-1" to={caterer.link}> */}
+            <div key={caterer.id} onClick={()=>handleCaterer(caterer)}>
                 <div className="event__box py-2 px-2 border border-2 border-white">
                   <h4 className="text-start px-3">Name: {caterer.name}</h4>
                   <h4 className="text-start px-3">Contact: {caterer.contactNumber}</h4>
                   <h4 className="text-start px-3">Speciality: {caterer.speciality}</h4>         
                 </div>
-              {/* </Link> */}
                 <br></br>
             </div>
           ))}
@@ -50,4 +59,4 @@ const SelectCaterer = () => {
   );
 }
 
-export default SelectCaterer;
+export default AssignCaterer;

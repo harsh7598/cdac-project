@@ -9,17 +9,27 @@ import org.springframework.stereotype.Service;
 
 import com.ems.dao.CatererDao;
 import com.ems.pojos.Caters;
+import com.ems.pojos.Event;
 
 @Service
 @Transactional
 public class CatersServicesIMPL implements ICatersServices{
 	@Autowired
 	private CatererDao caterDao;
-
+	
+	@Autowired
+	private EventServicesIMPL es;
+	
 	@Override
 	public List<Caters> getAllCaters() {
 	
 		return caterDao.findAll();
+	}
+
+	@Override
+	public void assignCaterer(int id, Caters cater) {
+		Event e=es.getById(id);
+		e.setBookedCater(cater);	
 	}
 	
 	
