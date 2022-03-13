@@ -9,13 +9,13 @@ const CustomerWelcome = () => {
     {
       id: 1,
       icon: <MdEditCalendar className="commonIcons2" />,
-      heading: "Book Event",
+      heading: "Lets Book New Event",
       link: "bookevent"
     },
     {
       id: 2,
       icon: <MdOutlinePreview className="commonIcons2" />,
-      heading: "View Event",
+      heading: "View All Event Details",
       link: "viewevent"
     },
     {
