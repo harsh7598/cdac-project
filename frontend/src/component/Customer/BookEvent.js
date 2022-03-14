@@ -103,30 +103,24 @@ const BookEvent = () => {
             <div className="forms-container">
                 <div className="py-5 text-white my-5">
                     <div colSpan="2" className="fw-bold p-3 display-6">
-                        Update Event Details
+                        Book an Event with Us
                     </div>
                     <div className="accordion " id="accordionExample">
                         {/* general Details item */}
                         <div className="accordion-item bg-black">
                             <h2 className="accordion-header" id="headingOne">
-                                <button className="accordion-button bg-black" type="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+                                <button className="accordion-button accordian-back" type="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
                                     EVENT GENERAL DETAILS
                                 </button>
                             </h2>
-                            <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                <div className="accordion-body">
-                                    <form className="Emplogin-form-in ">
+                            <div id="collapseOne" className="accordion-collapse collapse show bg-black" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div className="accordion-body d-flex justify-content-center">
+                                    <form className="col-10">
                                         <table className="col-12">
-                                            <thead>
-                                                <tr>
-                                                    <td colSpan="2" className="fw-bold  pt-5 pb-3  display-6">
-                                                        Book an Event with Us
-                                                    </td>
-                                                </tr>
-                                            </thead>
+
                                             <tbody>
                                                 <tr>
-                                                    <td className="text-start col-4 fs-4">Event Name:</td>
+                                                    <td className="text-start col-3 fs-4">Event Name:</td>
                                                     <td><input type="text" className="my-2" value={name} placeholder="Enter Event Name" onChange={(e) => { setname(e.target.value) }} /></td>
                                                 </tr>
                                                 <tr>
@@ -151,7 +145,7 @@ const BookEvent = () => {
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <button className="btn btn-primary m-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <button className="btn btn-warning m-3 w-25" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                             NEXT
                                         </button>
                                         {/* <div className="d-grid col-10 mt-3 mx-auto">
@@ -164,16 +158,16 @@ const BookEvent = () => {
                         {/* venue item */}
                         <div className="accordion-item">
                             <h2 className="accordion-header" id="headingTwo">
-                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseTwo">
+                                <button className="accordion-button collapsed accordian-back" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseTwo">
                                     SELECT VENUE
                                 </button>
                             </h2>
-                            <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div id="collapseTwo" className="accordion-collapse collapse bg-black" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                 <div className="accordion-body">
                                     <div className="scrollable">
                                         {Venues.map((venue) => (
-                                            <div key={venue.id}>
-                                                <div className="border">
+                                            <div key={venue.id} className="border py-3 m-3 mb-4 event__box">
+                                                {/* <div className="border">
                                                     <div className="grid-child">
                                                         <h4 className="text-start px-3">Name: {venue.name}</h4>
                                                         <h4 className="text-start px-3">Location: {venue.location}</h4>
@@ -183,30 +177,70 @@ const BookEvent = () => {
                                                         <h4 className="text-start px-3">Contact: {venue.contact}</h4>
                                                         <h4 className="text-start px-3">Cost: {venue.cost}</h4>
                                                         <h4 className="text-start px-3">Description: {venue.description}</h4>
-                                                        <button type="button" className="btn btn-warning mx -5 w-50 h-100" onClick={() => { setBookedvenue(venue) }}>Add</button>
+                                                        <button type="button" className="btn btn-warning mx -5 w-50 h-100" onClick={() => { setBookedvenue(venue) }}>Select</button>
                                                     </div>
+                                                </div> */}
+                                                <div className="grid-child d-flex justify-content-center ">
+                                                    <table className="col-11 table-bordered text-white"><tbody>
+                                                        <tr>
+                                                            <td className="bg-white text-black"><h4>Name: </h4></td>
+                                                            <td className="bg-white text-black"><h4>Location: </h4></td>
+                                                            <td className="bg-white text-black"><h4>Capacity: </h4></td>
+                                                            <td className="bg-white text-black"><h4>Category: </h4></td>
+                                                            <td className="bg-white text-black"><h4>Contact: </h4></td>
+                                                            <td className="bg-white text-black"><h4>Cost: </h4></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><h4>{venue.name}</h4></td>
+                                                            <td><h4>{venue.location}</h4></td>
+                                                            <td><h4>{venue.maxCapacity}</h4></td>
+                                                            <td><h4>{venue.category}</h4></td>
+                                                            <td><h4>{venue.contact}</h4></td>
+                                                            <td><h4>{venue.cost}</h4></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className='text-black' colSpan={6}>-----------------------------------------------</td>
+                                                        </tr>
+                                                        <tr>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="bg-white text-black" colSpan={3}><h4>Address: </h4></td>
+                                                            <td className="bg-white text-black" colSpan={3}><h4>Description: </h4></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colSpan={3}><h4>{venue.address}</h4></td>
+                                                            <td colSpan={3}><h4>{venue.description}</h4></td>
+                                                        </tr>
+                                                        <tr>
+                                                        </tr>
+                                                        <tr>
+                                                        </tr>
+                                                    </tbody></table>
                                                 </div>
+                                                <button type="button" className="btn btn-warning mt-3 w-50 h-100" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
+                                                onClick={() => { setBookedvenue(venue)}} >Select</button>
                                             </div>
 
                                         ))}
                                     </div>
 
+
                                 </div>
-                                <button className="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <button className="btn btn-warning w-25" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                     BACK
-                                </button>
-                                <button className="btn btn-primary collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                </button>&nbsp;&nbsp;
+                                {/* <button className="btn btn-warning collapsed w-25" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                     NEXT
-                                </button>
+                                </button> */}
                             </div>
                             {/* menu iterms */}
                             <div className="accordion-item">
                                 <h2 className="accordion-header" id="headingThree">
-                                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseThree">
+                                    <button className="accordion-button collapsed accordian-back" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseThree">
                                         SELECT MENUS
                                     </button>
                                 </h2>
-                                <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                <div id="collapseThree" className="accordion-collapse collapse bg-black" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                     <div className="accordion-body">
                                         <div className="row col-12 text-white ">
                                             <div className="grid-container">
@@ -289,7 +323,7 @@ const BookEvent = () => {
                             {/* media Items */}
                             <div className="accordion-item">
                                 <h2 className="accordion-header" id="headingFour">
-                                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseFour">
+                                    <button className="accordion-button collapsed accordian-back" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseFour">
                                         SELECT MEDIA
                                     </button>
                                 </h2>

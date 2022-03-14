@@ -45,6 +45,11 @@
   }
 
   .event__box:hover .btn {
+    /* background-color: #1f1a1a; */
+    color: rgb(0, 0, 0);
+  }
+
+  .event__box:hover .table-bordered{
     background-color: #1f1a1a;
     color: rgb(0, 0, 0);
   }
