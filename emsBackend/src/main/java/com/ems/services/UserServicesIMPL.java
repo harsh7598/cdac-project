@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ems.dao.EventDao;
 import com.ems.dao.UserDao;
 import com.ems.dto.RegisterDTO;
 import com.ems.pojos.Event;
@@ -20,6 +21,9 @@ public class UserServicesIMPL implements IUserServices {
 
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	private EventDao eventDao; 
 	
 	@Autowired
 	private PasswordEncoder encoder;
@@ -58,6 +62,12 @@ public class UserServicesIMPL implements IUserServices {
 	public void deleteEmployee(int id) {
 		userDao.deleteById(id);
 		
+	}
+
+	@Override
+	public List<User> getEmployeesByEvent(int id) {
+		Event e=eventDao.getById(id);
+		return userDao.findByRoleAndRegevents("EMPLOYEE",e);
 	}
 	
 

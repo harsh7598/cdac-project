@@ -55,7 +55,7 @@ public class UserController {
 	
 	@GetMapping("/assignemployees/{id}")
 	public List<User>getEmployees(@PathVariable int id){
-		return userService.getEmployees();
+		return userService.getEmployeesByEvent( id);
 	}
 	
 	@DeleteMapping("/deleteemployee/{id}")

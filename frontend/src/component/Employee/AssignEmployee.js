@@ -78,7 +78,7 @@ const AssignEmployee = () => {
                                     <td><h4 className="text-start px-3">{emp.email}</h4></td>
                                     {/* <td><button className='btn-l float-md-right' onClick={() => { HandleRemove(emp.id) }}>Remove Employee</button></td> */}
                                     <td className='text-center'>
-                                        <button className='btn-l' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => setEmp(emp)}>Unassign Employee</button>
+                                        {/* <button className='btn-l' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => setEmp(emp)}>Unassign Employee</button> */}
                                         <button className='btn-l' onClick={()=>AssignEmp(emp)}>ASSIGN</button>
                                     </td> 
                                 </tr>
