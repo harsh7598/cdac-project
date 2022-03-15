@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { url } from "../common/constants";
 import axios from "axios";
+import { BsSearch } from "react-icons/bs";
 
 const BookEvent = () => {
 
@@ -145,7 +146,7 @@ const BookEvent = () => {
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <button className="btn btn-warning m-3 w-25" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <button className="btn btn-primary m-3 w-25" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                             NEXT
                                         </button>
                                         {/* <div className="d-grid col-10 mt-3 mx-auto">
@@ -217,8 +218,8 @@ const BookEvent = () => {
                                                         </tr>
                                                     </tbody></table>
                                                 </div>
-                                                <button type="button" className="btn btn-warning mt-3 w-50 h-100" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
-                                                onClick={() => { setBookedvenue(venue)}} >Select</button>
+                                                <button type="button" className="btn btn-primary mt-3 w-50 h-100 text-white" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
+                                                    onClick={() => { setBookedvenue(venue) }} >Select</button>
                                             </div>
 
                                         ))}
@@ -258,6 +259,9 @@ const BookEvent = () => {
                                                             );
                                                         })}
                                                     </div>
+                                                    <button className="btn btn-primary collapsed w-25 mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                                        NEXT
+                                                    </button>
                                                     {/* <button type="submit" className="btn-danger mx-5 w-50 mt-2 py-1" onClick={submitMenu}>submit</button> */}
                                                 </div>
                                                 <div className="grid-child">
@@ -283,7 +287,7 @@ const BookEvent = () => {
                                                                         </select>
                                                                     </td>
                                                                     <td>
-                                                                        <button type="button" className="btn btn-primary" onClick={showmenulist}>search</button>
+                                                                        <button type="button" className="btn btn-primary" onClick={showmenulist}><BsSearch /> Search</button>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -312,12 +316,12 @@ const BookEvent = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <button className="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                    <button className="btn btn-warning w-25" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                                         BACK
                                     </button>
-                                    <button className="btn btn-primary collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    {/* <button className="btn btn-primary collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                                         NEXT
-                                    </button>
+                                    </button> */}
                                 </div>
                             </div>
                             {/* media Items */}
@@ -327,14 +331,19 @@ const BookEvent = () => {
                                         SELECT MEDIA
                                     </button>
                                 </h2>
-                                <div id="collapseFour" className="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-                                    <div className="accordion-body">
-                                        <div>
-                                            <input type="checkbox" name="photography" id="photography" onChange={() => setphotography(!Photography)} /><label htmlFor="photography">Photography</label>
-                                            <input type="checkbox" name="videography" id="videography" onChange={() => setvideography(!videography)} /><label htmlFor="videography">Videography</label>
-                                            <input type="checkbox" name="album" id="album" onChange={() => setalbum(!album)} /><label htmlFor="album">Album</label>
-                                            <input type="checkbox" name="drone" id="drone" onChange={() => setdrone(!drone)} /><label htmlFor="drone">Drone</label>
-                                            <input type="checkbox" name="crane" id="crane" onChange={() => setcrane(!crane)} /><label htmlFor="crane">Crane</label>
+                                <div id="collapseFour" className="accordion-collapse collapse bg-black" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                                    <div className="accordion-body d-flex justify-content-center">
+                                        <div className="row col-10">
+                                            <label className="event__box border w-100 h4 py-3 my-2" htmlFor="photography">
+                                                <input type="checkbox" name="photography" id="photography" className="h-25" onChange={() => setphotography(!Photography)} />Photography</label>
+                                            <label className="event__box border w-100 h4 py-3 my-2" htmlFor="videography">
+                                                <input type="checkbox" name="videography" id="videography" className="h-25" onChange={() => setvideography(!videography)} />Videography</label>
+                                            <label className="event__box border w-100 h4 py-3 my-2" htmlFor="album">
+                                                <input type="checkbox" name="album" id="album" className="h-25" onChange={() => setalbum(!album)} />Album</label>
+                                            <label className="event__box border w-100 h4 py-3 my-2" htmlFor="drone">
+                                                <input type="checkbox" name="drone" id="drone" className="h-25" onChange={() => setdrone(!drone)} />Drone</label>
+                                            <label className="event__box border w-100 h4 py-3 my-2" htmlFor="crane">
+                                                <input type="checkbox" name="crane" id="crane" className="h-25" onChange={() => setcrane(!crane)} />Crane</label>
                                         </div>
 
                                     </div>
