@@ -49,7 +49,7 @@ const ViewEvent = () => {
                         <div className="accordion-item m-3" key={event.id}>
                             <h2 className="accordion-header" id="headingOne">
                                 <button className="accordion-button collapsed accordian-back" type="button" data-bs-toggle="collapse" aria-expanded="false" data-bs-target={"#collapse" + event.id} aria-controls={"collapse" + event.id}>
-                                    <h4 >Event Name: </h4><h4>{event.name}</h4>
+                                    <h4>{event.name}</h4>
                                 </button>
                             </h2>
                             <div id={"collapse" + event.id} className="accordion-collapse collapse bg-black" aria-labelledby="headingOne" data-bs-parent="#accordionExample">

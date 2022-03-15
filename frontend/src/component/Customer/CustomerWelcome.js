@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, {useEffect, useState } from "react";
 // import "./LoginRegister.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { url } from '../common/constants';
 import { SiEventstore } from "react-icons/si";
 import { FaEdit } from "react-icons/fa";
 import { MdEditCalendar, MdOutlinePreview } from "react-icons/md";
@@ -25,12 +27,34 @@ const CustomerWelcome = () => {
       link: "vieweventupdate"
     }
   ];
+
+  const [uname, setUname] = useState();
+  const init = () => {
+    const token = JSON.parse(localStorage.getItem("jwttoken"));
+    axios.get(url + "/nameaccess", { headers: { "authorization": `Bearer ${token}` } })
+      .then(Response => {
+        console.log('Printing User name', Response.data);
+        setUname(Response.data);
+      })
+      .catch(error => {
+         
+         console.log(uname)
+        console.log('Something went wrong', error);
+      })
+  }
+
+  useEffect(() => {
+    init();
+  }, []);
+
   return (
     // <div className=" position-absolute top-50 start-50 translate-middle h-100 w-100">
     <div className="forms-container">
-      <div className="container py-5 text-white my-5">
-
-        <div className="row py-5">
+      <div className="container py-4 text-white my-5">
+      <div colSpan="2" className="fw-bold p-3 display-6">
+          Welcome Back, {uname}
+        </div>
+        <div className="row ">
           {state.map((info) => (
             <div className="col-12 col-md-4 py-5 px-4 h-100" key={info.id}>
               <Link className="nav-link text-white" to={info.link}>

@@ -22,7 +22,7 @@ import EmployeeWelcome from "./component/Employee/EmployeeWelcome";
 import ViewEventUpdate from "./component/Customer/viewEventUpdate";
 import EditEventUp from "./component/Customer/EditEvent";
 import ManagerWelcome from './component/Employee/ManagerWelcome';
-import ViewEventManager from './component/Employee/viewEventManager';
+import ViewEventManager from './component/Employee/ViewEventManager';
 import ViewEmployee from './component/Employee/ViewEmployee';
 import AvailbleServices from './component/Employee/AvailableServices';
 import SelectStudio from './component/Employee/SelectStudio';
@@ -144,11 +144,11 @@ function App() {
           </Route>
 
           <Route exact path="/manager/welcome">
-            <NavOther />
+            <NavSignOut />
             <ManagerWelcome />
           </Route>
           <Route exact path="/manager/viewevent">
-            <NavOther />
+            <NavSignOut />
             <ViewEventManager />
           </Route>
           <Route exact path="/assigncaters/:id">

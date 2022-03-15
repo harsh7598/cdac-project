@@ -29,9 +29,16 @@ const BookEvent = () => {
     const [album, setalbum] = useState(false);
     const [drone, setdrone] = useState(false);
     const [crane, setcrane] = useState(false);
-    // Vnues states
+    // Venues states
     const [Venues, setVenues] = useState([]);
     const [bookedVenue, setBookedvenue] = useState("");
+    //media backgrounds
+    const [photographyback, setPhotographyback] = useState(false);
+    const [videographyback, setVideographyback] = useState(false);
+    const [albumback, setAlbumback] = useState(false);
+    const [droneback, setDroneback] = useState(false);
+    const [craneback, setCraneback] = useState(false);
+
 
     //functions 
 
@@ -106,15 +113,15 @@ const BookEvent = () => {
                     <div colSpan="2" className="fw-bold p-3 display-6">
                         Book an Event with Us
                     </div>
-                    <div className="accordion " id="accordionExample">
+                    <div className="accordion mx-3" id="accordionExample">
                         {/* general Details item */}
-                        <div className="accordion-item bg-black">
+                        <div className="accordion-item bg-black mt-3">
                             <h2 className="accordion-header" id="headingOne">
                                 <button className="accordion-button accordian-back" type="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
                                     EVENT GENERAL DETAILS
                                 </button>
                             </h2>
-                            <div id="collapseOne" className="accordion-collapse collapse show bg-black" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div id="collapseOne" className="accordion-collapse collapse show bg-black col-12" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                 <div className="accordion-body d-flex justify-content-center">
                                     <form className="col-10">
                                         <table className="col-12">
@@ -146,7 +153,7 @@ const BookEvent = () => {
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <button className="btn btn-primary m-3 w-25" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <button className="btn btn-primary mt-3 w-25" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                             NEXT
                                         </button>
                                         {/* <div className="d-grid col-10 mt-3 mx-auto">
@@ -163,11 +170,11 @@ const BookEvent = () => {
                                     SELECT VENUE
                                 </button>
                             </h2>
-                            <div id="collapseTwo" className="accordion-collapse collapse bg-black" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div id="collapseTwo" className="accordion-collapse collapse bg-black col-12" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                 <div className="accordion-body">
                                     <div className="scrollable">
                                         {Venues.map((venue) => (
-                                            <div key={venue.id} className="border py-3 m-3 mb-4 event__box">
+                                            <div key={venue.id} className="border py-3 m-3 event__box">
                                                 {/* <div className="border">
                                                     <div className="grid-child">
                                                         <h4 className="text-start px-3">Name: {venue.name}</h4>
@@ -181,7 +188,8 @@ const BookEvent = () => {
                                                         <button type="button" className="btn btn-warning mx -5 w-50 h-100" onClick={() => { setBookedvenue(venue) }}>Select</button>
                                                     </div>
                                                 </div> */}
-                                                <div className="grid-child d-flex justify-content-center ">
+
+                                                <div className="grid-child d-flex justify-content-center">
                                                     <table className="col-11 table-bordered text-white"><tbody>
                                                         <tr>
                                                             <td className="bg-white text-black"><h4>Name: </h4></td>
@@ -200,7 +208,7 @@ const BookEvent = () => {
                                                             <td><h4>{venue.cost}</h4></td>
                                                         </tr>
                                                         <tr>
-                                                            <td className='text-black' colSpan={6}>-----------------------------------------------</td>
+                                                            <td className='text-black' colSpan={6}>-</td>
                                                         </tr>
                                                         <tr>
                                                         </tr>
@@ -217,146 +225,149 @@ const BookEvent = () => {
                                                         <tr>
                                                         </tr>
                                                     </tbody></table>
+
                                                 </div>
                                                 <button type="button" className="btn btn-primary mt-3 w-50 h-100 text-white" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
-                                                    onClick={() => { setBookedvenue(venue) }} >Select</button>
+                                                    onClick={() => { setBookedvenue(venue) }} >SELECT</button>
                                             </div>
 
                                         ))}
                                     </div>
-
-
                                 </div>
-                                <button className="btn btn-warning w-25" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <button className="btn btn-warning w-25 mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                     BACK
                                 </button>&nbsp;&nbsp;
                                 {/* <button className="btn btn-warning collapsed w-25" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                     NEXT
                                 </button> */}
                             </div>
-                            {/* menu iterms */}
-                            <div className="accordion-item">
-                                <h2 className="accordion-header" id="headingThree">
-                                    <button className="accordion-button collapsed accordian-back" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseThree">
-                                        SELECT MENUS
-                                    </button>
-                                </h2>
-                                <div id="collapseThree" className="accordion-collapse collapse bg-black" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                    <div className="accordion-body">
-                                        <div className="row col-12 text-white ">
-                                            <div className="grid-container">
-                                                <div className="grid-child border border-white">
-                                                    <div className="scrollable">
-                                                        <h4 className="top-fix" >Your Menu List</h4>
-                                                        {menus.map((info) => {
-                                                            return (
-                                                                <div key={info.id}>
-                                                                    <div className="event__box py-1 my-2 px-2 border border-1 border-white d-flex justify-content-between">
-                                                                        <h5 className="mx-2">{info.menuName}</h5>
-                                                                        <button className="btn-warning mx-3" onClick={() => handleDeleteClick(info.id)}>Remove</button>
-                                                                    </div>
-                                                                </div>
-                                                            );
-                                                        })}
-                                                    </div>
-                                                    <button className="btn btn-primary collapsed w-25 mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                                        NEXT
-                                                    </button>
-                                                    {/* <button type="submit" className="btn-danger mx-5 w-50 mt-2 py-1" onClick={submitMenu}>submit</button> */}
-                                                </div>
-                                                <div className="grid-child">
-                                                    <span className="row justify-content-center">
-                                                        <table className="w-75 mb-2">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>
-                                                                        <select name="category" id="category" className="input-fields-mod" onChange={(e) => { setcategory(e.target.value) }}>
-                                                                            <option value="ALL">All</option>
-                                                                            <option value="VEG">Veg</option>
-                                                                            <option value="NON_VEG">Non-Veg</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td>
-                                                                        <select name="subcategory" id="subcategory" className="input-fields-mod" onChange={(e) => { setsubCategory(e.target.value) }}>
-                                                                            <option value="ALL">All</option>
-                                                                            <option value="RICE">Rice</option>
-                                                                            <option value="ROTI">Roti's</option>
-                                                                            <option value="CURRY">Curry's</option>
-                                                                            <option value="DESERT">Deserts</option>
-                                                                            <option value="DRINK">Drinks</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td>
-                                                                        <button type="button" className="btn btn-primary" onClick={showmenulist}><BsSearch /> Search</button>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </span>
-                                                    <div className="scrollable">
-                                                        {menuList.map((m) => (
-                                                            <div key={m.id}>
+                        </div>
+                        {/* menu iterms */}
+                        <div className="accordion-item">
+                            <h2 className="accordion-header" id="headingThree">
+                                <button className="accordion-button collapsed accordian-back" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseThree">
+                                    SELECT MENUS
+                                </button>
+                            </h2>
+                            <div id="collapseThree" className="accordion-collapse collapse bg-black col-12" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                <div className="accordion-body">
+                                    <div className="row col-12 text-white ">
+                                        <div className="grid-container">
+                                            <div className="grid-child border border-white">
+                                                <div className="scrollable">
+                                                    <h4 className="top-fix" >Your Menu List</h4>
+                                                    {menus.map((info) => {
+                                                        return (
+                                                            <div key={info.id}>
                                                                 <div className="event__box py-1 my-2 px-2 border border-1 border-white d-flex justify-content-between">
-                                                                    {/* <h5 className="mx-2 border " >{m.id}</h5> */}
-                                                                    <table className="col-8">
-                                                                        <tbody><tr>
-                                                                            <td className="text-start col-6"><h5 className="mx-2 " >{m.menuName}</h5></td>
-                                                                            <td className="text-end col-2"><h5 className="mx-2 " >{m.price}</h5></td>
-                                                                            <td></td>
-                                                                        </tr></tbody>
-                                                                    </table>
-                                                                    {/* <h5 className="mx-2 border" >{m.category}</h5>
-                                                                 <h5 className="mx-2 border" >{m.subCategory}</h5> */}
-                                                                    <button type="submit" className="btn-warning mx-5 w-25" onClick={() => handleAddFormSubmit(m)}>Add</button>
+                                                                    <h5 className="mx-2">{info.menuName}</h5>
+                                                                    <button className="btn-warning mx-3" onClick={() => handleDeleteClick(info.id)}>Remove</button>
                                                                 </div>
                                                             </div>
-                                                        ))}
-                                                    </div>
+                                                        );
+                                                    })}
+                                                </div>
+                                                <button className="btn btn-primary collapsed w-25 mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                                    NEXT
+                                                </button>
+                                                
+                                            </div>
+                                            <div className="grid-child">
+                                                <span className="row justify-content-center">
+                                                    <table className="w-75 mb-2">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <select name="category" id="category" className="input-fields-mod" onChange={(e) => { setcategory(e.target.value) }}>
+                                                                        <option value="ALL">All</option>
+                                                                        <option value="VEG">Veg</option>
+                                                                        <option value="NON_VEG">Non-Veg</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select name="subcategory" id="subcategory" className="input-fields-mod" onChange={(e) => { setsubCategory(e.target.value) }}>
+                                                                        <option value="ALL">All</option>
+                                                                        <option value="RICE">Rice</option>
+                                                                        <option value="ROTI">Roti's</option>
+                                                                        <option value="CURRY">Curry's</option>
+                                                                        <option value="DESERT">Deserts</option>
+                                                                        <option value="DRINK">Drinks</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <button type="button" className="btn btn-primary" onClick={showmenulist}><BsSearch /> Search</button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </span>
+                                                <div className="scrollable">
+                                                    {menuList.map((m) => (
+                                                        <div key={m.id}>
+                                                            <div className="event__box py-1 my-2 px-2 border border-1 border-white d-flex justify-content-between">
+                                                                {/* <h5 className="mx-2 border " >{m.id}</h5> */}
+                                                                <table className="col-8">
+                                                                    <tbody><tr>
+                                                                        <td className="text-start col-6"><h5 className="mx-2 " >{m.menuName}</h5></td>
+                                                                        <td className="text-end col-2"><h5 className="mx-2 " >{m.price}</h5></td>
+                                                                        <td></td>
+                                                                    </tr></tbody>
+                                                                </table>
+                                                                {/* <h5 className="mx-2 border" >{m.category}</h5>
+                                                                 <h5 className="mx-2 border" >{m.subCategory}</h5> */}
+                                                                <button type="submit" className="btn-warning mx-5 w-25" onClick={() => handleAddFormSubmit(m)}>Add</button>
+                                                            </div>
+                                                        </div>
+                                                    ))}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <button className="btn btn-warning w-25" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                                        BACK
-                                    </button>
-                                    {/* <button className="btn btn-primary collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                        NEXT
-                                    </button> */}
                                 </div>
+                                <button className="btn btn-warning w-25 mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                    BACK
+                                </button>
+                                
                             </div>
-                            {/* media Items */}
-                            <div className="accordion-item">
-                                <h2 className="accordion-header" id="headingFour">
-                                    <button className="accordion-button collapsed accordian-back" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseFour">
-                                        SELECT MEDIA
-                                    </button>
-                                </h2>
-                                <div id="collapseFour" className="accordion-collapse collapse bg-black" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-                                    <div className="accordion-body d-flex justify-content-center">
-                                        <div className="row col-10">
-                                            <label className="event__box border w-100 h4 py-3 my-2" htmlFor="photography">
-                                                <input type="checkbox" name="photography" id="photography" className="h-25" onChange={() => setphotography(!Photography)} />Photography</label>
-                                            <label className="event__box border w-100 h4 py-3 my-2" htmlFor="videography">
-                                                <input type="checkbox" name="videography" id="videography" className="h-25" onChange={() => setvideography(!videography)} />Videography</label>
-                                            <label className="event__box border w-100 h4 py-3 my-2" htmlFor="album">
-                                                <input type="checkbox" name="album" id="album" className="h-25" onChange={() => setalbum(!album)} />Album</label>
-                                            <label className="event__box border w-100 h4 py-3 my-2" htmlFor="drone">
-                                                <input type="checkbox" name="drone" id="drone" className="h-25" onChange={() => setdrone(!drone)} />Drone</label>
-                                            <label className="event__box border w-100 h4 py-3 my-2" htmlFor="crane">
-                                                <input type="checkbox" name="crane" id="crane" className="h-25" onChange={() => setcrane(!crane)} />Crane</label>
-                                        </div>
+                        </div>
+                        {/* media Items */}
+                        <div className="accordion-item">
+                            <h2 className="accordion-header" id="headingFour">
+                                <button className="accordion-button collapsed accordian-back" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseFour">
+                                    SELECT MEDIA
+                                </button>
+                            </h2>
+                            <div id="collapseFour" className="accordion-collapse collapse bg-black" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                                <div className="accordion-body d-flex justify-content-center">
+                                    <div className="row col-10">
 
+                                        <label className={photographyback ? 'bg-success event__box border w-100 h4 py-3 my-2' : 'bg-dark event__box border w-100 h4 py-3 my-2'} htmlFor="photography">
+                                            <input type="checkbox" name="photography" id="photography" className="h-25" onChange={() => { setphotography(!Photography), setPhotographyback(prevBack => !prevBack) }} />Photography</label>
+
+                                        <label className={videographyback ? 'bg-success event__box border w-100 h4 py-3 my-2' : 'bg-dark event__box border w-100 h4 py-3 my-2'} htmlFor="videography">
+                                            <input type="checkbox" name="videography" id="videography" className="h-25" onChange={() => { setvideography(!videography), setVideographyback(prevBack => !prevBack) }} />Videography</label>
+
+                                        <label className={albumback ? 'bg-success event__box border w-100 h4 py-3 my-2' : 'bg-dark event__box border w-100 h4 py-3 my-2'} htmlFor="album">
+                                            <input type="checkbox" name="album" id="album" className="h-25" onChange={() => { setalbum(!album), setAlbumback(prevBack => !prevBack) }} />Album</label>
+
+                                        <label className={droneback ? 'bg-success event__box border w-100 h4 py-3 my-2' : 'bg-dark event__box border w-100 h4 py-3 my-2'} htmlFor="drone">
+                                            <input type="checkbox" name="drone" id="drone" className="h-25" onChange={() => { setdrone(!drone), setDroneback(prevBack => !prevBack) }} />Drone</label>
+
+                                        <label className={craneback ? 'bg-success event__box border w-100 h4 py-3 my-2' : 'bg-dark event__box border w-100 h4 py-3 my-2'} htmlFor="crane">
+                                            <input type="checkbox" name="crane" id="crane" className="h-25" onChange={() => { setcrane(!crane), setCraneback(prevBack => !prevBack) }} />Crane</label>
                                     </div>
-                                    <button className="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseOne">
-                                        BACK
-                                    </button>
-                                    <button className="btn btn-primary" onClick={handleSubmit}>submit</button>
+
                                 </div>
+                                <button className="btn btn-warning w-25 mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseOne">
+                                    BACK
+                                </button>&nbsp;&nbsp;
+                                <button className="btn btn-primary w-25 mb-3" onClick={handleSubmit}>SUBMIT</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </>
     );
 };
