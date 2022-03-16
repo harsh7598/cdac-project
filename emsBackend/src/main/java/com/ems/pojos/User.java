@@ -64,7 +64,7 @@ public class User extends BaseEntity {
 	
 
 	@OneToMany()
-	@JoinColumn(name="todo_id")
+	@JoinColumn(name="user_id")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	List<UserTodo> todoList=new ArrayList<UserTodo>();
 	

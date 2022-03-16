@@ -31,11 +31,11 @@ public class UserController {
 	@Autowired
 	IUserServices userService;
 	
-//	@GetMapping("/asigntasks")
-//	public List<UserTodo> AsignTasks (HttpServletRequest request){
-//		return userTodoServices.showEmployeeTodo(request.getUserPrincipal().getName());
-//		
-//	}
+	@GetMapping("/asigntasks")
+	public List<UserTodo> AsignTasks (HttpServletRequest request){
+		return userTodoServices.showEmployeeTodo(request.getUserPrincipal().getName());
+		
+	}
 	
 	@GetMapping("/nameaccess")
 	public String accessName(HttpServletRequest request)

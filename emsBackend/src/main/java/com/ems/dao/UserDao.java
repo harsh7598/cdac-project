@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.ems.pojos.Event;
 import com.ems.pojos.User;
+import com.ems.pojos.UserTodo;
 
 public interface UserDao extends JpaRepository<User, Integer>{
 	Optional<User> findByEmail(String email);
@@ -19,4 +20,6 @@ public interface UserDao extends JpaRepository<User, Integer>{
 //	@Query("insert into user_event values(userId, eventId)")
 //	@Query("update user set regevents=event where id=userId")
 //	void addEvent(List<Event> event, int userId);
+	
+//	List<UserTodo> findById(int id);
 }

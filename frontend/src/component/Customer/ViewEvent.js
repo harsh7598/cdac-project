@@ -22,7 +22,7 @@ const ViewEvent = () => {
     }
 
     const generatePDF = () => {
-        var doc = new jsPDF("landscape", "px", "a4", true);
+        var doc = new jsPDF("landscape", "px", "c2", true);
         doc.html(document.querySelector("#fordownload"), {
             callback: function (pdf) {
                 pdf.save("BookingDetails.pdf");
@@ -56,7 +56,7 @@ const ViewEvent = () => {
                                 <div className="accordion-body" id="fordownload">
                                     <div className="bg-black py-2 px-2 border border-2 border-white"  >
                                         {/* <div className="event__box py-2 px-2 border border-2 border-white"> */}
-                                        <h3 className="text-start p-3">Basic Details : </h3>
+                                        <h3 className="text-start p-3 text-white">Basic Details : </h3>
                                         <div className="d-flex justify-content-center">
                                             <table className="col-10 table-bordered text-white"><tbody>
                                                 <tr>
@@ -74,9 +74,9 @@ const ViewEvent = () => {
                                             </tbody></table>
 
                                         </div>
-                                        <h3 className="text-start p-3">Venue Details : </h3>
+                                        <h3 className="text-start p-3 text-white">Venue Details : </h3>
                                         <div className="d-flex justify-content-center">
-                                            <table className="col-10 table-bordered text-starttext-white"><tbody>
+                                            <table className="col-10 table-bordered text-white"><tbody>
                                                 <tr>
                                                     <td className="bg-white text-black"><h4>Name: </h4></td>
                                                     <td className="bg-white text-black"><h4>Capacity: </h4></td>
@@ -146,9 +146,9 @@ const ViewEvent = () => {
                                             </tbody></table> */}
                                         </div>
 
-                                        <h3 className="text-start p-3">Food Menu List : </h3>
+                                        <h3 className="text-start p-3 text-white">Food Menu List : </h3>
                                         <div className="d-flex justify-content-center">
-                                            <table className="col-10 table-bordered text-starttext-white"><tbody>
+                                            <table className="col-10 table-bordered text-white"><tbody>
                                                 <tr><td>
                                                     {event.menus.map((menu) => (
                                                         <div key={menu.id}>
@@ -158,9 +158,9 @@ const ViewEvent = () => {
                                                 </td></tr>
                                             </tbody></table>
                                         </div>
-                                        <h3 className="text-start p-3">Media Details : </h3>
+                                        <h3 className="text-start p-3 text-white">Media Details : </h3>
                                         <div className="d-flex justify-content-center">
-                                            <table className="col-10 table-bordered text-starttext-white"><tbody>
+                                            <table className="col-10 table-bordered text-white"><tbody>
                                                 <tr><td className="bg-white text-black"><h4>Photography: </h4></td>
                                                     <td className="bg-white text-black"><h4>Videography: </h4></td>
                                                     <td className="bg-white text-black"><h4>Album: </h4></td>
@@ -178,8 +178,9 @@ const ViewEvent = () => {
                                                 </tr>
                                             </tbody></table>
                                         </div>
-
-                                        <button className="btn btn-l mt-3" onClick={generatePDF}>Download Details</button>
+                                        <div className='text-center'>
+                                            <button className="btn btn-l mt-3" onClick={generatePDF}>Download Details</button>
+                                        </div>
                                     </div>
                                     <br></br>
                                 </div>

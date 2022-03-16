@@ -28,7 +28,7 @@ const SelectVenue = () => {
     <div className="forms-container">
       <div className="py-5 text-white my-5">
         <div className="fw-bold pt-5 display-6">
-          Select a Venue
+          Venues
         </div>
         <div className="py-4 list-items">
           {Venues.map((venue) => (
