@@ -14,6 +14,7 @@ const EditEvent = () => {
     // states    
     const history = useHistory();
     const { id } = useParams();
+
     // menu States
     const [category, setcategory] = useState("ALL");
     const [subCategory, setsubCategory] = useState("ALL");
@@ -125,11 +126,21 @@ const EditEvent = () => {
         axios.put(url + "/eventinfo", eventdetails, { headers: { "authorization": `Bearer ${token}` } })
             .then(Response => {
                 console.log('Printing event data', Response.data);
+                axios.get(url+"/role", { headers: { "authorization": `Bearer ${token}` } }).then(
+                    Response => {
+                        console.log('Printing event data',Response.data);
+                        if(Response.data==="MANAGER"){
+                            history.push('/manager/viewevent');
+                        }
+                        if(Response.data==="CUSTOMER"){
+                            history.push('/customer/viewevent');
+                        }
+                    }
+                )
             })
             .catch(error => {
                 console.log('Something went wrong', error);
             })
-        history.push("/customer/welcome")
     }
 
     return (
@@ -361,19 +372,19 @@ const EditEvent = () => {
                                     <div className="row col-10">
 
                                         <label className={photographyback ? 'bg-success event__box border w-100 h4 py-3 my-2' : 'bg-dark event__box border w-100 h4 py-3 my-2'} htmlFor="photography">
-                                            <input type="checkbox" name="photography" id="photography" className="opacity-0" onChange={() => { setphotography(!photography), setPhotographyback(prevBack => !prevBack) }} />Photography</label>
+                                                <input type="checkbox" name="photography" id="photography" className="opacity-0" onChange={() => { setphotography(!photography); setPhotographyback(prevBack => !prevBack)}}/>Photography</label>
 
                                         <label className={videographyback ? 'bg-success event__box border w-100 h4 py-3 my-2' : 'bg-dark event__box border w-100 h4 py-3 my-2'} htmlFor="videography">
-                                            <input type="checkbox" name="videography" id="videography" className="opacity-0" onChange={() => { setvideography(!videography), setVideographyback(prevBack => !prevBack) }} />Videography</label>
+                                            <input type="checkbox" name="videography" id="videography" className="opacity-0" onChange={() => { setvideography(!videography); setVideographyback(prevBack => !prevBack) }} />Videography</label>
 
                                         <label className={albumback ? 'bg-success event__box border w-100 h4 py-3 my-2' : 'bg-dark event__box border w-100 h4 py-3 my-2'} htmlFor="album">
-                                            <input type="checkbox" name="album" id="album" className="opacity-0" onChange={() => { setalbum(!album), setAlbumback(prevBack => !prevBack) }} />Album</label>
+                                            <input type="checkbox" name="album" id="album" className="opacity-0" onChange={() => { setalbum(!album); setAlbumback(prevBack => !prevBack) }} />Album</label>
 
                                         <label className={droneback ? 'bg-success event__box border w-100 h4 py-3 my-2' : 'bg-dark event__box border w-100 h4 py-3 my-2'} htmlFor="drone">
-                                            <input type="checkbox" name="drone" id="drone" className="opacity-0" onChange={() => { setdrone(!drone), setDroneback(prevBack => !prevBack) }} />Drone</label>
+                                            <input type="checkbox" name="drone" id="drone" className="opacity-0" onChange={() => { setdrone(!drone); setDroneback(prevBack => !prevBack) }} />Drone</label>
 
                                         <label className={craneback ? 'bg-success event__box border w-100 h4 py-3 my-2' : 'bg-dark event__box border w-100 h4 py-3 my-2'} htmlFor="crane">
-                                            <input type="checkbox" name="crane" id="crane" className="opacity-0" onChange={() => { setcrane(!crane), setCraneback(prevBack => !prevBack) }} />Crane</label>
+                                            <input type="checkbox" name="crane" id="crane" className="opacity-0" onChange={() => { setcrane(!crane); setCraneback(prevBack => !prevBack) }} />Crane</label>
                                     </div>
 
                                 </div>

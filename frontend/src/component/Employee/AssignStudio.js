@@ -5,6 +5,7 @@ import { useHistory, useParams } from "react-router-dom";
 
 const AssignStudio = () => {
 
+  const history=useHistory();
   const [Studio, setStudio] = useState([]);
   const {id} = useParams()
   const token=JSON.parse(localStorage.getItem("jwttoken"));
@@ -24,6 +25,7 @@ const AssignStudio = () => {
   const handleStudio=(studio)=>{
     axios.put(url+"/assignstudio/"+id,studio,{headers:{"authorization":`Bearer ${token}`}}).then(Response => {
         console.log('assign Studio successfully',);
+        history.goBack();
       })
       .catch(error => {
         console.log('Something went wrong', error);

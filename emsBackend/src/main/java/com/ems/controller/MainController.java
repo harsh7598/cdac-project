@@ -1,12 +1,17 @@
 package com.ems.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Status;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,5 +57,15 @@ public class MainController {
 			e.printStackTrace();
 			throw new RuntimeException("User authentication Failed", e);
 		}
+	}
+	@GetMapping("/role")
+	public ResponseEntity<?>getRole(HttpServletRequest request){
+		if(request.isUserInRole("MANAGER"))
+			return ResponseEntity.ok("MANAGER");
+		if(request.isUserInRole("CUSTOMER"))
+			return ResponseEntity.ok("CUSTOMER");
+		if(request.isUserInRole("ADMIN"))
+			return ResponseEntity.ok("ADMIN");
+		return 	ResponseEntity.ok("EMPLOYEE");
 	}
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.ems.dao.UserDao;
 import com.ems.dao.UserTodoDao;
+import com.ems.pojos.User;
 import com.ems.pojos.UserTodo;
 
 @Service
@@ -22,13 +23,33 @@ UserDao userDao;
 
 @Override
 	public List<UserTodo> showEmployeeTodo(String email){
-	System.out.println("Taskkkkkkkkk"+userDao.findByEmail(email).orElseThrow().getTodoList());
-		
+	System.out.println("Taskkkkkkkkk"+userDao.findByEmail(email).orElseThrow().getTodoList());		
 		return userDao.findByEmail(email).orElseThrow().getTodoList();
 	}
 
 	@Override
 	public UserTodo updateTask(UserTodo task) {
 		return userTodoDao.save(task);
+	}
+
+	@Override
+	public List<UserTodo> getTodoByEmployee(int id) {	
+		return userDao.findById(id).orElseThrow().getTodoList();
+	}
+
+	@Override
+	public void assignTask(int id, UserTodo task) {
+		task.setStatus("in progress");
+		User u= userDao.findById(id).orElseThrow();
+		u.getTodoList().add(task);
+		userTodoDao.save(task);
+		userDao.save(u);
+		
+//		userDao.findById(id).orElseThrow().getTodoList().add(new UserTodo(task,"incomplete"));
+	}
+
+	@Override
+	public void deleteTask(int id) {
+		userTodoDao.deleteById(id);
 	}
 }

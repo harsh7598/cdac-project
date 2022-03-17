@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ems.dao.UserTodoDao;
@@ -35,6 +37,23 @@ public class UserController {
 	public List<UserTodo> AsignTasks (HttpServletRequest request){
 		return userTodoServices.showEmployeeTodo(request.getUserPrincipal().getName());
 		
+	}
+	@GetMapping("/assigntasks/{id}")
+	public List<UserTodo> AsignedTasks(@PathVariable int id){
+		System.out.println(id);
+		return userTodoServices.getTodoByEmployee(id);
+		
+	}
+	
+	@PostMapping("/assign/{id}")
+	public void Assign(@PathVariable int id,@RequestBody UserTodo task){
+		System.out.println(id+"  "+task.getTodo());
+		userTodoServices.assignTask(id,task);
+	}
+	
+	@DeleteMapping("/deletetask/{id}")
+	public void deleteTask(@PathVariable int id){
+		userTodoServices.deleteTask(id);
 	}
 	
 	@GetMapping("/nameaccess")

@@ -30,6 +30,7 @@ import AssignCaterer from './component/Employee/AssignCaterer';
 import AssignStudio from './component/Employee/AssignStudio';
 import AssignEmployee from './component/Employee/AssignEmployee';
 import ViewAssignEmployee from './component/Employee/ViewAssignEmployee';
+import AssignTask from './component/Employee/AssignTask';
 
 function App() { 
   return (
@@ -166,6 +167,10 @@ function App() {
           <Route exact path="/viewassignemployee/:id">
             <NavSignOut />
             <ViewAssignEmployee/>
+          </Route>
+          <Route exact path="/assigntask/:id">
+            <NavSignOut />
+            <AssignTask/>
           </Route>
         </Switch>
         {/* <NavOther/> */}
