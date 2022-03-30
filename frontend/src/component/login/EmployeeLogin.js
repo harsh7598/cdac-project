@@ -26,14 +26,18 @@ const EmployeeLogin = () => {
           history.push("employee/welcome")
         else if(Response.data.role=='[ROLE_ADMIN]')
           console.log("in admin")
-      } else {
-        setemail("");
-        setpassword("");
-        seterror(Response.data);
-        seterrortype("alert-box");
-      }
+          else{
+            seterror("invalid CREDENTIALS or Authority")
+          }
+      } 
     }
-  );
+  ).catch(error => {
+    setemail("");
+        setpassword("");
+        seterror("invalid CREDENTIALS");
+        seterrortype("alert-box");
+    console.log('Something went wrong', error);
+  });
 
   }
  

@@ -12,6 +12,7 @@ const AssignTask = () => {
   const HandleDelete = (id) => {
     axios.delete(`${url}/deletetask/${id}`).then(Response => {
       console.log('Printing Menu data', Response.data);
+      init();
     })
       .catch(error => {
         console.log('Something went wrong', error);
@@ -35,6 +36,7 @@ const AssignTask = () => {
     console.log(todo);
     axios.post(url+"/assign/"+id,task1, { headers: { "authorization": `Bearer ${token}` } }).then(Response => {
       console.log('Printing Task Data', Response.data);
+      init();
     })
     .catch(error => {
       console.log('Something went wrong', error);

@@ -1,7 +1,7 @@
 package com.ems.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.transaction.Status;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,13 +40,14 @@ public class MainController {
 	BCryptPasswordEncoder passwordEncoder;
 
 	@PostMapping("/registration")
-	public ResponseEntity<?> userRegistration(@RequestBody RegisterDTO request) {
+	public ResponseEntity<?> userRegistration(@Valid @RequestBody RegisterDTO request) {
 		System.out.println("in user reg " + request);
-		return ResponseEntity.ok(userServices.registerUser(request));
+//		return ResponseEntity.ok(userServices.registerUser(request));
+		return new ResponseEntity<>(userServices.registerUser(request),HttpStatus.OK);
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<?> authenticateUser(@RequestBody LoginDTO request) {
+	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginDTO request) {
 		System.out.println("in auth " + request);
 		try {
 			Authentication authenticate = authManager.authenticate

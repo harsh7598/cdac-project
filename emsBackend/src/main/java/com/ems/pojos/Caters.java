@@ -1,14 +1,10 @@
 package com.ems.pojos;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -23,8 +19,10 @@ public class Caters extends BaseEntity {
 	private String name;
 
 	@Column(length = 20, name = "contact_number")
+	@Min(10)
+	@Max(10)
 	private String contactNumber;
-	@Column(length = 20)
+	@Column(length = 30)
 	private String speciality;
 		
 //	@OneToMany(mappedBy = "bookedCater",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)

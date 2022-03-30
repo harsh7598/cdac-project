@@ -69,14 +69,16 @@ const CustLoginRegister = () => {
         role
       }
       axios.post(url + "/registration", customer).then(Response => { 
-        console.log(Response.data) 
-        if (Response.status === 200)
+        // console.log(Response.data)
+        // if (Response.status === 200)
         history.push("/customer");
-      else {
-        // reset();
-        seterror("Invalid credentials")
-      }
-      }) 
+      // else {
+      //   // reset();
+      //   seterror("Invalid credentials")
+      // }
+      }).catch(error => {
+        console.log('Something went wrong', error);
+      }); 
     }
     else {
       console.log("invalid password not matched");

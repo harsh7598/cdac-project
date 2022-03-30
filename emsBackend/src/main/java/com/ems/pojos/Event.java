@@ -16,6 +16,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -36,30 +41,39 @@ import lombok.ToString;
 public class Event extends BaseEntity{
 	
 	@Column(length = 20)
+//	@NotBlank(message = "Enter Name")
 	private String name;
 	
 	@Enumerated(value = EnumType.STRING)
 	private EventType type;
+//	@Future(message = "Date must be after today")
+//	@NotNull(message = "Enter Date")
 	private LocalDate date;
 //	@Column(name="start_time")
 //	private LocalDateTime startTime;
 //	@Column(name="end_time")
 //	private LocalDateTime endTime;
 	
+	
 	@Column(name="guest_count")
+	/*
+	 * @Positive
+	 * 
+	 * @NotEmpty
+	 */
 	private int guestCount;
+	
+	@Column(name = "total_cost")
 	private double totalCost;
 	@Column(length = 20)
 	private String status;
 	@Column(length = 20)
 	private String progress;
-	
 	private boolean photography;
 	private boolean videography;
 	private boolean album;
 	private boolean drone;
 	private boolean crane;
-	
 	@ManyToOne
 	@JoinColumn(name = "studio_id")
 	private Studio studio;

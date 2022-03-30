@@ -100,40 +100,7 @@ const ViewEventUp = () => {
                                                 </tr>
                                             </tbody></table>
 
-                                            {/* <table className="col-10 table-bordered text-white"><tbody>
-                                                <tr>
-                                                    <td><h4>Name: </h4></td>
-                                                    <td><h4>{event.bookedVenue.name}</h4></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><h4>Location: </h4></td>
-                                                    <td><h4>{event.bookedVenue.location}</h4></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><h4>Address: </h4></td>
-                                                    <td><h4>{event.bookedVenue.address}</h4></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><h4>Capacity: </h4></td>
-                                                    <td><h4>{event.bookedVenue.maxCapacity}</h4></td>
-                                                </tr>
-                                                <tr>
-                                                    <td> <h4>Category: </h4></td>
-                                                    <td><h4>{event.bookedVenue.category}</h4></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><h4>Contact: </h4></td>
-                                                    <td><h4>{event.bookedVenue.contact}</h4></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><h4>Cost: </h4></td>
-                                                    <td><h4>{event.bookedVenue.cost}</h4></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><h4>Description: </h4></td>
-                                                    <td><h4>{event.bookedVenue.description}</h4></td>
-                                                </tr>
-                                            </tbody></table> */}
+                                        
                                         </div>
 
                                         <h3 className="text-start p-3">Food Menu List : </h3>

@@ -1,6 +1,7 @@
 package com.ems.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class EventController {
 	JwtUtils jwt;
 	
 	@PostMapping("/bookevent")
-	public ResponseEntity<?> bookEvent(@RequestBody EventDTO event,HttpServletRequest request) {
+	public ResponseEntity<?> bookEvent(@Valid @RequestBody EventDTO event,HttpServletRequest request) {
 		//String token=request.getHeader("Authorization");
 //		System.out.println(token);
 //		System.out.println(request.getUserPrincipal().getName());
@@ -53,14 +54,14 @@ public class EventController {
 	}
 	
 	@PostMapping("/eventinfo")
-	public ResponseEntity<?> registerEvent(@RequestBody EventDTO eventdata,HttpServletRequest request){
+	public ResponseEntity<?> registerEvent(@Valid @RequestBody EventDTO eventdata,HttpServletRequest request){
 		System.out.println(eventdata.toString());
 		//System.out.println(media);
 //		menuList.forEach((e)->System.out.println(e));
 		return ResponseEntity.ok(eventServices.registerEvent(eventdata,request.getUserPrincipal().getName()));
 	}
 	@PutMapping("/eventinfo")
-	public ResponseEntity<?> updateEvent(@RequestBody EventDTO eventdata,HttpServletRequest request){
+	public ResponseEntity<?> updateEvent(@Valid @RequestBody EventDTO eventdata,HttpServletRequest request){
 		System.out.println(eventdata.toString());
 		//System.out.println(media);
 //		menuList.forEach((e)->System.out.println(e));

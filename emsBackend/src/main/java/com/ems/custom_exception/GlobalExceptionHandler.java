@@ -15,7 +15,8 @@ import com.ems.dto.ErrorResponse;
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
 //How to tell SC : follo. method acts as the exc handling method
-	@ExceptionHandler(EmptyResultDataAccessException.class)
+	@ExceptionHandler
+	(EmptyResultDataAccessException.class)
 	public ResponseEntity<?> handleEmptyDataExcetpion(EmptyResultDataAccessException e)
 	{
 		System.out.println("in handle empty result exc "+e);
