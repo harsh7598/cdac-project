@@ -33,6 +33,7 @@ import ViewAssignEmployee from './component/Employee/ViewAssignEmployee';
 import AssignTask from './component/Employee/AssignTask';
 import { ProtectedRoute } from './component/common/ProtectedRoute';
 import { render } from 'react-dom/cjs/react-dom.development';
+import PageNotFound from './component/common/PageNotFound';
 
 function App() { 
   return (
@@ -68,6 +69,7 @@ function App() {
           <NavOther />
             <CustLoginRegister/>
           </Route>
+          <Route path="*" component={PageNotFound} />
           
           {/* <Route exact path="/customer/welcome">
             <NavSignOut />
