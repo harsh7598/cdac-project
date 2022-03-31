@@ -54,6 +54,7 @@ const EmployeeLogin = () => {
               <input type="text" className="input-fields-l" placeholder="Email" value={email} onChange={(e) => { setemail(e.target.value) }} />
               <input type="password" className="input-fields-l" placeholder="Password" value={password} onChange={(e) => { setpassword(e.target.value) }} />
               <input type="submit" value="Login" className="btn-l solid" onClick={Login} />
+              <Link className="btm" to={"/forgotpassword"}>forgot Password</Link>
               <div className={errortype} role="alert">{error}</div>
             </form>
           </div>

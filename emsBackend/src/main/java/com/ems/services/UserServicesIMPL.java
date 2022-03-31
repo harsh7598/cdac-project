@@ -23,8 +23,11 @@ public class UserServicesIMPL implements IUserServices {
 	private UserDao userDao;
 	
 	@Autowired
-	private EventDao eventDao; 
-	
+	private  EmailSenderService mailservice;
+
+	@Autowired
+	private EventDao eventDao;
+
 	@Autowired
 	private PasswordEncoder encoder;
 
@@ -32,7 +35,7 @@ public class UserServicesIMPL implements IUserServices {
 	public RegisterDTO registerUser(RegisterDTO request) {
 		User user = new User();
 		user.setEmail(request.getEmail());
-		user.setPassword(encoder.encode(request.getPassword()));//set encoded pwd
+		user.setPassword(encoder.encode(request.getPassword()));// set encoded pwd
 		user.setDob((request.getDob()));
 		user.setAccountNumber(request.getAccountNumber());
 		user.setAdharNumber(request.getAdharNumber());
@@ -46,29 +49,52 @@ public class UserServicesIMPL implements IUserServices {
 		BeanUtils.copyProperties(persistentUser, dto);
 		return dto;
 	}
-	
+
 	@Override
 	public String accessUsername(String email) {
 		User u = userDao.findByEmail(email).orElseThrow();
 		return u.getName();
 	}
-	
+
 	@Override
-	public List<User> getEmployees(){
+	public List<User> getEmployees() {
 		return userDao.findByRole("EMPLOYEE");
 	}
 
 	@Override
 	public void deleteEmployee(int id) {
 		userDao.deleteById(id);
-		
+
 	}
 
 	@Override
 	public List<User> getEmployeesByEvent(int id) {
-		Event e=eventDao.getById(id);
-		return userDao.findByRoleAndRegevents("EMPLOYEE",e);
+		Event e = eventDao.getById(id);
+		return userDao.findByRoleAndRegevents("EMPLOYEE", e);
 	}
-	
 
+	@Override
+	public int validateEmailAndGenearateOtp(String email) {
+		int randomNumber;
+		if (userDao.findByEmail(email).isPresent()) {
+			randomNumber = (int) (Math.random() * 9999);
+			if (randomNumber <= 1000) {
+				randomNumber = randomNumber + 1000;
+			}
+			mailservice.sendMail(email,"OTP password Reset",String.valueOf(randomNumber));
+			return randomNumber;
+		}
+		else {
+			return -1;
+		}
+	}
+
+	@Override
+	public boolean changePassword(String email, String password) {
+		User u=userDao.findByEmail(email).orElseThrow();
+		u.setPassword(encoder.encode(password));
+		if(userDao.save(u)!=null)
+			return true;
+		return false;
+	}
 }

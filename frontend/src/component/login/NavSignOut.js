@@ -3,7 +3,7 @@ import logo from "../../images/logonav.jpg";
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { url } from '../common/constants';
-import { FaUserCircle,FaUserAlt,FaUser } from "react-icons/fa";
+import { FaUserCircle} from "react-icons/fa";
 
 const NavSignOut = () => {
 

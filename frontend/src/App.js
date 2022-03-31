@@ -8,7 +8,7 @@ import Services from "./component/Services";
 import About from "./component/About";
 import Contact from "./component/Contact";
 import Packages from "./component/Packages";
-import NavSignOut from "./component/Customer/NavSignOut";
+
 import CustomerWelcome from "./component/Customer/CustomerWelcome";
 import BookEvent from "./component/Customer/BookEvent";
 import EditEvent from "./component/Customer/EditEvent";
@@ -32,8 +32,10 @@ import AssignEmployee from './component/Employee/AssignEmployee';
 import ViewAssignEmployee from './component/Employee/ViewAssignEmployee';
 import AssignTask from './component/Employee/AssignTask';
 import { ProtectedRoute } from './component/common/ProtectedRoute';
-import { render } from 'react-dom/cjs/react-dom.development';
 import PageNotFound from './component/common/PageNotFound';
+import NavSignOut from './component/login/NavSignOut';
+import ForgotPassword from './component/login/ForgotPassword';
+import ChangePassword from './component/login/ChangePassword';
 
 function App() { 
   return (
@@ -69,7 +71,10 @@ function App() {
           <NavOther />
             <CustLoginRegister/>
           </Route>
-          <Route path="*" component={PageNotFound} />
+          <Route exact path="/forgotpassword">
+          <NavOther />
+            <ForgotPassword/>
+          </Route>
           
           {/* <Route exact path="/customer/welcome">
             <NavSignOut />
@@ -103,6 +108,7 @@ function App() {
           <ProtectedRoute exact path="/assignemployee/:id"component={()=>{return(<><NavSignOut /><AssignEmployee/></>)}}/>
           <ProtectedRoute exact path="/viewassignemployee/:id"component={()=>{return(<><NavSignOut /><ViewAssignEmployee/></>)}}/>
           <ProtectedRoute exact path="/assigntask/:id"component={()=>{return(<> <NavSignOut /><AssignTask/></>)}}/>
+          <Route path="*" component={PageNotFound} />
         </Switch>
         {/* <NavOther/> */}
       </BrowserRouter >

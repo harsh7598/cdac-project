@@ -1,16 +1,15 @@
 import React, { useEffect,useState } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+
 import axios from "axios";
 import "./LoginRegister.css";
-import NavSignOut from "../Customer/NavSignOut";
-import CustomerWelcome from "../Customer/CustomerWelcome";
 import authHeader from "../services/auth-header"
 
 
 import log from "../../images/log.svg"
 import register from "../../images/register.svg"
-import {Link,useHistory } from "react-router-dom";
+import {useHistory } from "react-router-dom";
 import {url} from"../common/constants";
+import { Link } from "react-router-dom";
 
 const CustLoginRegister = () => {
   const history = useHistory();
@@ -44,21 +43,20 @@ const CustLoginRegister = () => {
     axios.post(url + "/login",customer,{authHeader}).then((Response) => {
       if(Response.data.jwt)
         localStorage.setItem('jwttoken',JSON.stringify(Response.data.jwt));
-      if (Response.status == 200) {
-        history.push("/customer/welcome");
-      } else {
+        history.push("/customer/welcome"); 
+    }
+  ).catch(error => {
         setemail("");
         setpassword("");
-        seterror(Response.data);
+        seterror("invalid Credentials");
         seterrortype("alert-box");
-      }
-    }
-  );
+    console.log('Something went wrong', error);
+  });
   }
 
   const registerCustomer = (e) => {
     e.preventDefault();
-    if (password == cPassword) {
+    if (password === cPassword) {
       const customer = {
         name,
         email,
@@ -68,15 +66,10 @@ const CustLoginRegister = () => {
         password,
         role
       }
-      axios.post(url + "/registration", customer).then(Response => { 
-        // console.log(Response.data)
-        // if (Response.status === 200)
+      axios.post(url + "/registration", customer).then(Response => {   
         history.push("/customer");
-      // else {
-      //   // reset();
-      //   seterror("Invalid credentials")
-      // }
       }).catch(error => {
+        reset();
         console.log('Something went wrong', error);
       }); 
     }
@@ -108,6 +101,7 @@ const CustLoginRegister = () => {
                 <input type="text" className="input-fields-l" placeholder="Email" value={email} onChange={(e)=>{setemail(e.target.value)}} />
                 <input type="password" className="input-fields-l" placeholder="Password" value={password}  onChange={(e)=>{setpassword(e.target.value)}} />
               <input type="submit" value="Login" className="btn-l solid" onClick={login}/>
+              <Link className="btm" to={"/forgotpassword"}>forgot Password</Link>
               <div className={errortype} role="alert">{error}</div>
             </form>
             <form className="sign-up-form l-form">
