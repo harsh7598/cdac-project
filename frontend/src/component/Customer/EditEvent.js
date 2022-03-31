@@ -6,10 +6,7 @@ import { BsSearch } from "react-icons/bs";
 
 const EditEvent = () => {
     const token = JSON.parse(localStorage.getItem("jwttoken"));
-    useEffect(() => {
-        init();
-        showmenulist();
-    }, []);
+   
 
     // states    
     const history = useHistory();
@@ -56,7 +53,10 @@ const EditEvent = () => {
         newMenus.splice(index, 1);
         setmenus(newMenus);
     };
-
+    useEffect(() => {
+        init();
+        showmenulist();
+    }, []);
     const init = () => {
         if (id) {
             axios.get(`${url}/updateevent/${id}`)

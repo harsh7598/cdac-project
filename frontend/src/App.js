@@ -35,7 +35,7 @@ import { ProtectedRoute } from './component/common/ProtectedRoute';
 import PageNotFound from './component/common/PageNotFound';
 import NavSignOut from './component/login/NavSignOut';
 import ForgotPassword from './component/login/ForgotPassword';
-import ChangePassword from './component/login/ChangePassword';
+
 
 function App() { 
   return (
@@ -90,7 +90,7 @@ function App() {
           <ProtectedRoute exact path="/customer/bookevent/selectmenu"component={()=>{return(<><NavSignOut /><SelectMenu /></>)}}/>
           <ProtectedRoute exact path="/customer/viewevent"component={()=>{return(<><NavSignOut /><ViewEvent /></>)}}/>
           <ProtectedRoute exact path="/customer/vieweventupdate"component={()=>{return(<><NavSignOut /><ViewEventUpdate/></>)}}/>
-          <ProtectedRoute exact path="/updateevent/:id"component={()=>{return(<><NavSignOut /><EditEventUp/></>)}}/>          
+          {/* <Route exact path="/updateevent/:id"component={()=>{return(<><NavSignOut /><EditEventUp/></>)}}/>       */}
           <Route exact path="/employee">
             <NavOther />
             <EmployeeLogin />
