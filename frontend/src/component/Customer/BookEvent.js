@@ -342,19 +342,19 @@ const BookEvent = () => {
                                     <div className="row col-10">
 
                                         <label className={photographyback ? 'bg-success event__box border w-100 h4 py-3 my-2' : 'bg-dark event__box border w-100 h4 py-3 my-2'} htmlFor="photography">
-                                            <input type="checkbox" name="photography" id="photography" className="h-25" onChange={() => { setphotography(!Photography), setPhotographyback(prevBack => !prevBack) }} />Photography</label>
+                                            <input type="checkbox" name="photography" id="photography" className="h-25" onChange={() => { setphotography(!Photography), setPhotographyback(!photographyback) }} />Photography</label>
 
                                         <label className={videographyback ? 'bg-success event__box border w-100 h4 py-3 my-2' : 'bg-dark event__box border w-100 h4 py-3 my-2'} htmlFor="videography">
-                                            <input type="checkbox" name="videography" id="videography" className="h-25" onChange={() => { setvideography(!videography), setVideographyback(prevBack => !prevBack) }} />Videography</label>
+                                            <input type="checkbox" name="videography" id="videography" className="h-25" onChange={() => { setvideography(!videography), setVideographyback(!videographyback) }} />Videography</label>
 
                                         <label className={albumback ? 'bg-success event__box border w-100 h4 py-3 my-2' : 'bg-dark event__box border w-100 h4 py-3 my-2'} htmlFor="album">
-                                            <input type="checkbox" name="album" id="album" className="h-25" onChange={() => { setalbum(!album), setAlbumback(prevBack => !prevBack) }} />Album</label>
+                                            <input type="checkbox" name="album" id="album" className="h-25" onChange={() => { setalbum(!album), setAlbumback(!albumback) }} />Album</label>
 
                                         <label className={droneback ? 'bg-success event__box border w-100 h4 py-3 my-2' : 'bg-dark event__box border w-100 h4 py-3 my-2'} htmlFor="drone">
-                                            <input type="checkbox" name="drone" id="drone" className="h-25" onChange={() => { setdrone(!drone), setDroneback(prevBack => !prevBack) }} />Drone</label>
+                                            <input type="checkbox" name="drone" id="drone" className="h-25" onChange={() => { setdrone(!drone), setDroneback(!droneback) }} />Drone</label>
 
                                         <label className={craneback ? 'bg-success event__box border w-100 h4 py-3 my-2' : 'bg-dark event__box border w-100 h4 py-3 my-2'} htmlFor="crane">
-                                            <input type="checkbox" name="crane" id="crane" className="h-25" onChange={() => { setcrane(!crane), setCraneback(prevBack => !prevBack) }} />Crane</label>
+                                            <input type="checkbox" name="crane" id="crane" className="h-25" onChange={() => { setcrane(!crane), setCraneback(!craneback) }} />Crane</label>
                                     </div>
 
                                 </div>
