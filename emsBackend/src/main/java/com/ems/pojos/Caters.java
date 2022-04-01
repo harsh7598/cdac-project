@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,8 +20,7 @@ public class Caters extends BaseEntity {
 	private String name;
 
 	@Column(length = 20, name = "contact_number")
-	@Min(10)
-	@Max(10)
+	@Size(min = 10,max = 10)
 	private String contactNumber;
 	@Column(length = 30)
 	private String speciality;

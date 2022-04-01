@@ -42,6 +42,13 @@ public class MenuController {
 		return null;
 	}
 	
+	@PostMapping("/addmenu")
+	public ResponseEntity<?> addMenu(@RequestBody Menu menu){
+		System.out.println(menu.toString());
+		
+		return ResponseEntity.ok(menuServices.addMenu(menu));
+	}
+	
 	@GetMapping("/menucategory")
 		public List<Menu>getByCategory(@RequestParam String category,@RequestParam String subCategory){
 		System.out.println(category+"    "+subCategory);

@@ -11,5 +11,6 @@ public interface IMenuServices {
 	List<Menu>getByCategory(String category);
 	List<Menu>getBySubCategory(String subCategory);
 	void submitMenu(List<Menu> list,String email);
+	Menu addMenu(Menu menu); 
 
 }

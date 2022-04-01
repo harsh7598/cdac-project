@@ -14,6 +14,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -27,8 +28,7 @@ public class Studio extends BaseEntity {
 	@NotEmpty(message = "cannot be empty")
 	private String name;
 	@Column(length = 10)
-	@Min(10)
-	@Max(10)
+	@Size(min = 10,max = 10)
 	private String Contact;
 	@Positive
 	private double cost;

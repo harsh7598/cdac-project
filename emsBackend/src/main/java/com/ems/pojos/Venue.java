@@ -18,6 +18,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -38,7 +39,7 @@ public class Venue extends BaseEntity{
 	private String location;
 
 	@NotEmpty(message = "address required")
-	@Column(length = 20)
+	@Column(length = 200)
 	private String address;
 
 	@Column(name = "max_capacity")
@@ -54,13 +55,12 @@ public class Venue extends BaseEntity{
 	private String category;
 	
 	@Column(length = 20)
-	@Min(10)
-	@Max(10)
+	@Size(min = 10,max = 10)
 	private String contact;
 	
 	@Positive
 	@NotBlank
-	private double cost;
+	private String cost;
 	
 //	@OneToMany(mappedBy = "bookedVenue",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 //	private List<Event> BookedVenueByEvent= new ArrayList<Event>();

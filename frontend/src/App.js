@@ -8,7 +8,6 @@ import Services from "./component/Services";
 import About from "./component/About";
 import Contact from "./component/Contact";
 import Packages from "./component/Packages";
-
 import CustomerWelcome from "./component/Customer/CustomerWelcome";
 import BookEvent from "./component/Customer/BookEvent";
 import EditEvent from "./component/Customer/EditEvent";
@@ -35,6 +34,10 @@ import { ProtectedRoute } from './component/common/ProtectedRoute';
 import PageNotFound from './component/common/PageNotFound';
 import NavSignOut from './component/login/NavSignOut';
 import ForgotPassword from './component/login/ForgotPassword';
+import AddMenu from './component/Employee/AddMenu';
+import AddVenue from './component/Employee/AddVenue';
+import AddStudio from './component/Employee/AddStudio';
+import AddCaters from './component/Employee/AddCaters';
 
 
 function App() { 
@@ -108,6 +111,10 @@ function App() {
           <ProtectedRoute exact path="/assignemployee/:id"component={()=>{return(<><NavSignOut /><AssignEmployee/></>)}}/>
           <ProtectedRoute exact path="/viewassignemployee/:id"component={()=>{return(<><NavSignOut /><ViewAssignEmployee/></>)}}/>
           <ProtectedRoute exact path="/assigntask/:id"component={()=>{return(<> <NavSignOut /><AssignTask/></>)}}/>
+          <ProtectedRoute exact path="/admin/addmenu"component={()=>{return(<> <NavSignOut /><AddMenu/></>)}}/>
+          <ProtectedRoute exact path="/admin/addvenue"component={()=>{return(<> <NavSignOut /><AddVenue/></>)}}/>
+          <ProtectedRoute exact path="/admin/addstudio"component={()=>{return(<> <NavSignOut /><AddStudio/></>)}}/>
+          <ProtectedRoute exact path="/admin/addcaterer"component={()=>{return(<> <NavSignOut /><AddCaters/></>)}}/>
           <Route path="*" component={PageNotFound} />
         </Switch>
         {/* <NavOther/> */}

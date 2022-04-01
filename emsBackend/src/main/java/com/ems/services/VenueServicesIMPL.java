@@ -21,5 +21,10 @@ public class VenueServicesIMPL implements IVenueServices {
 		
 		return venueDao.findAll();
 	}
+	@Override
+	public Venue addVenue(Venue venue) {
+		
+		return venueDao.save(venue);
+	}
 
 }

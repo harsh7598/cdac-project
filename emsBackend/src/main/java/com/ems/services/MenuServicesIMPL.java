@@ -51,4 +51,10 @@ public class MenuServicesIMPL implements IMenuServices {
 		
 	}
 
+	@Override
+	public Menu addMenu(Menu menu) {
+		
+		return menuDao.save(menu);
+	}
+
 }

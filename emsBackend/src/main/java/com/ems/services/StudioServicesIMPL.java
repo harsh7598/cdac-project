@@ -30,5 +30,10 @@ public class StudioServicesIMPL implements IStudioServices {
 		Event e=es.getById(id);
 		e.setStudio(studio);
 	}
+	@Override
+	public Studio addStudio(Studio studio) {
+		
+		return studioDao.save(studio);
+	}
 
 }

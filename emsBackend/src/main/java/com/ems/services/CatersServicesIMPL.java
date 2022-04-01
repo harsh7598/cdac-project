@@ -31,6 +31,12 @@ public class CatersServicesIMPL implements ICatersServices{
 		Event e=es.getById(id);
 		e.setBookedCater(cater);	
 	}
+
+	@Override
+	public Caters addCaterer(Caters cater) {
+		
+		return caterDao.save(cater);
+	}
 	
 	
 }
