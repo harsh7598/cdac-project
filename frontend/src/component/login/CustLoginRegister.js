@@ -68,6 +68,8 @@ const CustLoginRegister = () => {
       }
       axios.post(url + "/registration", customer).then(Response => {   
         history.push("/customer");
+        const container = document.querySelector(".container-l");
+          container.classList.remove("sign-up-mode");
       }).catch(error => {
         reset();
         console.log('Something went wrong', error);
