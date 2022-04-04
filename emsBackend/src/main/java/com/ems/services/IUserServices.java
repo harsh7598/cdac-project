@@ -11,7 +11,7 @@ import com.ems.pojos.User;
 public interface IUserServices {
 	public RegisterDTO registerUser(RegisterDTO request);
 	public String accessUsername(String email);
-	public List<User> getEmployees();
+	public List<User> getEmployees(String role);
 	public void deleteEmployee(int id);
 	public List<User> getEmployeesByEvent(int id);
 	public int validateEmailAndGenearateOtp(String email);

@@ -67,8 +67,7 @@ public class User extends BaseEntity {
 	private String password;
 	
 	//@NotEmpty(message = "Account number required")
-	@Min(6)
-	@Max(18)
+	@Size(min=6, max=18)
 	@Column(length = 20,name = "acc_number")
 	private String accountNumber;
 	

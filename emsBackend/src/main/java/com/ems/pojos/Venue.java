@@ -60,7 +60,7 @@ public class Venue extends BaseEntity{
 	
 	@Positive
 	@NotBlank
-	private String cost;
+	private double cost;
 	
 //	@OneToMany(mappedBy = "bookedVenue",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 //	private List<Event> BookedVenueByEvent= new ArrayList<Event>();

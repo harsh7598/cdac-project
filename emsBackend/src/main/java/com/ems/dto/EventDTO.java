@@ -7,6 +7,7 @@ import java.util.List;
 import com.ems.pojos.Caters;
 import com.ems.pojos.EventType;
 import com.ems.pojos.Menu;
+import com.ems.pojos.Studio;
 import com.ems.pojos.Venue;
 
 import lombok.AllArgsConstructor;
@@ -22,6 +23,8 @@ private String name;
 private EventType type;
 private LocalDate date;
 private int guestCount;
+private String status;
+private Studio studio;
 private boolean photography;
 private boolean videography;
 private boolean album;

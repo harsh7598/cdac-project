@@ -6,6 +6,7 @@ import { useHistory, useParams } from "react-router-dom";
 
 const AssignCaterer = () => {
 
+  const history=useHistory();
   const [caterers, setCaterers] = useState([]);
   const {id} = useParams()
   const token=JSON.parse(localStorage.getItem("jwttoken"));
@@ -23,6 +24,7 @@ const AssignCaterer = () => {
   const handleCaterer=(cater)=>{
     axios.put(url+"/assigncaterer/"+id,cater,{headers:{"authorization":`Bearer ${token}`}}).then(Response => {
         console.log('assign Caterers successfully',);
+        history.goBack();
       })
       .catch(error => {
         console.log('Something went wrong', error);

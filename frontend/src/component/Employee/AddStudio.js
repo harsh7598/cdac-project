@@ -9,14 +9,24 @@ const AddStudio = () => {
     const history = useHistory();
     const [name, setname] = useState("");
     const [contact, setcontact] = useState("")
-    const [cost, setcost] = useState("")
+
+    const [photographycost, setphotographycost] = useState("")
+    const [videographycost, setvideographycost] = useState("")
+    const [albumcost, setalbumcost] = useState("")
+    const [dronecost, setdronecost] = useState("")
+    const [cranecost, setcranecost] = useState("")
     const token=JSON.parse(localStorage.getItem("jwttoken"));
 
     const HandleAddStudio = () => {
         const studio={
             name,
             contact,
-            cost
+            
+            photographycost,
+            videographycost,
+            albumcost,
+            dronecost,
+            cranecost
         }
         console.log(studio)
         axios.post(url + "/addstudio",studio,{headers:{"authorization":`Bearer ${token}`}})
@@ -54,12 +64,46 @@ const AddStudio = () => {
                         <input type="number" className="form-control" id="rate" onChange={(e) => { setcontact(e.target.value) }} />
                     </div>
                 </div>
+              
+
                 <div className="mb-3 row">
                     <div className="col">
-                        <label htmlFor="rate" className="form-label">Cost</label>
+                        <label htmlFor="rate" className="form-label">Photography Cost</label>
                     </div>
                     <div className="col">
-                        <input type="number" className="form-control" id="rate" onChange={(e) => { setcost(e.target.value) }} />
+                        <input type="number" className="form-control" id="rate" onChange={(e) => { setphotographycost(e.target.value) }} />
+                    </div>
+                </div>
+                <div className="mb-3 row">
+                    <div className="col">
+                        <label htmlFor="rate" className="form-label">Videography Cost</label>
+                    </div>
+                    <div className="col">
+                        <input type="number" className="form-control" id="rate" onChange={(e) => { setvideographycost(e.target.value) }} />
+                    </div>
+                </div>
+                <div className="mb-3 row">
+                    <div className="col">
+                        <label htmlFor="rate" className="form-label">Album Cost</label>
+                    </div>
+                    <div className="col">
+                        <input type="number" className="form-control" id="rate" onChange={(e) => { setalbumcost(e.target.value) }} />
+                    </div>
+                </div>
+                <div className="mb-3 row">
+                    <div className="col">
+                        <label htmlFor="rate" className="form-label">Drone Cost</label>
+                    </div>
+                    <div className="col">
+                        <input type="number" className="form-control" id="rate" onChange={(e) => { setdronecost(e.target.value) }} />
+                    </div>
+                </div>
+                <div className="mb-3 row">
+                    <div className="col">
+                        <label htmlFor="rate" className="form-label">Crane Cost</label>
+                    </div>
+                    <div className="col">
+                        <input type="number" className="form-control" id="rate" onChange={(e) => { setcranecost(e.target.value) }} />
                     </div>
                 </div>
                 <div className="py-5">

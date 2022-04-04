@@ -15,32 +15,39 @@ const EmployeeLogin = () => {
   const Login = (e) => {
     e.preventDefault();
     const employee = { email, password };
-    axios.post(url + "/login",employee,{authHeader}).then((Response) => {
+    axios.post(url + "/login", employee, { authHeader }).then((Response) => {
       console.log(Response.data.role);
+
       console.log(Response.data.jwt);
-      if(Response.data.jwt&&Response.status == 200){
-        localStorage.setItem('jwttoken',JSON.stringify(Response.data.jwt));
-        if(Response.data.role=='[ROLE_MANAGER]')
-        history.push("manager/welcome");
-        else if(Response.data.role=='[ROLE_EMPLOYEE]')
+      if (Response.data.jwt && Response.status == 200) {
+        localStorage.setItem('jwttoken', JSON.stringify(Response.data.jwt));
+        if (Response.data.role == '[ROLE_MANAGER]') {
+          localStorage.setItem('role', "MANAGER");
+          history.push("manager/welcome");
+        }
+        else if (Response.data.role == '[ROLE_EMPLOYEE]') {
+          localStorage.setItem('role', "EMPLOYEE");
           history.push("employee/welcome")
-        else if(Response.data.role=='[ROLE_ADMIN]')
-          console.log("in admin")
-          else{
-            seterror("invalid CREDENTIALS or Authority")
-          }
-      } 
+        }
+        else if (Response.data.role == '[ROLE_ADMIN]') {
+          localStorage.setItem('role', "ADMIN");
+          history.push("admin/welcome")
+        }
+        else {
+          seterror("invalid CREDENTIALS or Authority")
+        }
+      }
     }
-  ).catch(error => {
-    setemail("");
-        setpassword("");
-        seterror("invalid CREDENTIALS");
-        seterrortype("alert-box");
-    console.log('Something went wrong', error);
-  });
+    ).catch(error => {
+      setemail("");
+      setpassword("");
+      seterror("invalid CREDENTIALS");
+      seterrortype("alert-box");
+      console.log('Something went wrong', error);
+    });
 
   }
- 
+
   useEffect(() => {
     const container = document.querySelector(".container-l");
   });

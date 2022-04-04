@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const ViewEmployee = () => {
     const [Employee, setEmployee] = useState([]);
     const [Id, setId] = useState();
-
+const role = localStorage.getItem("role");
     useEffect(() => {
         init();
     }, []);
@@ -25,7 +25,8 @@ const ViewEmployee = () => {
 
 
     const init = () => {
-        axios.get(url + "/allemployees")
+        
+        axios.get(url + "/allemployees/"+ role)
             .then(Response => {
                 console.log('Printing Employee data', Response.data);
                 setEmployee(Response.data);
@@ -56,6 +57,9 @@ const ViewEmployee = () => {
                                 <th>
                                     <h4 className="px-3">Email</h4>
                                 </th>
+                                <th>
+                                    <h4 className="px-3">Role</h4>
+                                </th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -66,9 +70,10 @@ const ViewEmployee = () => {
                                     <td><h4 className="text-start px-3">{emp.id}</h4></td>
                                     <td><h4 className="text-start px-3">{emp.name}</h4></td>
                                     <td><h4 className="text-start px-3">{emp.email}</h4></td>
+                                    <td><h4 className="text-start px-3">{emp.role}</h4></td>   
                                     {/* <td><button className='btn-l float-md-right' onClick={() => { HandleRemove(emp.id) }}>Remove Employee</button></td> */}
                                     <td className='text-center'>
-                                        <button className='btn-l' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => setId(emp.id)}>Remove Employee</button>
+                                        <button className='btn-l' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => setId(emp.id)}>REMOVE {emp.role}</button>
                                     </td> 
                                 </tr>
                             ))}

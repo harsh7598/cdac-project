@@ -55,6 +55,7 @@ const AddMenu = () => {
                     </div>
                     <div className="col">
                         <select name="category" id="category" className="input-fields-mod" onChange={(e) => { setcategory(e.target.value) }}>
+                        <option value="ALL">All</option>
                             <option value="VEG">Veg</option>
                             <option value="NON_VEG">Non-Veg</option>
                         </select>

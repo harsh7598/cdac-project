@@ -57,8 +57,17 @@ public class UserServicesIMPL implements IUserServices {
 	}
 
 	@Override
-	public List<User> getEmployees() {
-		return userDao.findByRole("EMPLOYEE");
+	public List<User> getEmployees(String role) {
+		if(role.equals("MANAGER")) {
+			return userDao.findByRole("EMPLOYEE");	
+		}
+		else if(role.equals("MMANAGER")) {
+			return userDao.findByRole("EMPLOYEE");	
+		}
+		else if(role.equals("MADMIN")) {
+			return userDao.findByRole("MANAGER");	
+		}
+		return userDao.findUserByRole();
 	}
 
 	@Override

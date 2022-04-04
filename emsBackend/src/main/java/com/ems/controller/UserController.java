@@ -67,9 +67,9 @@ public class UserController {
 		return ResponseEntity.ok(userTodoServices.updateTask(task));
 	}
 	
-	@GetMapping("/allemployees")
-	public List<User>getEmployees(){
-		return userService.getEmployees();
+	@GetMapping("/allemployees/{role}")
+	public List<User>getEmployees(@PathVariable String role){
+		return userService.getEmployees(role);
 	}
 	
 	@GetMapping("/assignemployees/{id}")

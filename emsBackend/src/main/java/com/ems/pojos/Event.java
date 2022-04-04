@@ -74,6 +74,7 @@ public class Event extends BaseEntity{
 	private boolean album;
 	private boolean drone;
 	private boolean crane;
+
 	@ManyToOne
 	@JoinColumn(name = "studio_id")
 	private Studio studio;

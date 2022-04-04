@@ -7,10 +7,23 @@ import { Link } from 'react-router-dom';
 const ViewEventManager = () => {
 
     const [events, setEvents] = useState([]);
-
+    const role = localStorage.getItem("role");
+    const [forassign, setForAssign] = useState("");
+    const token = JSON.parse(localStorage.getItem("jwttoken"));
+    
     const init = () => {
         const token = JSON.parse(localStorage.getItem("jwttoken"));
         console.log(token);
+        console.log(role)
+        if (role == "MANAGER") {
+            console.log("manager")
+            setForAssign("EMPLOYEES");
+        }
+        if (role == "ADMIN") {
+            console.log("admin")
+            setForAssign("MANAGERS");
+        }
+        console.log(forassign);
         axios.get(url + "/regevents", { headers: { "authorization": `Bearer ${token}` } })
             .then(Response => {
                 console.log('Printing Event data', Response.data);
@@ -21,8 +34,19 @@ const ViewEventManager = () => {
             })
     }
 
+    const Handledone=(event)=>{
+        axios.put(url + "/eventinfo", event, { headers: { "authorization": `Bearer ${token}` } })
+        .then(Response => {
+          console.log('Printing Menu data', Response.data);
+        })
+        .catch(error => {
+          console.log('Something went wrong', error);
+        });
+      }
+
     useEffect(() => {
         init();
+
     }, []);
 
 
@@ -169,10 +193,16 @@ const ViewEventManager = () => {
                                             </tbody></table>
                                         </div>
 
+                                        <select name="status" id="status" className="input-fields-mod" defaultValue={event.status} onChange={(e) => { event.status = e.target.value; Handledone(event) }}>
+                                            <option value="Waiting For Approval">Waiting For Approval</option>
+                                            <option value="Waiting For Payment">Waiting For Payment</option>
+                                            <option value="Approved">Approved</option>
+            
+                                        </select>
                                         <Link className="btn btn-info" to={`/updateevent/${event.id}`}>Update</Link>
                                         <Link className="btn btn-info" to={`/assigncaters/${event.id}`}>assign Caters</Link>
-                                        <Link className="btn btn-info" to={`/assignemployee/${event.id}`}>assign Employee</Link>
-                                        <Link className="btn btn-info" to={`/viewassignemployee/${event.id}`}>view assign Employee</Link>
+                                        <Link className="btn btn-info" to={`/assignemployee/${event.id}`}>assign {forassign}</Link>
+                                        <Link className="btn btn-info" to={`/viewassignemployee/${event.id}`}>view assign {forassign}</Link>
                                         <Link className="btn btn-info" to={`/assignstudio/${event.id}`}>assign Studio</Link>
                                     </div>
                                     <br></br>

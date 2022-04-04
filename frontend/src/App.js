@@ -38,6 +38,7 @@ import AddMenu from './component/Employee/AddMenu';
 import AddVenue from './component/Employee/AddVenue';
 import AddStudio from './component/Employee/AddStudio';
 import AddCaters from './component/Employee/AddCaters';
+import AdminWelcome from "./component/Employee/AdminWelcome";
 
 
 function App() { 
@@ -101,7 +102,7 @@ function App() {
           <ProtectedRoute exact path="/manager/viewemployees"component={()=>{return(<><NavSignOut /><ViewEmployee /></>)}}/>
           <ProtectedRoute exact path="/manager/viewstudio"component={()=>{return(<><NavSignOut /><SelectStudio /></>)}}/>
           <ProtectedRoute exact path="/manager/viewallservices"component={()=>{return(<><NavSignOut /><AvailbleServices/></>)}}/>
-          <ProtectedRoute exact path="/regemployee"component={()=>{return(<><NavSignOut /><EmployeeWelcome /></>)}}/>
+          <ProtectedRoute exact path="/regemployee"component={()=>{return(<><NavSignOut /><EmployeeRegister /></>)}}/>
           <ProtectedRoute exact path="/employee/welcome"component={()=>{return(<><NavSignOut /><EmployeeWelcome /></>)}}/>
           <ProtectedRoute exact path="/updateevent/:id"component={()=>{return(<><NavSignOut /><EditEventUp/></>)}}/>
           <ProtectedRoute exact path="/manager/welcome"component={()=>{return(<><NavSignOut /><ManagerWelcome /></>)}}/>
@@ -111,6 +112,27 @@ function App() {
           <ProtectedRoute exact path="/assignemployee/:id"component={()=>{return(<><NavSignOut /><AssignEmployee/></>)}}/>
           <ProtectedRoute exact path="/viewassignemployee/:id"component={()=>{return(<><NavSignOut /><ViewAssignEmployee/></>)}}/>
           <ProtectedRoute exact path="/assigntask/:id"component={()=>{return(<> <NavSignOut /><AssignTask/></>)}}/>
+
+          <Route exact path="/admin">
+            <NavOther />
+            <EmployeeLogin />
+          </Route>
+          <ProtectedRoute exact path="/admin/viewemployees"component={()=>{return(<><NavSignOut /><ViewEmployee /></>)}}/>
+          <ProtectedRoute exact path="/admin/viewallservices"component={()=>{return(<><NavSignOut /><AvailbleServices/></>)}}/>
+          <ProtectedRoute exact path="/regemployee"component={()=>{return(<><NavSignOut /><EmployeeRegister /></>)}}/>
+          <ProtectedRoute exact path="/employee/welcome"component={()=>{return(<><NavSignOut /><EmployeeWelcome /></>)}}/>
+          <ProtectedRoute exact path="/updateevent/:id"component={()=>{return(<><NavSignOut /><EditEventUp/></>)}}/>
+          
+          <ProtectedRoute exact path="/admin/viewstudio"component={()=>{return(<><NavSignOut /><SelectStudio /></>)}}/>
+          <ProtectedRoute exact path="/admin/viewvenue"component={()=>{return(<><NavSignOut /><SelectVenue /></>)}}/>
+          <ProtectedRoute exact path="/admin/viewcaterer"component={()=>{return(<><NavSignOut /><SelectCaterer /></>)}}/>
+          <ProtectedRoute exact path="/admin/viewevent"component={()=>{return(<><NavSignOut /><ViewEventManager /></>)}}/>
+          <ProtectedRoute exact path="/assigncaters/:id"component={()=>{return(<><NavSignOut /><AssignCaterer/></>)}}/>
+          <ProtectedRoute exact path="/assignstudio/:id"component={()=>{return(<><NavSignOut /><AssignStudio/></>)}}/>
+          <ProtectedRoute exact path="/assignemployee/:id"component={()=>{return(<><NavSignOut /><AssignEmployee/></>)}}/>
+          <ProtectedRoute exact path="/viewassignemployee/:id"component={()=>{return(<><NavSignOut /><ViewAssignEmployee/></>)}}/>
+          <ProtectedRoute exact path="/assigntask/:id"component={()=>{return(<> <NavSignOut /><AssignTask/></>)}}/>
+          <ProtectedRoute exact path="/admin/welcome"component={()=>{return(<> <NavSignOut /><AdminWelcome/></>)}}/>
           <ProtectedRoute exact path="/admin/addmenu"component={()=>{return(<> <NavSignOut /><AddMenu/></>)}}/>
           <ProtectedRoute exact path="/admin/addvenue"component={()=>{return(<> <NavSignOut /><AddVenue/></>)}}/>
           <ProtectedRoute exact path="/admin/addstudio"component={()=>{return(<> <NavSignOut /><AddStudio/></>)}}/>

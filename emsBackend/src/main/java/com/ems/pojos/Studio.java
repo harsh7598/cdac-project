@@ -30,8 +30,13 @@ public class Studio extends BaseEntity {
 	@Column(length = 10)
 	@Size(min = 10,max = 10)
 	private String Contact;
-	@Positive
-	private double cost;
+//	@Positive
+//	private double cost;
+	private double photographycost;
+	private double videographycost;
+	private double albumcost;
+	private double dronecost;
+	private double cranecost;
 //
 //	@OneToMany(mappedBy = "studio", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
 //	List<Event> bookedByEvent = new ArrayList<>();

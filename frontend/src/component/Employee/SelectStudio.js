@@ -37,8 +37,12 @@ const SelectStudio = () => {
               {/* <Link className="nav-link text-white py-1" to={caterer.link}> */}
                 <div className="event__box py-2 px-2 border border-2 border-white">
                   <h4 className="text-start px-3">Name: {std.name}</h4>
-                  <h4 className="text-start px-3">Contact: {std.contactNumber}</h4>
-                  <h4 className="text-start px-3">Cost: {std.cost}</h4>         
+                  <h4 className="text-start px-3">Contact: {std.contact}</h4>
+                  <h4 className="text-start px-3">Photography Cost: {std.photographycost}</h4>   
+                  <h4 className="text-start px-3">Videography Cost: {std.videographycost}</h4>  
+                  <h4 className="text-start px-3">Album Cost: {std.albumcost}</h4>  
+                  <h4 className="text-start px-3">Drone Cost: {std.dronecost}</h4>  
+                  <h4 className="text-start px-3">Crane Cost: {std.cranecost}</h4>        
                 </div>
               {/* </Link> */}
                 <br></br>
