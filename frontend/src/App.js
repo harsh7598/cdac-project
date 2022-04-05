@@ -18,7 +18,7 @@ import SelectMedia from "./component/Customer/SelectMedia";
 import SelectMenu from "./component/Customer/SelectMenu";
 import ViewEvent from "./component/Customer/ViewEvent";
 import EmployeeWelcome from "./component/Employee/EmployeeWelcome";
-import ViewEventUpdate from "./component/Customer/viewEventUpdate";
+import ViewEventUpdate from "./component/Customer/ViewEventUpdate";
 import EditEventUp from "./component/Customer/EditEvent";
 import ManagerWelcome from './component/Employee/ManagerWelcome';
 import ViewEventManager from './component/Employee/ViewEventManager';
