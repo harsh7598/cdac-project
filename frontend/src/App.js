@@ -95,6 +95,8 @@ function App() {
           <ProtectedRoute exact path="/customer/viewevent"component={()=>{return(<><NavSignOut /><ViewEvent /></>)}}/>
           <ProtectedRoute exact path="/customer/vieweventupdate"component={()=>{return(<><NavSignOut /><ViewEventUpdate/></>)}}/>
           {/* <Route exact path="/updateevent/:id"component={()=>{return(<><NavSignOut /><EditEventUp/></>)}}/>       */}
+          
+
           <Route exact path="/employee">
             <NavOther />
             <EmployeeLogin />
@@ -112,6 +114,7 @@ function App() {
           <ProtectedRoute exact path="/assignemployee/:id"component={()=>{return(<><NavSignOut /><AssignEmployee/></>)}}/>
           <ProtectedRoute exact path="/viewassignemployee/:id"component={()=>{return(<><NavSignOut /><ViewAssignEmployee/></>)}}/>
           <ProtectedRoute exact path="/assigntask/:id"component={()=>{return(<> <NavSignOut /><AssignTask/></>)}}/>
+          
 
           <Route exact path="/admin">
             <NavOther />

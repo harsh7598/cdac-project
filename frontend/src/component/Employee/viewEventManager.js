@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 import { url } from '../common/constants';
 import { Link } from 'react-router-dom';
+import { AiOutlineMenu } from "react-icons/ai";
 // import employeeService from '../services/employee.service';
 
 const ViewEventManager = () => {
@@ -10,7 +11,8 @@ const ViewEventManager = () => {
     const role = localStorage.getItem("role");
     const [forassign, setForAssign] = useState("");
     const token = JSON.parse(localStorage.getItem("jwttoken"));
-    
+    const [statusback, setStatusBack] = useState([]);
+
     const init = () => {
         const token = JSON.parse(localStorage.getItem("jwttoken"));
         console.log(token);
@@ -23,30 +25,47 @@ const ViewEventManager = () => {
             console.log("admin")
             setForAssign("MANAGERS");
         }
-        console.log(forassign);
+        
         axios.get(url + "/regevents", { headers: { "authorization": `Bearer ${token}` } })
-            .then(Response => {
-                console.log('Printing Event data', Response.data);
-                setEvents(Response.data);
-            })
-            .catch(error => {
-                console.log('Something went wrong', error);
-            })
-    }
-
-    const Handledone=(event)=>{
-        axios.put(url + "/eventinfo", event, { headers: { "authorization": `Bearer ${token}` } })
         .then(Response => {
-          console.log('Printing Menu data', Response.data);
+            console.log('Printing Event data', Response.data);
+            setEvents(Response.data);
+            Response.data.map(ev=>{
+                if(ev.status=="Waiting For Approval"){
+                    setStatusBack("accordion-button collapsed bg-warning");
+                    console.log("waiting for approval");
+                }
+                if(ev.status=="Waiting For Payment"){
+                    setStatusBack("accordion-button collapsed bg-info");
+                    console.log("waiting for payment");
+                }
+                if(ev.status=="Approved"){
+                    setStatusBack("accordion-button collapsed bg-success")
+                }
+                });
+            
+            
         })
         .catch(error => {
-          console.log('Something went wrong', error);
-        });
-      }
+            console.log('Something went wrong', error);
+        })
+    }
 
+    
+    const Handledone = (event) => {
+        axios.put(url + "/eventinfo", event, { headers: { "authorization": `Bearer ${token}` } })
+        .then(Response => {
+            console.log('Printing Menu data', Response.data);
+            init();
+        })
+        .catch(error => {
+            console.log('Something went wrong', error);
+        });
+    }
+    
     useEffect(() => {
         init();
-
+       
     }, []);
 
 
@@ -62,10 +81,35 @@ const ViewEventManager = () => {
                     {events.map((event) => (
                         <div className="accordion-item m-3" key={event.id}>
                             <h2 className="accordion-header" id="headingOne">
-                                <button className="accordion-button collapsed accordian-back" type="button" data-bs-toggle="collapse" aria-expanded="false" data-bs-target={"#collapse" + event.id} aria-controls={"collapse" + event.id}>
-                                    <h4>{event.name}</h4>
+                            <button className={statusback} type="button" data-bs-toggle="collapse" aria-expanded="false" data-bs-target={"#collapse" + event.id} aria-controls={"collapse" + event.id}>
+                                {/* <button className="accordion-button collapsed accordian-back" type="button" data-bs-toggle="collapse" aria-expanded="false" data-bs-target={"#collapse" + event.id} aria-controls={"collapse" + event.id}> */}
+                                    <h4 className="col-md-5">{event.name}</h4>
+                                <h5 className="col-md-2 row justify-content-center align-items-center">{event.status}</h5>
+
+                                    <Link
+                                        className="navbar-toggler border-transparent "
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        to="#n"
+                                        aria-controls="navbarSupportedContent"
+                                        aria-expanded="false"
+                                        aria-label="Toggle navigation"
+                                    >
+                                        <AiOutlineMenu  />
+                                    </Link>
+                                        <div className="collapse navbar-collapse" id="n">
+                                            <ul className="navbar-nav mr-auto">
+                                                <li className="nav-item active">
+                                                    <Link to="/eventmanager" className="nav-link">
+                                                        Home
+                                                    </Link>
+                                                </li>
+                                            </ul>
+                                        </div>
                                 </button>
                             </h2>
+
+
                             <div id={"collapse" + event.id} className="accordion-collapse collapse bg-black" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                 <div className="accordion-body" id="fordownload">
                                     <div className="bg-black py-2 px-2 border border-2 border-white"  >
@@ -123,41 +167,6 @@ const ViewEventManager = () => {
                                                 <tr>
                                                 </tr>
                                             </tbody></table>
-
-                                            {/* <table className="col-10 table-bordered text-white"><tbody>
-                                            <tr>
-                                                <td><h4>Name: </h4></td>
-                                                <td><h4>{event.bookedVenue.name}</h4></td>
-                                            </tr>
-                                            <tr>
-                                                <td><h4>Location: </h4></td>
-                                                <td><h4>{event.bookedVenue.location}</h4></td>
-                                            </tr>
-                                            <tr>
-                                                <td><h4>Address: </h4></td>
-                                                <td><h4>{event.bookedVenue.address}</h4></td>
-                                            </tr>
-                                            <tr>
-                                                <td><h4>Capacity: </h4></td>
-                                                <td><h4>{event.bookedVenue.maxCapacity}</h4></td>
-                                            </tr>
-                                            <tr>
-                                                <td> <h4>Category: </h4></td>
-                                                <td><h4>{event.bookedVenue.category}</h4></td>
-                                            </tr>
-                                            <tr>
-                                                <td><h4>Contact: </h4></td>
-                                                <td><h4>{event.bookedVenue.contact}</h4></td>
-                                            </tr>
-                                            <tr>
-                                                <td><h4>Cost: </h4></td>
-                                                <td><h4>{event.bookedVenue.cost}</h4></td>
-                                            </tr>
-                                            <tr>
-                                                <td><h4>Description: </h4></td>
-                                                <td><h4>{event.bookedVenue.description}</h4></td>
-                                            </tr>
-                                        </tbody></table> */}
                                         </div>
 
                                         <h3 className="text-start p-3">Food Menu List : </h3>
@@ -193,11 +202,11 @@ const ViewEventManager = () => {
                                             </tbody></table>
                                         </div>
 
-                                        <select name="status" id="status" className="input-fields-mod" defaultValue={event.status} onChange={(e) => { event.status = e.target.value; Handledone(event) }}>
+                                        <select name="status" id="status" className="input-fields-mod" defaultValue={event.status} onChange={(e) => { event.status = e.target.value; Handledone(event)}}>
                                             <option value="Waiting For Approval">Waiting For Approval</option>
                                             <option value="Waiting For Payment">Waiting For Payment</option>
                                             <option value="Approved">Approved</option>
-            
+
                                         </select>
                                         <Link className="btn btn-info" to={`/updateevent/${event.id}`}>Update</Link>
                                         <Link className="btn btn-info" to={`/assigncaters/${event.id}`}>assign Caters</Link>
