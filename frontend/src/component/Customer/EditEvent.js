@@ -37,6 +37,7 @@ const EditEvent = () => {
     const [albumback, setAlbumback] = useState(false);
     const [droneback, setDroneback] = useState(false);
     const [craneback, setCraneback] = useState(false);
+    const [status, setStatus] = useState("");
 
     //functions 
 
@@ -53,10 +54,6 @@ const EditEvent = () => {
         newMenus.splice(index, 1);
         setmenus(newMenus);
     };
-    useEffect(() => {
-        init();
-        showmenulist();
-    }, []);
     const init = () => {
         if (id) {
             axios.get(`${url}/updateevent/${id}`)
@@ -78,6 +75,7 @@ const EditEvent = () => {
                     setAlbumback(Response.data.album);
                     setCraneback(Response.data.crane);
                     setDroneback(Response.data.drone);
+                    setStatus(Response.data.status);
                 })
                 .catch(error => {
                     console.log('Something went wrong', error);
@@ -92,7 +90,7 @@ const EditEvent = () => {
             .catch(error => {
                 console.log('Something went wrong', error);
             })
-    }
+        }
 
     //getting menus
     const showmenulist = () => {
@@ -119,13 +117,14 @@ const EditEvent = () => {
             drone,
             crane,
             bookedVenue,
-            menus
+            menus,
+            status
         }
         console.log(eventdetails);
 
         axios.put(url + "/eventinfo", eventdetails, { headers: { "authorization": `Bearer ${token}` } })
-            .then(Response => {
-                console.log('Printing event data', Response.data);
+        .then(Response => {
+            console.log('Printing event data', Response.data);
                 axios.get(url+"/role", { headers: { "authorization": `Bearer ${token}` } }).then(
                     Response => {
                         console.log('Printing event data',Response.data);
@@ -136,13 +135,17 @@ const EditEvent = () => {
                             history.push('/customer/viewevent');
                         }
                     }
-                )
-            })
-            .catch(error => {
-                console.log('Something went wrong', error);
-            })
-    }
-
+                    )
+                })
+                .catch(error => {
+                    console.log('Something went wrong', error);
+                })
+            }
+            useEffect(() => {
+                init();
+                showmenulist();
+            }, []);
+    
     return (
         <>
             <div className="forms-container">
@@ -175,6 +178,7 @@ const EditEvent = () => {
                                                             <option value="BIRTHDAYPARTY">BIRTHDAYPARTY</option>
                                                             <option value="ENGAGEMENT">ENGAGEMENT</option>
                                                             <option value="COLLAGE_EVENT">COLLAGE_EVENT</option>
+                                                            <option value="MARRIAGE">MARRIAGE</option>
                                                         </select>
                                                     </td>
                                                 </tr>

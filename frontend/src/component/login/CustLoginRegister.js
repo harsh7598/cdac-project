@@ -113,7 +113,7 @@ const CustLoginRegister = () => {
                 <input type="text" className="input-fields-r" placeholder="Enter Contact Number" value={contactNumber}  onChange={(e)=>{setcontactNumber(e.target.value)}}/>
                 <input type="date" className="input-fields-r" placeholder="Enter Date of Birth" value={dob}  onChange={(e)=>{setdob(e.target.value)}}/>
                 <input type="text" className="input-fields-r" placeholder="Enter Aadhar Number" value={adharNumber}  onChange={(e)=>{setadharNumber(e.target.value)}}/>
-                <input type="password " className="input-fields-r" placeholder="Enter New Password" value={password}  onChange={(e)=>{setpassword(e.target.value)}}/>
+                <input type="password" className="input-fields-r" placeholder="Enter New Password" value={password}  onChange={(e)=>{setpassword(e.target.value)}}/>
                 <input type="password" className="input-fields-r" placeholder="Confirm Password" value={cPassword} onChange={(e)=>{setCpassword(e.target.value)}}/>
               <input type="submit" className="btn-l" value="Sign up" onClick={registerCustomer}/>
             </form>

@@ -8,10 +8,9 @@ import { AiOutlineMenu } from "react-icons/ai";
 const ViewEventManager = () => {
 
     const [events, setEvents] = useState([]);
-    const role = localStorage.getItem("role");
+    const role = localStorage.getItem('role');
     const [forassign, setForAssign] = useState("");
     const token = JSON.parse(localStorage.getItem("jwttoken"));
-    const [statusback, setStatusBack] = useState([]);
 
     const init = () => {
         const token = JSON.parse(localStorage.getItem("jwttoken"));
@@ -25,47 +24,33 @@ const ViewEventManager = () => {
             console.log("admin")
             setForAssign("MANAGERS");
         }
-        
+
         axios.get(url + "/regevents", { headers: { "authorization": `Bearer ${token}` } })
-        .then(Response => {
-            console.log('Printing Event data', Response.data);
-            setEvents(Response.data);
-            Response.data.map(ev=>{
-                if(ev.status=="Waiting For Approval"){
-                    setStatusBack("accordion-button collapsed bg-warning");
-                    console.log("waiting for approval");
-                }
-                if(ev.status=="Waiting For Payment"){
-                    setStatusBack("accordion-button collapsed bg-info");
-                    console.log("waiting for payment");
-                }
-                if(ev.status=="Approved"){
-                    setStatusBack("accordion-button collapsed bg-success")
-                }
-                });
-            
-            
-        })
-        .catch(error => {
-            console.log('Something went wrong', error);
-        })
+            .then(Response => {
+                console.log('Printing Event data', Response.data);
+                setEvents(Response.data);
+
+            })
+            .catch(error => {
+                console.log('Something went wrong', error);
+            })
     }
 
-    
+
     const Handledone = (event) => {
         axios.put(url + "/eventinfo", event, { headers: { "authorization": `Bearer ${token}` } })
-        .then(Response => {
-            console.log('Printing Menu data', Response.data);
-            init();
-        })
-        .catch(error => {
-            console.log('Something went wrong', error);
-        });
+            .then(Response => {
+                console.log('Printing Menu data', Response.data);
+                init();
+            })
+            .catch(error => {
+                console.log('Something went wrong', error);
+            });
     }
-    
+
     useEffect(() => {
         init();
-       
+
     }, []);
 
 
@@ -81,35 +66,51 @@ const ViewEventManager = () => {
                     {events.map((event) => (
                         <div className="accordion-item m-3" key={event.id}>
                             <h2 className="accordion-header" id="headingOne">
-                            <button className={statusback} type="button" data-bs-toggle="collapse" aria-expanded="false" data-bs-target={"#collapse" + event.id} aria-controls={"collapse" + event.id}>
-                                {/* <button className="accordion-button collapsed accordian-back" type="button" data-bs-toggle="collapse" aria-expanded="false" data-bs-target={"#collapse" + event.id} aria-controls={"collapse" + event.id}> */}
+                                <button className="accordion-button collapsed accordian-back" type="button" data-bs-toggle="collapse" aria-expanded="false" data-bs-target={"#collapse" + event.id} aria-controls={"collapse" + event.id}>
                                     <h4 className="col-md-5">{event.name}</h4>
-                                <h5 className="col-md-2 row justify-content-center align-items-center">{event.status}</h5>
+                                    <h5 className="col-md-2 d-flex justify-content-center align-items-center">{event.status}</h5>
+                                    <div className="collapse navbar-collapse w-25" id={"n" + event.id}>
+                                        <select name="status" id="status" className="input-fields-mod" defaultValue={event.status} onChange={(e) => { event.status = e.target.value; Handledone(event) }}>
+                                            <option value="Waiting For Approval">Waiting For Approval</option>
+                                            <option value="Waiting For Payment">Waiting For Payment</option>
+                                            <option value="Approved">Approved</option>
+                                        </select>
+                                    </div>
 
-                                    <Link
-                                        className="navbar-toggler border-transparent "
-                                        type="button"
-                                        data-bs-toggle="collapse"
-                                        to="#n"
-                                        aria-controls="navbarSupportedContent"
-                                        aria-expanded="false"
-                                        aria-label="Toggle navigation"
-                                    >
-                                        <AiOutlineMenu  />
-                                    </Link>
-                                        <div className="collapse navbar-collapse" id="n">
-                                            <ul className="navbar-nav mr-auto">
-                                                <li className="nav-item active">
-                                                    <Link to="/eventmanager" className="nav-link">
-                                                        Home
-                                                    </Link>
-                                                </li>
-                                            </ul>
-                                        </div>
+
+
+
+                                    <div className="col-md-4 d-flex justify-content-end align-items-end text-white btn-group dropstart">
+                                        {/* <Link
+                                            className=""
+                                            type="button"
+                                            data-bs-toggle="collapse"
+                                            to={"#n" + event.id}
+                                            aria-controls="navbarSupportedContent"
+                                            aria-expanded="false"
+                                            aria-label="Toggle navigation"
+                                        >
+                                            <AiOutlineMenu className="h3" />
+                                        </Link> */}
+                                        <Link className="dropdown-toggle text-white"
+                                            type="button"
+                                            id="dropdownMenuButton2"
+                                            to=""
+                                            data-bs-toggle="dropdown"
+
+                                            aria-expanded="false">
+                                            <AiOutlineMenu className="h3" />
+                                        </Link>
+                                        <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                                            <li><button className="dropdown-item" value="Waiting For Approval" onClick={(e) => { event.status = e.target.value; Handledone(event) }}>Waiting For Approval</button></li>
+                                            <li><button className="dropdown-item" value="Waiting For Payment" onClick={(e) => { event.status = e.target.value; Handledone(event) }}>Waiting For Payment</button></li>
+                                            <li><button className="dropdown-item" value="Approved" onClick={(e) => { event.status = e.target.value; Handledone(event) }}>Approved</button></li>
+                                            
+                                        </ul>
+                                    </div>
                                 </button>
                             </h2>
-
-
+    
                             <div id={"collapse" + event.id} className="accordion-collapse collapse bg-black" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                 <div className="accordion-body" id="fordownload">
                                     <div className="bg-black py-2 px-2 border border-2 border-white"  >
@@ -150,7 +151,7 @@ const ViewEventManager = () => {
                                                     <td><h4>{event.bookedVenue.cost}</h4></td>
                                                 </tr>
                                                 <tr>
-                                                    <td className='text-black' colSpan={5}>-----------------------------------------------</td>
+                                                    <td className='text-black' colSpan={5}>-</td>
                                                 </tr>
                                                 <tr>
                                                 </tr>
@@ -202,7 +203,7 @@ const ViewEventManager = () => {
                                             </tbody></table>
                                         </div>
 
-                                        <select name="status" id="status" className="input-fields-mod" defaultValue={event.status} onChange={(e) => { event.status = e.target.value; Handledone(event)}}>
+                                        <select name="status" id="status" className="input-fields-mod" defaultValue={event.status} onChange={(e) => { event.status = e.target.value; Handledone(event) }}>
                                             <option value="Waiting For Approval">Waiting For Approval</option>
                                             <option value="Waiting For Payment">Waiting For Payment</option>
                                             <option value="Approved">Approved</option>

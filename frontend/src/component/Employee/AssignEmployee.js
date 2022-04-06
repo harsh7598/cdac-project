@@ -9,7 +9,7 @@ const AssignEmployee = () => {
     const [Emp, setEmp] = useState('');
     const {id} = useParams()
     const token=JSON.parse(localStorage.getItem("jwttoken"));
-    const role = JSON.parse(localStorage.getItem("role"));
+    const role = localStorage.getItem("role");
   
 
     useEffect(() => {

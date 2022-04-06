@@ -54,7 +54,7 @@ const ViewEvent = () => {
                             console.log("payment successful")
                             alert("payment successfull your order place")
                             event.status="Approved"
-                            axios.post(url + "/eventinfo",event, { headers: { "authorization": `Bearer ${token}` } })
+                            axios.put(url + "/eventinfo",event, { headers: { "authorization": `Bearer ${token}` } })
                         },
                         "prefill": {
                         "name": "",

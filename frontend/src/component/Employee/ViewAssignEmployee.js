@@ -11,9 +11,6 @@ const ViewAssignEmployee = () => {
     const token=JSON.parse(localStorage.getItem("jwttoken"));
   
 
-    useEffect(() => {
-        init();
-    }, []);
     const HandleRemove = (Emp) => {
         console.log("id is" + id);
         axios.put(url + "/unassignemployee/" + id,Emp,{headers:{"authorization":`Bearer ${token}`}}).then(Response => {
@@ -24,7 +21,7 @@ const ViewAssignEmployee = () => {
                 console.log('Something went wrong', error);
             })
     }
-
+    
     const AssignEmp=(emp)=>{
         axios.put(url+"/assignemployee/"+id,emp,{headers:{"authorization":`Bearer ${token}`}}).then(Response => {
             console.log('assign Employee successfully',);
@@ -34,17 +31,20 @@ const ViewAssignEmployee = () => {
           }) 
     }
 
-
+    
     const init = () => {
         axios.get(url + "/assignemployees/"+id)
-            .then(Response => {
-                console.log('Printing Employee data', Response.data);
+        .then(Response => {
+            console.log('Printing Employee data', Response.data);
                 setEmployee(Response.data);
             })
             .catch(error => {
                 console.log('Something went wrong', error);
             })
-    };
+        };
+        useEffect(() => {
+            init();
+        }, []);
 
     return (
 

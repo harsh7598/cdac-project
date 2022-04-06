@@ -107,6 +107,7 @@ public class EventServicesIMPL implements IEventServices {
 	public void assignEmployee(int id, User user) {
 		user.getRegevents().add(getById(id));
 		userDao.save(user);
+		System.out.println("in assign");
 	}
 
 	@Override

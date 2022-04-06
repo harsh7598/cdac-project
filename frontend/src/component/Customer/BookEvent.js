@@ -139,6 +139,7 @@ const BookEvent = () => {
                                                             <option value="BIRTHDAYPARTY">BIRTHDAYPARTY</option>
                                                             <option value="ENGAGEMENT">ENGAGEMENT</option>
                                                             <option value="COLLAGE_EVENT">COLLAGE_EVENT</option>
+                                                            <option value="MARRIAGE">MARRIAGE</option>
                                                         </select>
                                                     </td>
                                                 </tr>
