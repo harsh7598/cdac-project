@@ -3,6 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { url } from "../common/constants";
 import axios from "axios";
 import { BsSearch } from "react-icons/bs";
+import Swal from "sweetalert2";
 
 const EditEvent = () => {
     const token = JSON.parse(localStorage.getItem("jwttoken"));
@@ -128,6 +129,11 @@ const EditEvent = () => {
                 axios.get(url+"/role", { headers: { "authorization": `Bearer ${token}` } }).then(
                     Response => {
                         console.log('Printing event data',Response.data);
+                        Swal.fire(
+                            'Event Details Updated Successfully',
+                            '',
+                            'success'
+                          )
                         if(Response.data==="MANAGER"){
                             history.push('/manager/viewevent');
                         }
@@ -212,19 +218,6 @@ const EditEvent = () => {
                                     <div className="scrollable">
                                         {Venues.map((venue) => (
                                             <div key={venue.id} className="border py-3 m-3 event__box">
-                                                {/* <div className="border">
-                                                    <div className="grid-child">
-                                                        <h4 className="text-start px-3">Name: {venue.name}</h4>
-                                                        <h4 className="text-start px-3">Location: {venue.location}</h4>
-                                                        <h4 className="text-start px-3">Address: {venue.address}</h4>
-                                                        <h4 className="text-start px-3">Capacity: {venue.maxCapacity}</h4>
-                                                        <h4 className="text-start px-3">Category: {venue.category}</h4>
-                                                        <h4 className="text-start px-3">Contact: {venue.contact}</h4>
-                                                        <h4 className="text-start px-3">Cost: {venue.cost}</h4>
-                                                        <h4 className="text-start px-3">Description: {venue.description}</h4>
-                                                        <button type="button" className="btn btn-warning mx -5 w-50 h-100" onClick={() => { setBookedvenue(venue) }}>Select</button>
-                                                    </div>
-                                                </div> */}
 
                                                 <div className="grid-child d-flex justify-content-center">
                                                     <table className="col-11 table-bordered text-white"><tbody>

@@ -81,6 +81,12 @@ public class UserServicesIMPL implements IUserServices {
 		Event e = eventDao.getById(id);
 		return userDao.findByRoleAndRegevents("EMPLOYEE", e);
 	}
+	
+	@Override
+	public List<User> getManagersByEvent(int id) {
+		Event e = eventDao.getById(id);
+		return userDao.findByRoleAndRegevents("MANAGER", e);
+	}
 
 	@Override
 	public int validateEmailAndGenearateOtp(String email) {

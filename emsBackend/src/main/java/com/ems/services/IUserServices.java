@@ -14,6 +14,7 @@ public interface IUserServices {
 	public List<User> getEmployees(String role);
 	public void deleteEmployee(int id);
 	public List<User> getEmployeesByEvent(int id);
+	public List<User> getManagersByEvent(int id);
 	public int validateEmailAndGenearateOtp(String email);
 	public boolean changePassword(String email,String password);
 	

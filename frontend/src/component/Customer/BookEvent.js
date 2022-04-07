@@ -24,7 +24,7 @@ const BookEvent = () => {
     const [date, setdate] = useState("");
     const [guestCount, setguestCount] = useState("");
     // media states
-    const [Photography, setphotography] = useState(false);
+    const [photography, setphotography] = useState(false);
     const [videography, setvideography] = useState(false);
     const [album, setalbum] = useState(false);
     const [drone, setdrone] = useState(false);
@@ -86,7 +86,7 @@ const BookEvent = () => {
             date,
             type,
             guestCount,
-            Photography,
+            photography,
             videography,
             album,
             drone,
@@ -99,7 +99,7 @@ const BookEvent = () => {
         axios.post(url + "/eventinfo", eventdetails, { headers: { "authorization": `Bearer ${token}` } })
             .then(Response => {
                 console.log('Printing event data', Response.data);
-                history.push("/customer/welcome")
+                history.push("/customer/bookingsuccessful")
             })
             .catch(error => {
                 console.log('Something went wrong', error);
@@ -176,19 +176,7 @@ const BookEvent = () => {
                                     <div className="scrollable">
                                         {Venues.map((venue) => (
                                             <div key={venue.id} className="border py-3 m-3 event__box">
-                                                {/* <div className="border">
-                                                    <div className="grid-child">
-                                                        <h4 className="text-start px-3">Name: {venue.name}</h4>
-                                                        <h4 className="text-start px-3">Location: {venue.location}</h4>
-                                                        <h4 className="text-start px-3">Address: {venue.address}</h4>
-                                                        <h4 className="text-start px-3">Capacity: {venue.maxCapacity}</h4>
-                                                        <h4 className="text-start px-3">Category: {venue.category}</h4>
-                                                        <h4 className="text-start px-3">Contact: {venue.contact}</h4>
-                                                        <h4 className="text-start px-3">Cost: {venue.cost}</h4>
-                                                        <h4 className="text-start px-3">Description: {venue.description}</h4>
-                                                        <button type="button" className="btn btn-warning mx -5 w-50 h-100" onClick={() => { setBookedvenue(venue) }}>Select</button>
-                                                    </div>
-                                                </div> */}
+                                                
 
                                                 <div className="grid-child d-flex justify-content-center">
                                                     <table className="col-11 table-bordered text-white"><tbody>
@@ -343,7 +331,7 @@ const BookEvent = () => {
                                     <div className="row col-10">
 
                                         <label className={photographyback ? 'bg-success event__box border w-100 h4 py-3 my-2' : 'bg-dark event__box border w-100 h4 py-3 my-2'} htmlFor="photography">
-                                            <input type="checkbox" name="photography" id="photography" className="h-25" onChange={() => { setphotography(!Photography); setPhotographyback(!photographyback) }} />Photography</label>
+                                            <input type="checkbox" name="photography" id="photography" className="h-25" onChange={() => { setphotography(!photography); setPhotographyback(!photographyback) }} />Photography</label>
 
                                         <label className={videographyback ? 'bg-success event__box border w-100 h4 py-3 my-2' : 'bg-dark event__box border w-100 h4 py-3 my-2'} htmlFor="videography">
                                             <input type="checkbox" name="videography" id="videography" className="h-25" onChange={() => { setvideography(!videography); setVideographyback(!videographyback) }} />Videography</label>

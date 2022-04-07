@@ -39,6 +39,7 @@ import AddVenue from './component/Employee/AddVenue';
 import AddStudio from './component/Employee/AddStudio';
 import AddCaters from './component/Employee/AddCaters';
 import AdminWelcome from "./component/Employee/AdminWelcome";
+import BookingSuccessful from './component/Customer/BookingSuccessful';
 
 
 function App() { 
@@ -87,6 +88,7 @@ function App() {
 
           <ProtectedRoute exact path='/customer/welcome' component={()=>{return(<><NavSignOut/><CustomerWelcome/></>)}}/>
           <ProtectedRoute exact path="/customer/bookevent" component={()=>{return(<><NavSignOut /><BookEvent /></>)}}/>
+          <ProtectedRoute exact path="/customer/bookingsuccessful" component={()=>{return(<><NavSignOut /><BookingSuccessful /></>)}}/>
           <ProtectedRoute exact path="/customer/editevent" component={()=>{return(<><NavSignOut /><EditEvent /></>)}}/>
           <ProtectedRoute exact path="/manager/viewvenue"component={()=>{return(<><NavSignOut /><SelectVenue /></>)}}/>
           <ProtectedRoute exact path="/manager/viewcaterer"component={()=>{return(<><NavSignOut /><SelectCaterer /></>)}}/>

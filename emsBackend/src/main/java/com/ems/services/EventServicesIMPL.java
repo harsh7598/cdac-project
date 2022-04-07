@@ -83,6 +83,9 @@ public class EventServicesIMPL implements IEventServices {
 			e.setTotalCost(totalCost);
 			System.out.println("TotalCost-"+e.getTotalCost());
 		}
+		else if(event.getStatus().equals("Approved")){
+			e.setTotalCost(event.getTotalCost());
+		}
 		eventDao.save(e);
 		return e;
 	}
@@ -105,9 +108,11 @@ public class EventServicesIMPL implements IEventServices {
 
 	@Override
 	public void assignEmployee(int id, User user) {
+		System.out.println("in assemp");
 		user.getRegevents().add(getById(id));
+		System.out.println("in assemp mid");
 		userDao.save(user);
-		System.out.println("in assign");
+		System.out.println("in assign end");
 	}
 
 	@Override

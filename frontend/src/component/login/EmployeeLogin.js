@@ -34,14 +34,14 @@ const EmployeeLogin = () => {
           history.push("admin/welcome")
         }
         else {
-          seterror("invalid CREDENTIALS or Authority")
+          seterror("INVALID CREDENTIALS or AUTHORITY")
         }
       }
     }
     ).catch(error => {
       setemail("");
       setpassword("");
-      seterror("invalid CREDENTIALS");
+      seterror("INVALID CREDENTIALS");
       seterrortype("alert-box");
       console.log('Something went wrong', error);
     });
@@ -61,7 +61,7 @@ const EmployeeLogin = () => {
               <input type="text" className="input-fields-l" placeholder="Email" value={email} onChange={(e) => { setemail(e.target.value) }} />
               <input type="password" className="input-fields-l" placeholder="Password" value={password} onChange={(e) => { setpassword(e.target.value) }} />
               <input type="submit" value="Login" className="btn-l solid" onClick={Login} />
-              <Link className="btm" to={"/forgotpassword"}>forgot Password</Link>
+              <Link className="btn text-white" to={"/forgotpassword"}>Forgot Password ?</Link>
               <div className={errortype} role="alert">{error}</div>
             </form>
           </div>

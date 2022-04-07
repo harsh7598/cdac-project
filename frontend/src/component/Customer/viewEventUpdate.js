@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 const ViewEventUp = () => {
 
     const [events, setEvents] = useState([]);
+  
 
     const init = () => {
         const token = JSON.parse(localStorage.getItem("jwttoken"));
@@ -34,6 +35,7 @@ const ViewEventUp = () => {
                     Update Event Details
                 </div>
                 {/* "#collapseOne" */}
+                {(events.length===0)?<div className='mt-5 pt-5'><div className="bg-white text-black p-3 mt-5 h1">Please Register Any Event</div></div>:
                 <div className="accordion" id="accordionExample">
                     {events.map((event) => (
                         <div className="accordion-item m-3" key={event.id}>
@@ -142,7 +144,7 @@ const ViewEventUp = () => {
                             </div>
                         </div>
                     ))}
-                </div>
+                </div>}
             </div>
         </div>
     );

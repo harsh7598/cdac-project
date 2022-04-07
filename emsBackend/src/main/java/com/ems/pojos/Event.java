@@ -90,7 +90,7 @@ public class Event extends BaseEntity{
 //	@ManyToMany(mappedBy = "regevents")
 //    private List<User> users = new ArrayList<>();
 
-	@ManyToMany(cascade = { CascadeType.ALL },fetch = FetchType.EAGER)
+	@ManyToMany(cascade = { CascadeType.PERSIST,CascadeType.REMOVE },fetch = FetchType.EAGER)
 	@JoinTable(name = "event_menus", joinColumns = { @JoinColumn(name = "event_id") }, 
 	inverseJoinColumns = {@JoinColumn(name = "menu_id") })
 	List<Menu> menus = new ArrayList<>();

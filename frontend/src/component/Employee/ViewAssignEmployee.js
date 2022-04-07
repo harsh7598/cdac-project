@@ -9,6 +9,7 @@ const ViewAssignEmployee = () => {
     const [Emp, setEmp] = useState('');
     const {id} = useParams()
     const token=JSON.parse(localStorage.getItem("jwttoken"));
+    const role=localStorage.getItem("role");
   
 
     const HandleRemove = (Emp) => {
@@ -33,6 +34,7 @@ const ViewAssignEmployee = () => {
 
     
     const init = () => {
+        if (role == "MANAGER") {
         axios.get(url + "/assignemployees/"+id)
         .then(Response => {
             console.log('Printing Employee data', Response.data);
@@ -41,6 +43,17 @@ const ViewAssignEmployee = () => {
             .catch(error => {
                 console.log('Something went wrong', error);
             })
+        }
+        if (role == "ADMIN") {
+            axios.get(url + "/assignmanagers/"+id)
+            .then(Response => {
+                console.log('Printing Manager data', Response.data);
+                    setEmployee(Response.data);
+                })
+                .catch(error => {
+                    console.log('Something went wrong', error);
+                })
+            }
         };
         useEffect(() => {
             init();
@@ -78,7 +91,7 @@ const ViewAssignEmployee = () => {
                                     <td><h4 className="text-start px-3">{emp.email}</h4></td>
                                     {/* <td><button className='btn-l float-md-right' onClick={() => { HandleRemove(emp.id) }}>Remove Employee</button></td> */}
                                     <td className='text-center'>
-                                        <button className='btn-l' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => setEmp(emp)}>Unassign Employee</button>
+                                        <button className='btn-l' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => setEmp(emp)}>Unassign</button>
                                         <Link className='btn btn-l' to={`/assigntask/${emp.id}`}>ASSIGN Task</Link>
                                     </td> 
                                 </tr>

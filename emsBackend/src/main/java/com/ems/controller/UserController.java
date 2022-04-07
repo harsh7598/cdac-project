@@ -77,6 +77,11 @@ public class UserController {
 		return userService.getEmployeesByEvent( id);
 	}
 	
+	@GetMapping("/assignmanagers/{id}")
+	public List<User>getManagers(@PathVariable int id){
+		return userService.getManagersByEvent( id);
+	}
+	
 	@DeleteMapping("/deleteemployee/{id}")
 	public void deleteEmployee(@PathVariable int id){
 		System.out.println(id);

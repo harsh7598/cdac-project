@@ -62,6 +62,7 @@ const ViewEventManager = () => {
                     Event Details
                 </div>
                 {/* "#collapseOne" */}
+                {(events.length===0)?<div className='mt-5 pt-5'><div className="bg-white text-black p-3 mt-5 h1">No Event Assigned Yet</div></div>:
                 <div className="accordion" id="accordionExample">
                     {events.map((event) => (
                         <div className="accordion-item m-3" key={event.id}>
@@ -220,7 +221,7 @@ const ViewEventManager = () => {
                             </div>
                         </div>
                     ))}
-                </div>
+                </div>}
             </div>
         </div>
     );

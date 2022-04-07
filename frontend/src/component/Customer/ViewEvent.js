@@ -3,6 +3,7 @@ import axios from "axios";
 import { url } from '../common/constants';
 import jsPDF from "jspdf"
 import useRazorpay from "react-razorpay";
+import Swal from 'sweetalert2';
 
 // import employeeService from '../services/employee.service';
 
@@ -39,7 +40,7 @@ const ViewEvent = () => {
                 console.log(' data', response.data.status);
                 console.log("fff")
                 if (response.data.status == "created") {
-                    
+
                     let options = {
                         key: 'rzp_test_iU4N0Hfz8SDIJU',
                         amount: event.totalCost,
@@ -52,7 +53,11 @@ const ViewEvent = () => {
                             console.log(response.razorpay_order_id)
                             console.log(response.razorpay_signature)
                             console.log("payment successful")
-                            alert("payment successfull your order place")
+                            Swal.fire(
+                                'Payment Done Successfully',
+                                '',
+                                'success'
+                              )
                             event.status="Approved"
                             axios.put(url + "/eventinfo",event, { headers: { "authorization": `Bearer ${token}` } })
                         },
@@ -106,6 +111,7 @@ const ViewEvent = () => {
                     Event Details
                 </div>
                 {/* "#collapseOne" */}
+                {(events.length==0)?<div className='mt-5 pt-5'><div className="bg-white text-black p-3 mt-5 h1">Please Register Any Event</div></div>:
                 <div className="accordion" id="accordionExample">
                     {events.map((event) => (
                         <div className="accordion-item m-3" key={event.id}>
@@ -207,7 +213,7 @@ const ViewEvent = () => {
                                         </div>
                                         <div className='text-center'>
                                             <button className="btn btn-l mt-3" onClick={generatePDF}>Download Details</button>
-                                            <button className="btn btn-l mt-3" onClick={()=>{HandlePayment(event)}}>PAY {event.totalCost}</button>
+                                            <button className={event.totalCost==0?"btn btn-l mt-3 disabled":"btn btn-l mt-3"} onClick={()=>{HandlePayment(event)}}>PAY {event.totalCost}</button>
                                         </div>
                                     </div>
                                     <br></br>
@@ -215,7 +221,7 @@ const ViewEvent = () => {
                             </div>
                         </div>
                     ))}
-                </div>
+                </div>}
             </div>
         </div>
     );

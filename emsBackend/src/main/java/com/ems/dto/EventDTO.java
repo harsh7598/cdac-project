@@ -32,5 +32,6 @@ private boolean drone;
 private boolean crane;
 private List<Menu> menus;
 private Venue bookedVenue;
+private double totalCost;
 
 }
