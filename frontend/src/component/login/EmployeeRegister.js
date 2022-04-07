@@ -4,6 +4,7 @@ import "./LoginRegister.css";
 import register from "../../images/register.svg"
 import { Link, useHistory } from "react-router-dom";
 import { url } from "../common/constants";
+import Swal from "sweetalert2";
 
 const EmployeeRegister = () => {
   const history = useHistory();
@@ -46,11 +47,20 @@ const EmployeeRegister = () => {
       }
       axios.post(url + "/registration", customer).then(Response => {
         console.log(Response.data);
+        Swal.fire(
+          ' You are Registered Successfully',
+          '',
+          'success'
+        )
         history.push("/manager/viewemployees")
+      }).catch(
+        Swal.fire({
+          icon: 'error',
+          title: 'Please Check Details',
+          text: '',
+          footer: ''
       })
-    }
-    else {
-      console.log("invalid password not matched");
+      )
     }
   }
   return (

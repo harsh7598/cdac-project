@@ -96,6 +96,7 @@ const ViewEvent = () => {
             })
             .catch(error => {
                 console.log('Something went wrong', error);
+                
             })
     }
     useEffect(() => {

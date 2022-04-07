@@ -32,6 +32,8 @@ public class EventServicesIMPL implements IEventServices {
 	VenueDao venueDao;
 	@Autowired
 	CatererDao catererDao;
+	@Autowired
+	private  EmailSenderService mailservice;
 
 	@Override
 	public EventDTO registerEvent(EventDTO event, String email) {
@@ -44,11 +46,12 @@ public class EventServicesIMPL implements IEventServices {
 		List<Menu> menus = new ArrayList<Menu>();
 		event.getMenus().forEach((p) -> menus.add(menuDao.findById(p.getId()).orElseThrow()));
 		e.getMenus().addAll(menus);
+		mailservice.sendMail(email,"Shubhkarya Event Registration","Your Event Registered Successfully");
 		return event;
 	}
 
 	@Override
-	public Event updateEvent(EventDTO event) {
+	public Event updateEvent(EventDTO event,String email) {
 
 		Event e = new Event(event.getName(), event.getType(), event.getDate(), event.getGuestCount(),
 				event.isPhotography(), event.isVideography(), event.isAlbum(), event.isDrone(), event.isCrane(),
@@ -56,7 +59,6 @@ public class EventServicesIMPL implements IEventServices {
 		e.setStudio(event.getStudio());
 		e.setId(event.getId());
 		e.setStatus(event.getStatus());
-		System.out.println("fsjhgjhb");
 		List<Menu> menus = new ArrayList<Menu>();
 		System.out.println(e);
 		event.getMenus().forEach((p) -> menus.add(menuDao.findById(p.getId()).orElseThrow()));
@@ -82,9 +84,12 @@ public class EventServicesIMPL implements IEventServices {
 			}
 			e.setTotalCost(totalCost);
 			System.out.println("TotalCost-"+e.getTotalCost());
+			mailservice.sendMail(email,"Your Event is Approved", "Your Event is Approved By Shubhakaryya Events Please Proceed for Payment Procedure");
 		}
 		else if(event.getStatus().equals("Approved")){
 			e.setTotalCost(event.getTotalCost());
+			mailservice.sendMail(email,"Your Event is booked", "Payment done Successfully, Event is Booked");
+			
 		}
 		eventDao.save(e);
 		return e;
@@ -112,6 +117,7 @@ public class EventServicesIMPL implements IEventServices {
 		user.getRegevents().add(getById(id));
 		System.out.println("in assemp mid");
 		userDao.save(user);
+		mailservice.sendMail(user.getEmail(),"New Event Assigned", "You Have New Event.....");
 		System.out.println("in assign end");
 	}
 

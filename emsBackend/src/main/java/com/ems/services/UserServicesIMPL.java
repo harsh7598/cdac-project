@@ -1,6 +1,5 @@
 package com.ems.services;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -44,6 +43,8 @@ public class UserServicesIMPL implements IUserServices {
 		user.setRole(request.getRole());
 		user.setSalary(request.getSalary());
 		User persistentUser = userDao.save(user);
+		mailservice.sendMail(request.getEmail(),"Shubhkarya Event Registration","Thank you for being a part of Shubhkarya family. "
+				+ "We Create You Celebrate....");
 		RegisterDTO dto = new RegisterDTO();
 		System.out.println(persistentUser.toString());
 		BeanUtils.copyProperties(persistentUser, dto);

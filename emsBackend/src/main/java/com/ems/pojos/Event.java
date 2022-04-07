@@ -1,7 +1,6 @@
 package com.ems.pojos;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,11 +15,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Future;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -28,7 +22,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 
 @Getter
@@ -49,12 +42,7 @@ public class Event extends BaseEntity{
 //	@Future(message = "Date must be after today")
 //	@NotNull(message = "Enter Date")
 	private LocalDate date;
-//	@Column(name="start_time")
-//	private LocalDateTime startTime;
-//	@Column(name="end_time")
-//	private LocalDateTime endTime;
-	
-	
+
 	@Column(name="guest_count")
 	/*
 	 * @Positive

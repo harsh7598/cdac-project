@@ -31,10 +31,7 @@ public class EventController {
 	
 	@PostMapping("/bookevent")
 	public ResponseEntity<?> bookEvent(@Valid @RequestBody EventDTO event,HttpServletRequest request) {
-		//String token=request.getHeader("Authorization");
-//		System.out.println(token);
-//		System.out.println(request.getUserPrincipal().getName());
-//	s	return null;
+	
 	return ResponseEntity.ok(eventServices.registerEvent(event,request.getUserPrincipal().getName()));
 	}
 	
@@ -63,9 +60,7 @@ public class EventController {
 	@PutMapping("/eventinfo")
 	public ResponseEntity<?> updateEvent(@Valid @RequestBody EventDTO eventdata,HttpServletRequest request){
 		System.out.println(eventdata.toString());
-		//System.out.println(media);
-//		menuList.forEach((e)->System.out.println(e));
-		return ResponseEntity.ok(eventServices.updateEvent(eventdata));
+		return ResponseEntity.ok(eventServices.updateEvent(eventdata,request.getUserPrincipal().getName()));
 	}
 	
 	@GetMapping("/regevents")

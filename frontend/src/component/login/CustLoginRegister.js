@@ -78,12 +78,23 @@ const CustLoginRegister = () => {
         role
       }
       axios.post(url + "/registration", customer).then(Response => {
+        Swal.fire(
+          ' You are Registered Successfully',
+          '',
+          'success'
+        )
         history.push("/customer");
         const container = document.querySelector(".container-l");
         container.classList.remove("sign-up-mode");
       }).catch(error => {
         reset();
-        console.log('Something went wrong', error);
+        
+        Swal.fire({
+          icon: 'error',
+          title: 'Please Check Details',
+          text: '',
+          footer: ''
+      })
       });
     }
     else {

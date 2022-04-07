@@ -8,11 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ems.dao.MenuDao;
-import com.ems.dao.UserDao;
 import com.ems.pojos.CategoryType;
 import com.ems.pojos.Menu;
 import com.ems.pojos.SubCategoryType;
-import com.ems.pojos.User;
 
 @Service
 @Transactional
@@ -20,8 +18,6 @@ public class MenuServicesIMPL implements IMenuServices {
 	@Autowired
 	private MenuDao menuDao;
 	
-	@Autowired
-	private UserDao userDao;
 
 	@Override
 	public List<Menu> getAllMenu() {
@@ -44,12 +40,12 @@ public class MenuServicesIMPL implements IMenuServices {
 		return menuDao.findBySubCategory(SubCategoryType.valueOf(subCategory));
 	}
 
-	@Override
-	public void submitMenu(List<Menu> list, String email) {
-		User u= userDao.findByEmail(email).orElseThrow();
-		
-		
-	}
+//	@Override
+//	public void submitMenu(List<Menu> list, String email) {
+//		User u= userDao.findByEmail(email).orElseThrow();
+//		
+//		
+//	}
 
 	@Override
 	public Menu addMenu(Menu menu) {

@@ -21,6 +21,9 @@ UserTodoDao userTodoDao;
 @Autowired
 UserDao userDao;
 
+@Autowired
+private  EmailSenderService mailservice;
+
 @Override
 	public List<UserTodo> showEmployeeTodo(String email){
 	System.out.println("Taskkkkkkkkk"+userDao.findByEmail(email).orElseThrow().getTodoList());		
@@ -44,6 +47,7 @@ UserDao userDao;
 		u.getTodoList().add(task);
 		userTodoDao.save(task);
 		userDao.save(u);
+		mailservice.sendMail(u.getEmail(),"New Task Assigned","Manager Assigned You New Task," +task.getTodo());
 		
 //		userDao.findById(id).orElseThrow().getTodoList().add(new UserTodo(task,"incomplete"));
 	}

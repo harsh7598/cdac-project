@@ -10,7 +10,7 @@ public interface IMenuServices {
 	List<Menu>getByCategoryAndSubCategory(String category,String subCategory);
 	List<Menu>getByCategory(String category);
 	List<Menu>getBySubCategory(String subCategory);
-	void submitMenu(List<Menu> list,String email);
+//	void submitMenu(List<Menu> list,String email);
 	Menu addMenu(Menu menu); 
 
 }

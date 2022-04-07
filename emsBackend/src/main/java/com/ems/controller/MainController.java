@@ -44,8 +44,7 @@ public class MainController {
 
 	@PostMapping("/registration")
 	public ResponseEntity<?> userRegistration(@Valid @RequestBody RegisterDTO request) {
-		System.out.println("in user reg " + request);
-//		return ResponseEntity.ok(userServices.registerUser(request));
+
 		return new ResponseEntity<>(userServices.registerUser(request),HttpStatus.OK);
 	}
 	

@@ -2,10 +2,7 @@ package com.ems.services;
 
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
-
 import com.ems.dto.RegisterDTO;
-import com.ems.pojos.Event;
 import com.ems.pojos.User;
 
 public interface IUserServices {

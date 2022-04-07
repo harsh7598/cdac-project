@@ -10,7 +10,7 @@ import com.ems.pojos.User;
 
 public interface IEventServices {
 	EventDTO registerEvent(EventDTO event,String email);
-	Event updateEvent(EventDTO event);
+	Event updateEvent(EventDTO event,String email);
 	List<Event> getByUsers(String email);
 	Event getById(int id);
 	void assignEmployee(int id,User user);

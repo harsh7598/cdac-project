@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.ems.pojos.Event;
 import com.ems.pojos.User;
-import com.ems.pojos.UserTodo;
 
 public interface UserDao extends JpaRepository<User, Integer>{
 	Optional<User> findByEmail(String email);
