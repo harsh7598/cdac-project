@@ -17,6 +17,7 @@ const ForgotPassword = (e) => {
     const [confirmOtp, setConfirmotp] = useState("")
     const GenerateAndSendOTP = () => {
         console.log(email);
+        toast.info("Sending OTP on your Email...");
         axios.get(url + "/generateotp/" + email)
             .then(Response => {
                 console.log(Response.data);

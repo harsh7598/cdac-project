@@ -21,7 +21,6 @@ const AddStudio = () => {
         const studio={
             name,
             contact,
-            
             photographycost,
             videographycost,
             albumcost,

@@ -2,31 +2,37 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 import { url } from '../common/constants';
 import { Link } from 'react-router-dom';
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
 
 const ViewEmployee = () => {
     const [Employee, setEmployee] = useState([]);
     const [Id, setId] = useState();
-const role = localStorage.getItem("role");
+    const role = localStorage.getItem("role");
+
     useEffect(() => {
         init();
     }, []);
+
     const HandleRemove = (id) => {
         console.log("id is" + id);
         axios.delete(url + "/deleteemployee/" + id).then(Response => {
             console.log('delete Employee successfully');
+            toast.success("Employee Removed Successfully");
             init();
         })
             .catch(error => {
                 console.log('Something went wrong', error);
+                toast.error("Unable to Remove Employee");
             })
     }
 
 
 
     const init = () => {
-        
-        axios.get(url + "/allemployees/"+ role)
+
+        axios.get(url + "/allemployees/" + role)
             .then(Response => {
                 console.log('Printing Employee data', Response.data);
                 setEmployee(Response.data);
@@ -40,7 +46,7 @@ const role = localStorage.getItem("role");
 
         <div className="forms-container">
             <div className="py-5 text-white my-5">
-                <div  className="fw-bold pt-5 display-6">
+                <div className="fw-bold pt-5 display-6">
                     Employees
                 </div>
                 <Link className='btn btn-l w-50 mt-4' to='/regemployee' >register new Employee</Link>
@@ -70,11 +76,11 @@ const role = localStorage.getItem("role");
                                     <td><h4 className="text-start px-3">{emp.id}</h4></td>
                                     <td><h4 className="text-start px-3">{emp.name}</h4></td>
                                     <td><h4 className="text-start px-3">{emp.email}</h4></td>
-                                    <td><h4 className="text-start px-3">{emp.role}</h4></td>   
+                                    <td><h4 className="text-start px-3">{emp.role}</h4></td>
                                     {/* <td><button className='btn-l float-md-right' onClick={() => { HandleRemove(emp.id) }}>Remove Employee</button></td> */}
                                     <td className='text-center'>
                                         <button className='btn-l' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => setId(emp.id)}>REMOVE {emp.role}</button>
-                                    </td> 
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

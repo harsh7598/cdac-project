@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 import { url } from '../common/constants';
 import { useHistory, useParams } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 const AssignStudio = () => {
 
@@ -24,11 +25,22 @@ const AssignStudio = () => {
 
   const handleStudio=(studio)=>{
     axios.put(url+"/assignstudio/"+id,studio,{headers:{"authorization":`Bearer ${token}`}}).then(Response => {
-        console.log('assign Studio successfully',);
+        console.log('Studio Assigned Successfully');
+        Swal.fire(
+          ' Studio Assigned Successfully',
+          '',
+          'success'
+          )
         history.goBack();
       })
       .catch(error => {
         console.log('Something went wrong', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Unable to Assign Studio',
+          text: '',
+          footer: ''
+        })
       }) 
   }
 

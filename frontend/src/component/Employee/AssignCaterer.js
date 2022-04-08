@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 import { url } from '../common/constants';
 import { useHistory, useParams } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 
 const AssignCaterer = () => {
@@ -23,11 +24,22 @@ const AssignCaterer = () => {
   }
   const handleCaterer=(cater)=>{
     axios.put(url+"/assigncaterer/"+id,cater,{headers:{"authorization":`Bearer ${token}`}}).then(Response => {
-        console.log('assign Caterers successfully',);
+        console.log('Caterers Assigned Successfully');
+        Swal.fire(
+          ' Caterer Assigned Successfully',
+          '',
+          'success'
+          )
         history.goBack();
       })
       .catch(error => {
         console.log('Something went wrong', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Unable to Assign Caterer',
+          text: '',
+          footer: ''
+        })
       }) 
   }
 

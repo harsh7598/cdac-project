@@ -2,6 +2,10 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 import { url } from '../common/constants';
 import { Link,useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
 
 
 const AssignEmployee = () => {
@@ -15,23 +19,26 @@ const AssignEmployee = () => {
     useEffect(() => {
         init();
     }, []);
-    const HandleRemove = (Emp) => {
-        console.log("id is" + id);
-        axios.put(url + "/unassignemployee/" + id,Emp,{headers:{"authorization":`Bearer ${token}`}}).then(Response => {
-            console.log('unassign Employee successfully');
-            init();
-        })
-            .catch(error => {
-                console.log('Something went wrong', error);
-            })
-    }
+    
 
     const AssignEmp=(emp)=>{
+        toast.info("Assigning Employee, Please wait for a while.....");
         axios.put(url+"/assignemployee/"+id,emp,{headers:{"authorization":`Bearer ${token}`}}).then(Response => {
-            console.log('assign Employee successfully',);
+            console.log('Employee Assigned Successfully');
+            Swal.fire(
+                ' Employee Assigned Successfully',
+                '',
+                'success'
+              )
           })
           .catch(error => {
             console.log('Something went wrong', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Unable to Assign Employee',
+                text: '',
+                footer: ''
+              })
           }) 
     }
 
@@ -91,24 +98,6 @@ const AssignEmployee = () => {
                         </tbody>
                     </table>
 
-                    {/* Remove Employee Popup div */}
-                    <div className="modal fade text-black" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div className="modal-dialog">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <h5 className="modal-title" id="exampleModalLabel">Warning</h5>
-                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div className="modal-body text-start">
-                                    Are you Sure, you want to fire this Employee?
-                                </div>
-                                <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" className="btn btn-primary " onClick={() => { HandleRemove(Emp) }} data-bs-dismiss="modal">Yes</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

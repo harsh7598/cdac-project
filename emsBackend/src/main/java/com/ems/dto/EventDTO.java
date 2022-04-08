@@ -3,6 +3,7 @@ package com.ems.dto;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.ems.pojos.Caters;
 import com.ems.pojos.EventType;
 import com.ems.pojos.Menu;
 import com.ems.pojos.Studio;
@@ -30,6 +31,8 @@ private boolean drone;
 private boolean crane;
 private List<Menu> menus;
 private Venue bookedVenue;
+private Caters bookedCater;
 private double totalCost;
+private String customerEmail;
 
 }

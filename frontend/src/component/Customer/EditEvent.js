@@ -4,10 +4,13 @@ import { url } from "../common/constants";
 import axios from "axios";
 import { BsSearch } from "react-icons/bs";
 import Swal from "sweetalert2";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
 
 const EditEvent = () => {
     const token = JSON.parse(localStorage.getItem("jwttoken"));
-   
+
 
     // states    
     const history = useHistory();
@@ -32,6 +35,8 @@ const EditEvent = () => {
     // Vnues states
     const [Venues, setVenues] = useState([]);
     const [bookedVenue, setBookedvenue] = useState("");
+    const [bookedCater, setBookedCater] = useState("");
+    const [studio, setStudio] = useState("");
     //media backgrounds
     const [photographyback, setPhotographyback] = useState(false);
     const [videographyback, setVideographyback] = useState(false);
@@ -39,6 +44,8 @@ const EditEvent = () => {
     const [droneback, setDroneback] = useState(false);
     const [craneback, setCraneback] = useState(false);
     const [status, setStatus] = useState("");
+    const [customerEmail, setCustomerEmail] = useState("");
+    const [totalCost, setTotalCost] = useState("");
 
     //functions 
 
@@ -77,6 +84,10 @@ const EditEvent = () => {
                     setCraneback(Response.data.crane);
                     setDroneback(Response.data.drone);
                     setStatus(Response.data.status);
+                    setBookedCater(Response.data.bookedCater);
+                    setStudio(Response.data.studio);
+                    setCustomerEmail(Response.data.customerEmail);
+                    setTotalCost(Response.data.totalCost);
                 })
                 .catch(error => {
                     console.log('Something went wrong', error);
@@ -91,7 +102,7 @@ const EditEvent = () => {
             .catch(error => {
                 console.log('Something went wrong', error);
             })
-        }
+    }
 
     //getting menus
     const showmenulist = () => {
@@ -119,39 +130,51 @@ const EditEvent = () => {
             crane,
             bookedVenue,
             menus,
-            status
+            status,
+            bookedCater,
+            studio,
+            customerEmail,
+            totalCost
+            
         }
         console.log(eventdetails);
-
+        toast.info('Updating Event Details, Please wait for a while');
         axios.put(url + "/eventinfo", eventdetails, { headers: { "authorization": `Bearer ${token}` } })
-        .then(Response => {
-            console.log('Printing event data', Response.data);
-                axios.get(url+"/role", { headers: { "authorization": `Bearer ${token}` } }).then(
+            .then(Response => {
+                console.log('Printing event data', Response.data);
+                Swal.fire(
+                    'Event Details Updated Successfully',
+                    '',
+                    'success'
+                )
+                axios.get(url + "/role", { headers: { "authorization": `Bearer ${token}` } }).then(
                     Response => {
-                        console.log('Printing event data',Response.data);
-                        Swal.fire(
-                            'Event Details Updated Successfully',
-                            '',
-                            'success'
-                          )
-                        if(Response.data==="MANAGER"){
+                        console.log('Printing event data', Response.data);
+                        
+                        if (Response.data === "MANAGER") {
                             history.push('/manager/viewevent');
                         }
-                        if(Response.data==="CUSTOMER"){
+                        if (Response.data === "CUSTOMER") {
                             history.push('/customer/viewevent');
                         }
                     }
-                    )
-                })
-                .catch(error => {
-                    console.log('Something went wrong', error);
-                })
-            }
-            useEffect(() => {
-                init();
-                showmenulist();
-            }, []);
-    
+                )
+            })
+            .catch(error => {
+                console.log('Something went wrong', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Unable to Update Event Details',
+                    text: '',
+                    footer: ''
+                  })
+            })
+    }
+    useEffect(() => {
+        init();
+        showmenulist();
+    }, []);
+
     return (
         <>
             <div className="forms-container">
@@ -297,7 +320,7 @@ const EditEvent = () => {
                                                 <button className="btn btn-primary collapsed w-25 mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                                                     NEXT
                                                 </button>
-                                                
+
                                             </div>
                                             <div className="grid-child">
                                                 <span className="row justify-content-center">
@@ -354,7 +377,7 @@ const EditEvent = () => {
                                 <button className="btn btn-warning w-25 mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                                     BACK
                                 </button>
-                                
+
                             </div>
                         </div>
                         {/* media Items */}
@@ -369,7 +392,7 @@ const EditEvent = () => {
                                     <div className="row col-10">
 
                                         <label className={photographyback ? 'bg-success event__box border w-100 h4 py-3 my-2' : 'bg-dark event__box border w-100 h4 py-3 my-2'} htmlFor="photography">
-                                                <input type="checkbox" name="photography" id="photography" className="opacity-0" onChange={() => { setphotography(!photography); setPhotographyback(prevBack => !prevBack)}}/>Photography</label>
+                                            <input type="checkbox" name="photography" id="photography" className="opacity-0" onChange={() => { setphotography(!photography); setPhotographyback(prevBack => !prevBack) }} />Photography</label>
 
                                         <label className={videographyback ? 'bg-success event__box border w-100 h4 py-3 my-2' : 'bg-dark event__box border w-100 h4 py-3 my-2'} htmlFor="videography">
                                             <input type="checkbox" name="videography" id="videography" className="opacity-0" onChange={() => { setvideography(!videography); setVideographyback(prevBack => !prevBack) }} />Videography</label>

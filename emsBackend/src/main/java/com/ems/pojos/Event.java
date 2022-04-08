@@ -62,6 +62,8 @@ public class Event extends BaseEntity{
 	private boolean album;
 	private boolean drone;
 	private boolean crane;
+	@Column(name="customer_email")
+	private String customerEmail;
 
 	@ManyToOne
 	@JoinColumn(name = "studio_id")

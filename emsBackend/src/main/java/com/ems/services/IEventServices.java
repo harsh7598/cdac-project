@@ -4,6 +4,8 @@ package com.ems.services;
 
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 import com.ems.dto.EventDTO;
 import com.ems.pojos.Event;
 import com.ems.pojos.User;

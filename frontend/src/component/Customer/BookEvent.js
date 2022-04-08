@@ -3,6 +3,9 @@ import { useHistory } from "react-router-dom";
 import { url } from "../common/constants";
 import axios from "axios";
 import { BsSearch } from "react-icons/bs";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
 
 const BookEvent = () => {
 
@@ -96,6 +99,7 @@ const BookEvent = () => {
         }
         console.log(eventdetails);
         const token = JSON.parse(localStorage.getItem("jwttoken"));
+        toast.info("We're Processing your Booking, Please wait for a while")
         axios.post(url + "/eventinfo", eventdetails, { headers: { "authorization": `Bearer ${token}` } })
             .then(Response => {
                 console.log('Printing event data', Response.data);

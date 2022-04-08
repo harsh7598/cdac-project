@@ -10,6 +10,10 @@ import register from "../../images/register.svg"
 import { useHistory } from "react-router-dom";
 import { url } from "../common/constants";
 import { Link } from "react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Swal from "sweetalert2";
+toast.configure();
 
 const CustLoginRegister = () => {
   const history = useHistory();
@@ -77,6 +81,7 @@ const CustLoginRegister = () => {
         password,
         role
       }
+      toast.info("Registering Your Details, Please wait for a while.....");
       axios.post(url + "/registration", customer).then(Response => {
         Swal.fire(
           ' You are Registered Successfully',
@@ -99,6 +104,12 @@ const CustLoginRegister = () => {
     }
     else {
       console.log("invalid password not matched");
+      Swal.fire({
+        icon: 'error',
+        title: 'Please Check Confirm Password should be same as Password',
+        text: '',
+        footer: ''
+      })
     }
   }
 

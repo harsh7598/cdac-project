@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 import { url } from '../common/constants';
 import { Link,useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 
 const ViewAssignEmployee = () => {
@@ -15,11 +16,22 @@ const ViewAssignEmployee = () => {
     const HandleRemove = (Emp) => {
         console.log("id is" + id);
         axios.put(url + "/unassignemployee/" + id,Emp,{headers:{"authorization":`Bearer ${token}`}}).then(Response => {
-            console.log('unassign Employee successfully');
+            console.log('Employee UnAssigned Successfully');
+            Swal.fire(
+                ' Employee UnAssigned Successfully',
+                '',
+                'success'
+              )
             init();
         })
             .catch(error => {
                 console.log('Something went wrong', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Unable to UnAssign Employee',
+                    text: '',
+                    footer: ''
+                  })
             })
     }
     
@@ -91,7 +103,7 @@ const ViewAssignEmployee = () => {
                                     <td><h4 className="text-start px-3">{emp.email}</h4></td>
                                     {/* <td><button className='btn-l float-md-right' onClick={() => { HandleRemove(emp.id) }}>Remove Employee</button></td> */}
                                     <td className='text-center'>
-                                        <button className='btn-l' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => setEmp(emp)}>Unassign</button>
+                                        <button className='btn-l mx-2' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => setEmp(emp)}>Unassign</button>
                                         <Link className='btn btn-l' to={`/assigntask/${emp.id}`}>ASSIGN Task</Link>
                                     </td> 
                                 </tr>

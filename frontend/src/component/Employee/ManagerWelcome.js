@@ -24,7 +24,7 @@ const ManagerWelcome = () => {
     {
       id: 3,
       icon: <FaEdit className="commonIcons2" />,
-      heading: "All Availble Services",
+      heading: "All the Availble Services",
       link: "viewallservices"
     }
   ];
@@ -53,7 +53,7 @@ const ManagerWelcome = () => {
     <div className="forms-container">
       <div className="container py-4 text-white my-5">
         <div colSpan="2" className="fw-bold p-3 display-6">
-          Welcome Back, {uname}
+          Welcome, {uname}
         </div>
         <div className="row">
           {state.map((info) => (

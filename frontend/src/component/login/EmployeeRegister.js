@@ -5,6 +5,9 @@ import register from "../../images/register.svg"
 import { Link, useHistory } from "react-router-dom";
 import { url } from "../common/constants";
 import Swal from "sweetalert2";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
 
 const EmployeeRegister = () => {
   const history = useHistory();
@@ -31,6 +34,7 @@ const EmployeeRegister = () => {
   const [cPassword, setCpassword] = useState("");
   const [error, seterror] = useState("");
 
+
   const registerCustomer = (e) => {
     e.preventDefault();
     if (password == cPassword) {
@@ -45,6 +49,7 @@ const EmployeeRegister = () => {
         role,
         salary
       }
+      toast.info("Registering Your Details, Please wait for a while.....");
       axios.post(url + "/registration", customer).then(Response => {
         console.log(Response.data);
         Swal.fire(
@@ -53,14 +58,22 @@ const EmployeeRegister = () => {
           'success'
         )
         history.push("/manager/viewemployees")
-      }).catch(
+      }).catch(error => {
         Swal.fire({
           icon: 'error',
           title: 'Please Check Details',
           text: '',
           footer: ''
+        })
       })
-      )
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Please Check Confirm Password should be same as Password',
+        text: '',
+        footer: ''
+      })
+
     }
   }
   return (
@@ -90,10 +103,10 @@ const EmployeeRegister = () => {
                       <input type="date" className="input-fields-mod" placeholder="Enter Date of Birth" value={dob} onChange={(e) => { setdob(e.target.value) }} />
                     </td>
                   </tr>
-                    <tr>
-                      <td colSpan={2}>
-                        <input type="text" className="input-fields-mod" placeholder="Enter Aadhar Number" value={adharNumber} onChange={(e) => { setadharNumber(e.target.value) }} />
-                      </td>
+                  <tr>
+                    <td colSpan={2}>
+                      <input type="text" className="input-fields-mod" placeholder="Enter Aadhar Number" value={adharNumber} onChange={(e) => { setadharNumber(e.target.value) }} />
+                    </td>
                   </tr>
                   <tr>
                     <td colSpan={2}>
@@ -112,7 +125,7 @@ const EmployeeRegister = () => {
                     <td>
                       <input type="text" className="input-fields-mod" placeholder="Enter Salary" value={salary} onChange={(e) => { setsalary(e.target.value) }} />
                     </td>
-                    </tr>
+                  </tr>
                   <tr>
                     <td colSpan={2}>
                       <input type="password" className="input-fields-mod" placeholder="Enter New Password" value={password} onChange={(e) => { setpassword(e.target.value) }} />
