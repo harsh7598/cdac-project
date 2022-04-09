@@ -447,6 +447,8 @@ public class UserServicesIMPL implements IUserServices {
 		}
 		else if(role.equals("MADMIN")) {
 			return userDao.findByRole("MANAGER");	
+		}else if(role.equals("viewcustomer")) {
+			return userDao.findByRole("CUSTOMER");	
 		}
 		return userDao.findUserByRole();
 	}
@@ -975,5 +977,11 @@ public class UserServicesIMPL implements IUserServices {
 		if(userDao.save(u)!=null)
 			return true;
 		return false;
+	}
+
+	@Override
+	public User viewOwnDetails(String email) {
+		User u = userDao.findByEmail(email).orElseThrow();
+		return u;
 	}
 }

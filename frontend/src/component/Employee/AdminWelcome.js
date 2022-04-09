@@ -24,8 +24,14 @@ const AdminWelcome = () => {
     {
       id: 3,
       icon: <FaEdit className="commonIcons2" />,
-      heading: "All and Add Availble Services",
+      heading: "View & Add Available Services",
       link: "viewallservices"
+    },
+    {
+      id: 4,
+      icon: <FaEdit className="commonIcons2" />,
+      heading: "View All Customers",
+      link: "viewcustomers"
     }
   ];
 

@@ -8,6 +8,8 @@ import { FaUserCircle} from "react-icons/fa";
 const NavSignOut = () => {
 
   const [uname, setUname] = useState();
+  const [redirect, setRedirect] = useState("");
+  const role = localStorage.getItem("role");
 
   const init = () => {
     const token = JSON.parse(localStorage.getItem("jwttoken"));
@@ -15,6 +17,18 @@ const NavSignOut = () => {
       .then(Response => {
         console.log('Printing User name', Response.data);
         setUname(Response.data);
+        if(role=="ADMIN"){
+          setRedirect("/admin/welcome");
+        }
+        if(role=="MANAGER"){
+          setRedirect("/manager/welcome");
+        }
+        if(role=="EMPLOYEE"){
+          setRedirect("/employee/welcome");
+        }
+        if(role=="CUSTOMER"){
+          setRedirect("/customer/welcome");
+        }
       })
       .catch(error => {
          
@@ -51,6 +65,11 @@ const NavSignOut = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+                <Link className="nav-link" to={redirect}>
+                  Home
+                </Link>
+              </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/services">
                   Services
@@ -62,12 +81,6 @@ const NavSignOut = () => {
                 </Link>
               </li>
 
-              {/* <li className="nav-item">
-                    <Link className="nav-link" to="/">
-                  {uname}
-                </Link>
-              </li> */}
-
               { uname ?
                 (<li className="nav-item dropdown">
                   <Link className="nav-link dropdown-toggle" to="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -76,7 +89,7 @@ const NavSignOut = () => {
                   </Link>
                   <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
-                      <Link className="dropdown-item" to="/" onClick={handlesignOut}>
+                      <Link className="dropdown-item" to="/profile">
                         Profile
                       </Link>
                     </li>

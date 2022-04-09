@@ -77,7 +77,7 @@ const role = localStorage.getItem("role");
     <div className="forms-container">
       <div className="container py-5 text-white my-5">
 
-        <div className="row py-5">
+        <div className="row pt-5">
           {state.map((info) => (
             <div className="col-12 col-md-4 py-3 px-4 h-100" type="hidden" key={info.id}>
               <Link className="nav-link text-white"  to={info.link}>

@@ -71,7 +71,8 @@ const CustLoginRegister = () => {
 
   const registerCustomer = (e) => {
     e.preventDefault();
-    if (password === cPassword) {
+    if (password === cPassword && password.length > 5) {
+
       const customer = {
         name,
         email,
@@ -106,7 +107,7 @@ const CustLoginRegister = () => {
       console.log("invalid password not matched");
       Swal.fire({
         icon: 'error',
-        title: 'Please Check Confirm Password should be same as Password',
+        title: 'Please Check Confirm Password should be same as Password and Password Length should be greater than 5',
         text: '',
         footer: ''
       })
@@ -134,7 +135,7 @@ const CustLoginRegister = () => {
             <form action="#" className="sign-in-form l-form">
               <h2 className="title fw-bold">Sign In</h2>
               <input type="text" className="input-fields-l" placeholder="Email" value={email} onChange={(e) => { setemail(e.target.value) }} />
-              <input type="password" className="input-fields-l" placeholder="Password" value={password} onChange={(e) => { setpassword(e.target.value) }} />
+              <input type="password" className="input-fields-l" minLength={6} placeholder="Password" value={password} onChange={(e) => { setpassword(e.target.value) }} />
               <input type="submit" value="Login" className="btn-l solid" onClick={login} />
               <Link className="btn text-white" to={"/forgotpassword"}>Forgot Password ?</Link>
               <div className={errortype} role="alert">{error}</div>
@@ -146,8 +147,8 @@ const CustLoginRegister = () => {
               <input type="text" className="input-fields-r" placeholder="Enter Contact Number" value={contactNumber} onChange={(e) => { setcontactNumber(e.target.value) }} />
               <input type="date" className="input-fields-r" placeholder="Enter Date of Birth" value={dob} onChange={(e) => { setdob(e.target.value) }} />
               <input type="text" className="input-fields-r" placeholder="Enter Aadhar Number" value={adharNumber} onChange={(e) => { setadharNumber(e.target.value) }} />
-              <input type="password" className="input-fields-r" placeholder="Enter New Password" value={password} onChange={(e) => { setpassword(e.target.value) }} />
-              <input type="password" className="input-fields-r" placeholder="Confirm Password" value={cPassword} onChange={(e) => { setCpassword(e.target.value) }} />
+              <input type="password" className="input-fields-r" minLength={6} placeholder="Enter New Password" value={password} onChange={(e) => { setpassword(e.target.value) }} />
+              <input type="password" className="input-fields-r" minLength={6} placeholder="Confirm Password" value={cPassword} onChange={(e) => { setCpassword(e.target.value) }} />
               <input type="submit" className="btn-l" value="Sign up" onClick={registerCustomer} />
             </form>
           </div>

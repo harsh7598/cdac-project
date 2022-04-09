@@ -34,6 +34,7 @@ const EmployeeLogin = () => {
           history.push("admin/welcome")
         }
         else {
+          seterrortype("alert-box");
           seterror("INVALID CREDENTIALS or AUTHORITY")
         }
       }

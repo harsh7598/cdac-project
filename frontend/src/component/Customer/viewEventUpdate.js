@@ -81,7 +81,7 @@ const ViewEventUp = () => {
                                                     <td><h4>{event.bookedVenue.maxCapacity}</h4></td>
                                                     <td><h4>{event.bookedVenue.category}</h4></td>
                                                     <td><h4>{event.bookedVenue.contact}</h4></td>
-                                                    <td><h4>{event.bookedVenue.cost}</h4></td>
+                                                    <td><h4>Rs.{event.bookedVenue.cost}</h4></td>
                                                 </tr>
                                                 <tr>
                                                     <td className='text-black' colSpan={5}>-----------------------------------------------</td>

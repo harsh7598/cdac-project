@@ -198,7 +198,7 @@ const BookEvent = () => {
                                                             <td><h4>{venue.maxCapacity}</h4></td>
                                                             <td><h4>{venue.category}</h4></td>
                                                             <td><h4>{venue.contact}</h4></td>
-                                                            <td><h4>{venue.cost}</h4></td>
+                                                            <td><h4>Rs.{venue.cost}</h4></td>
                                                         </tr>
                                                         <tr>
                                                             <td className='text-black' colSpan={6}>-</td>
@@ -301,8 +301,8 @@ const BookEvent = () => {
                                                                 {/* <h5 className="mx-2 border " >{m.id}</h5> */}
                                                                 <table className="col-8">
                                                                     <tbody><tr>
-                                                                        <td className="text-start col-6"><h5 className="mx-2 " >{m.menuName}</h5></td>
-                                                                        <td className="text-end col-2"><h5 className="mx-2 " >{m.price}</h5></td>
+                                                                        <td className="text-start col-5"><h5 className="mx-2 " >{m.menuName}</h5></td>
+                                                                        <td className="text-end col-4"><h5 className="mx-2 " >Rs.{m.price} <span className="text-secondary">(/person)</span></h5></td>
                                                                         <td></td>
                                                                     </tr></tbody>
                                                                 </table>
@@ -335,19 +335,19 @@ const BookEvent = () => {
                                     <div className="row col-10">
 
                                         <label className={photographyback ? 'bg-success event__box border w-100 h4 py-3 my-2' : 'bg-dark event__box border w-100 h4 py-3 my-2'} htmlFor="photography">
-                                            <input type="checkbox" name="photography" id="photography" className="h-25" onChange={() => { setphotography(!photography); setPhotographyback(!photographyback) }} />Photography</label>
+                                            <input type="checkbox" name="photography" id="photography" className="h-25" onChange={() => { setphotography(!photography); setPhotographyback(!photographyback) }} />Photography (Rs.10000)</label>
 
                                         <label className={videographyback ? 'bg-success event__box border w-100 h4 py-3 my-2' : 'bg-dark event__box border w-100 h4 py-3 my-2'} htmlFor="videography">
-                                            <input type="checkbox" name="videography" id="videography" className="h-25" onChange={() => { setvideography(!videography); setVideographyback(!videographyback) }} />Videography</label>
+                                            <input type="checkbox" name="videography" id="videography" className="h-25" onChange={() => { setvideography(!videography); setVideographyback(!videographyback) }} />Videography (Rs.30000)</label>
 
                                         <label className={albumback ? 'bg-success event__box border w-100 h4 py-3 my-2' : 'bg-dark event__box border w-100 h4 py-3 my-2'} htmlFor="album">
-                                            <input type="checkbox" name="album" id="album" className="h-25" onChange={() => { setalbum(!album); setAlbumback(!albumback) }} />Album</label>
+                                            <input type="checkbox" name="album" id="album" className="h-25" onChange={() => { setalbum(!album); setAlbumback(!albumback) }} />Album (Rs.15000)</label>
 
                                         <label className={droneback ? 'bg-success event__box border w-100 h4 py-3 my-2' : 'bg-dark event__box border w-100 h4 py-3 my-2'} htmlFor="drone">
-                                            <input type="checkbox" name="drone" id="drone" className="h-25" onChange={() => { setdrone(!drone); setDroneback(!droneback) }} />Drone</label>
+                                            <input type="checkbox" name="drone" id="drone" className="h-25" onChange={() => { setdrone(!drone); setDroneback(!droneback) }} />Drone (Rs.35000)</label>
 
                                         <label className={craneback ? 'bg-success event__box border w-100 h4 py-3 my-2' : 'bg-dark event__box border w-100 h4 py-3 my-2'} htmlFor="crane">
-                                            <input type="checkbox" name="crane" id="crane" className="h-25" onChange={() => { setcrane(!crane); setCraneback(!craneback) }} />Crane</label>
+                                            <input type="checkbox" name="crane" id="crane" className="h-25" onChange={() => { setcrane(!crane); setCraneback(!craneback) }} />Crane (Rs.40000)</label>
                                     </div>
 
                                 </div>

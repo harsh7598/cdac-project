@@ -2,6 +2,8 @@ package com.ems.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,7 +30,7 @@ public class VenueController {
 	}
 	
 	@PostMapping("/addvenue")
-	public ResponseEntity<?> addVenue(@RequestBody Venue venue) {
+	public ResponseEntity<?> addVenue(@Valid @RequestBody Venue venue) {
 		return ResponseEntity.ok(venueServices.addVenue(venue));
 	}
 }

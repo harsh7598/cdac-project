@@ -51,7 +51,6 @@ public class Venue extends BaseEntity{
 	private String contact;
 	
 	@Positive
-	@NotBlank
 	private double cost;
 	
 //	@OneToMany(mappedBy = "bookedVenue",cascade = CascadeType.ALL,fetch = FetchType.EAGER)

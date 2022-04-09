@@ -40,6 +40,8 @@ import AddStudio from './component/Employee/AddStudio';
 import AddCaters from './component/Employee/AddCaters';
 import AdminWelcome from "./component/Employee/AdminWelcome";
 import BookingSuccessful from './component/Customer/BookingSuccessful';
+import ViewCustomer from './component/Employee/ViewCustomer';
+import ViewProfile from './component/login/ViewProfile';
 
 
 function App() { 
@@ -53,6 +55,10 @@ function App() {
             <Packages />
             <About />
             <Contact />
+          </Route>
+          <Route exact path="/profile">
+            <NavSignOut />
+            <ViewProfile />
           </Route>
           
           <Route exact path="/services">
@@ -123,6 +129,7 @@ function App() {
             <EmployeeLogin />
           </Route>
           <ProtectedRoute exact path="/admin/viewemployees"component={()=>{return(<><NavSignOut /><ViewEmployee /></>)}}/>
+          <ProtectedRoute exact path="/admin/viewcustomers"component={()=>{return(<><NavSignOut /><ViewCustomer /></>)}}/>
           <ProtectedRoute exact path="/admin/viewallservices"component={()=>{return(<><NavSignOut /><AvailbleServices/></>)}}/>
           <ProtectedRoute exact path="/regemployee"component={()=>{return(<><NavSignOut /><EmployeeRegister /></>)}}/>
           <ProtectedRoute exact path="/employee/welcome"component={()=>{return(<><NavSignOut /><EmployeeWelcome /></>)}}/>

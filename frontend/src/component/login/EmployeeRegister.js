@@ -11,6 +11,7 @@ toast.configure();
 
 const EmployeeRegister = () => {
   const history = useHistory();
+  const loginrole = localStorage.getItem("role");
 
   const reset = () => {
     setname("");
@@ -37,7 +38,7 @@ const EmployeeRegister = () => {
 
   const registerCustomer = (e) => {
     e.preventDefault();
-    if (password == cPassword) {
+    if (password == cPassword && password.length > 5) {
       const customer = {
         name,
         email,
@@ -69,7 +70,7 @@ const EmployeeRegister = () => {
     } else {
       Swal.fire({
         icon: 'error',
-        title: 'Please Check Confirm Password should be same as Password',
+        title: 'Please Check Confirm Password should be same as Password and Password Length should be greater than 5',
         text: '',
         footer: ''
       })
@@ -115,12 +116,20 @@ const EmployeeRegister = () => {
                   </tr>
                   <tr>
                     <td>
-                      <select name="roles" id="roles" className="input-fields-mod" onChange={(e) => { setrole(e.target.value) }}>
-                        <option value="" hidden>Choose Role</option>
-                        <option value="EMPLOYEE">EMPLOYEE</option>
-                        <option value="MANAGER">MANAGER</option>
-                        <option value="ADMIN">ADMIN</option>
-                      </select>
+                      {loginrole == "MANAGER" ?
+                        <select name="roles" id="roles" className="input-fields-mod" onChange={(e) => { setrole(e.target.value) }}>
+                          <option value="" hidden>Choose Role</option>
+                          <option value="EMPLOYEE">EMPLOYEE</option>
+                          <option value="MANAGER">MANAGER</option>
+                        </select>
+                        :
+                        <select name="roles" id="roles" className="input-fields-mod" onChange={(e) => { setrole(e.target.value) }}>
+                          <option value="" hidden>Choose Role</option>
+                          <option value="EMPLOYEE">EMPLOYEE</option>
+                          <option value="MANAGER">MANAGER</option>
+                          <option value="ADMIN">ADMIN</option>
+                        </select>
+                      }
                     </td>
                     <td>
                       <input type="text" className="input-fields-mod" placeholder="Enter Salary" value={salary} onChange={(e) => { setsalary(e.target.value) }} />

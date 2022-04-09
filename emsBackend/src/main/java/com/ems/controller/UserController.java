@@ -82,8 +82,13 @@ public class UserController {
 	@DeleteMapping("/deleteemployee/{id}")
 	public void deleteEmployee(@PathVariable int id){
 		System.out.println(id);
-		userService.deleteEmployee(id);
-		
+		userService.deleteEmployee(id);	
+	}
+	
+	@GetMapping("/viewprofile")
+	public User viewProfile(HttpServletRequest request)
+	{
+		return userService.viewOwnDetails(request.getUserPrincipal().getName());
 	}
 	
 }

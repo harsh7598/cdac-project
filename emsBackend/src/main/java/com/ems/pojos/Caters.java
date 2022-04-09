@@ -3,6 +3,7 @@ package com.ems.pojos;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import lombok.Getter;
@@ -15,12 +16,14 @@ import lombok.Setter;
 public class Caters extends BaseEntity {
 	
 	@Column(length = 20)
+	@NotEmpty(message = "cannot be empty")
 	private String name;
 
 	@Column(length = 20, name = "contact_number")
 	@Size(min = 10,max = 10)
 	private String contactNumber;
 	@Column(length = 30)
+	@NotEmpty(message = "cannot be empty")
 	private String speciality;
 		
 //	@OneToMany(mappedBy = "bookedCater",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)

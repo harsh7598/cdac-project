@@ -21,43 +21,37 @@ const Services = () => {
       id: 1,
       icon: <SiEventstore className="commonIcons" />,
       heading: "Diiferent Types of Event Plannings",
-      text: "Lorem Ipsum is simply dummy text of the printing typesetting\
-      industry. simply dummy",
+      text: "",
     },
     {
       id: 2,
       icon: <FaCamera className="commonIcons" />,
       heading: "Photography",
-      text: "Lorem Ipsum is simply dummy text of the printing typesetting\
-        industry. simply dummy",
+      text: "",
     },
     {
       id: 3,
       icon: <MdFoodBank className="commonIcons" />,
       heading: "Catering",
-      text: "Lorem Ipsum is simply dummy text of the printing typesetting\
-        industry. simply dummy",
+      text: "",
     },
     {
       id: 4,
       icon: <FaMapMarkedAlt className="commonIcons" />,
       heading: "Venues",
-      text: "Lorem Ipsum is simply dummy text of the printing typesetting\
-        industry. simply dummy",
+      text: "",
     },
     {
       id: 5,
       icon: <FaFileVideo className="commonIcons" />,
       heading: "Videography",
-      text: "Lorem Ipsum is simply dummy text of the printing typesetting\
-        industry. simply dummy",
+      text: "",
     },
     {
       id: 6,
       icon: <MdDesignServices className="commonIcons" />,
       heading: "Design and Decor",
-      text: "Lorem Ipsum is simply dummy text of the printing typesetting\
-        industry. simply dummy",
+      text: "",
     },
   ];
   return (

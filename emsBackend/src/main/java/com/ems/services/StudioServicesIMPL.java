@@ -32,7 +32,11 @@ public class StudioServicesIMPL implements IStudioServices {
 	}
 	@Override
 	public Studio addStudio(Studio studio) {
-		
+		studio.setPhotographycost(10000);
+		studio.setVideographycost(30000);
+		studio.setAlbumcost(15000);
+		studio.setDronecost(35000);
+		studio.setCranecost(40000);
 		return studioDao.save(studio);
 	}
 

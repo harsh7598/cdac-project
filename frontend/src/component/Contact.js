@@ -6,7 +6,7 @@ const Contact = () => {
 
   const state = [
     { id: 1, title: "Name:", text: "ShubhKaryaa Events" },
-    { id: 2, title: "Email:", text: "shubhkaryaaevents@gmail.com" },
+    { id: 2, title: "Email:", text: "shubhkaryaaevents.off@gmail.com" },
     { id: 3, title: "Phone:", text: "+91 000 000 0000" },
     { id: 4, title: "Linkedin", text: "ShubhKaryaa" },
   ];

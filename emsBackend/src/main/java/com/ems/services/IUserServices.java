@@ -14,5 +14,6 @@ public interface IUserServices {
 	public List<User> getManagersByEvent(int id);
 	public int validateEmailAndGenearateOtp(String email);
 	public boolean changePassword(String email,String password);
+	public User viewOwnDetails(String email);
 	
 }

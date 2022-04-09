@@ -98,6 +98,7 @@ const ViewEvent = () => {
                 console.log('Something went wrong', error);
                 
             })
+            init();
     }
     useEffect(() => {
         init();
@@ -158,7 +159,7 @@ const ViewEvent = () => {
                                                     <td><h4>{event.bookedVenue.maxCapacity}</h4></td>
                                                     <td><h4>{event.bookedVenue.category}</h4></td>
                                                     <td><h4>{event.bookedVenue.contact}</h4></td>
-                                                    <td><h4>{event.bookedVenue.cost}</h4></td>
+                                                    <td><h4>Rs.{event.bookedVenue.cost}</h4></td>
                                                 </tr>
                                                 <tr>
                                                     <td className='text-black' colSpan={5}>-----------------------------------------------</td>
@@ -214,7 +215,7 @@ const ViewEvent = () => {
                                         </div>
                                         <div className='text-center'>
                                             <button className="btn btn-l mt-3" onClick={generatePDF}>Download Details</button>
-                                            <button className={event.totalCost==0?"btn btn-l mt-3 disabled":"btn btn-l mt-3"} onClick={()=>{HandlePayment(event)}}>PAY {event.totalCost}</button>
+                                            <button className={event.totalCost==0 || event.status=="Approved"?"btn btn-l mt-3 disabled":"btn btn-l mt-3"} onClick={()=>{HandlePayment(event)}}>PAY {event.totalCost}</button>
                                         </div>
                                     </div>
                                     <br></br>
