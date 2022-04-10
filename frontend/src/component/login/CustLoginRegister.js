@@ -71,7 +71,9 @@ const CustLoginRegister = () => {
 
   const registerCustomer = (e) => {
     e.preventDefault();
-    if (password === cPassword && password.length > 5) {
+    if(password.length > 5){
+    if (password === cPassword) {
+
 
       const customer = {
         name,
@@ -97,7 +99,7 @@ const CustLoginRegister = () => {
         
         Swal.fire({
           icon: 'error',
-          title: 'Please Check Details',
+          title: 'Please fill all the Details',
           text: '',
           footer: ''
       })
@@ -107,11 +109,20 @@ const CustLoginRegister = () => {
       console.log("invalid password not matched");
       Swal.fire({
         icon: 'error',
-        title: 'Please Check Confirm Password should be same as Password and Password Length should be greater than 5',
+        title: 'Please Check Confirm Password should be same as Password',
         text: '',
         footer: ''
       })
     }
+  }else{
+    console.log("invalid password length");
+      Swal.fire({
+        icon: 'error',
+        title: 'Password Length should be greater than 5',
+        text: '',
+        footer: ''
+      })
+  }
   }
 
   useEffect(() => {

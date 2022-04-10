@@ -62,7 +62,7 @@ const EmployeeRegister = () => {
       }).catch(error => {
         Swal.fire({
           icon: 'error',
-          title: 'Please Check Details',
+          title: 'Please fill all the Details',
           text: '',
           footer: ''
         })
