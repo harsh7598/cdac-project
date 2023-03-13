@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "../../images/logonav.jpg";
+import logo from "../../images/whitelogoevent-removebg-preview.png";
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { url } from '../common/constants';

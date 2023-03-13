@@ -38,44 +38,114 @@ const EmployeeRegister = () => {
 
   const registerCustomer = (e) => {
     e.preventDefault();
-    if (password == cPassword && password.length > 5) {
-      const customer = {
-        name,
-        email,
-        contactNumber,
-        dob,
-        adharNumber,
-        accountNumber,
-        password,
-        role,
-        salary
-      }
-      toast.info("Registering Your Details, Please wait for a while.....");
-      axios.post(url + "/registration", customer).then(Response => {
-        console.log(Response.data);
-        Swal.fire(
-          ' You are Registered Successfully',
-          '',
-          'success'
-        )
-        history.push("/manager/viewemployees")
-      }).catch(error => {
+    const customer = {
+      name,
+      email,
+      contactNumber,
+      dob,
+      adharNumber,
+      accountNumber,
+      password,
+      role,
+      salary
+    }
+   
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      if (/[1236547890!@#$%^&*()+=:;"'<,>/_]/.test(name)) {
+        console.log("invalid Name");
         Swal.fire({
           icon: 'error',
-          title: 'Please fill all the Details',
+          title: 'Only Alphabates and spaces are allowed in Name',
           text: '',
           footer: ''
         })
-      })
+      } else {
+
+        if (password.length > 5) {
+          if (password === cPassword) {
+
+            if (contactNumber.length == 10 && adharNumber.length == 12) {
+              const customer = {
+                name,
+                email,
+                contactNumber,
+                dob,
+                adharNumber,
+                password,
+                role
+              }
+              toast.info("Registering Your Details, Please wait for a while.....");
+              axios.post(url + "/registration", customer).then(Response => {
+                console.log(Response.data);
+                Swal.fire(
+                  ' You are Registered Successfully',
+                  '',
+                  'success'
+                )
+                history.push("/manager/viewemployees")
+              }).catch(error => {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Please fill all the Details',
+                  text: '',
+                  footer: ''
+                })
+              })
+            }
+            else {
+              if (contactNumber.length != 10) {
+
+                console.log("invalid Contact Number");
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Please Check, Contact Number must be 10 digit',
+                  text: '',
+                  footer: ''
+                })
+              } else if (adharNumber.length != 12) {
+
+                console.log("invalid Adhar Number");
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Please Check, Adhar Number must be 12 digit',
+                  text: '',
+                  footer: ''
+                })
+              }
+
+            }
+
+          }
+          else {
+            console.log("invalid password not matched");
+            Swal.fire({
+              icon: 'error',
+              title: 'Please Check Confirm Password should be same as Password',
+              text: '',
+              footer: ''
+            })
+          }
+        } else {
+          console.log("invalid password length");
+          Swal.fire({
+            icon: 'error',
+            title: 'Password Length should be greater than 5',
+            text: '',
+            footer: ''
+          })
+        }
+      }
+
     } else {
       Swal.fire({
         icon: 'error',
-        title: 'Please Check Confirm Password should be same as Password and Password Length should be greater than 5',
+        title: 'Invalid Email Adress',
         text: '',
         footer: ''
       })
-
     }
+
+
   }
   return (
     <div>
@@ -98,7 +168,7 @@ const EmployeeRegister = () => {
                   </tr>
                   <tr>
                     <td>
-                      <input type="text" className="input-fields-mod" placeholder="Enter Contact Number" value={contactNumber} onChange={(e) => { setcontactNumber(e.target.value) }} />
+                      <input type="number" className="input-fields-mod" placeholder="Enter Contact Number" value={contactNumber} onChange={(e) => { setcontactNumber(e.target.value) }} />
                     </td>
                     <td>
                       <input type="date" className="input-fields-mod" placeholder="Enter Date of Birth" value={dob} onChange={(e) => { setdob(e.target.value) }} />
@@ -106,12 +176,12 @@ const EmployeeRegister = () => {
                   </tr>
                   <tr>
                     <td colSpan={2}>
-                      <input type="text" className="input-fields-mod" placeholder="Enter Aadhar Number" value={adharNumber} onChange={(e) => { setadharNumber(e.target.value) }} />
+                      <input type="number" className="input-fields-mod" placeholder="Enter Aadhar Number" value={adharNumber} onChange={(e) => { setadharNumber(e.target.value) }} />
                     </td>
                   </tr>
                   <tr>
                     <td colSpan={2}>
-                      <input type="text" className="input-fields-mod" placeholder="Enter Account Number" value={accountNumber} onChange={(e) => { setaccountNumber(e.target.value) }} />
+                      <input type="number" className="input-fields-mod" placeholder="Enter Account Number" value={accountNumber} onChange={(e) => { setaccountNumber(e.target.value) }} />
                     </td>
                   </tr>
                   <tr>
@@ -132,7 +202,7 @@ const EmployeeRegister = () => {
                       }
                     </td>
                     <td>
-                      <input type="text" className="input-fields-mod" placeholder="Enter Salary" value={salary} onChange={(e) => { setsalary(e.target.value) }} />
+                      <input type="number" className="input-fields-mod" placeholder="Enter Salary" value={salary} onChange={(e) => { setsalary(e.target.value) }} />
                     </td>
                   </tr>
                   <tr>

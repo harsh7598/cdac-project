@@ -5,6 +5,7 @@ import axios from "axios";
 import { BsSearch } from "react-icons/bs";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Swal from "sweetalert2";
 toast.configure();
 
 const BookEvent = () => {
@@ -41,7 +42,6 @@ const BookEvent = () => {
     const [albumback, setAlbumback] = useState(false);
     const [droneback, setDroneback] = useState(false);
     const [craneback, setCraneback] = useState(false);
-
 
     //functions 
 
@@ -109,6 +109,19 @@ const BookEvent = () => {
                 console.log('Something went wrong', error);
             })
     }
+
+    const showerror =()=>{
+        var error1=document.getElementById("counterror");
+        error1.textContent="Selected Venue can't Serve "+guestCount+" Guest, Kindly press back and Select other Venue";
+        error1.style.color="red"                                                 
+        Swal.fire({
+            icon: 'error',
+            title: 'Selected Venue has no capacity to serve guestcount, Kindly press back and Select other Venue',
+            text: '',
+            footer: ''
+          })
+    }
+    
 
     return (
         <>
@@ -221,7 +234,14 @@ const BookEvent = () => {
 
                                                 </div>
                                                 <button type="button" className="btn btn-primary mt-3 w-50 h-100 text-white" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
-                                                    onClick={() => { setBookedvenue(venue) }} >SELECT</button>
+                                                    onClick={() => {
+                                                        var error1=document.getElementById("counterror");
+                                                        if(venue.maxCapacity < guestCount){
+                                                           showerror();                                                       
+
+                                                    }else{
+                                                        error1.textContent="";
+                                                         setBookedvenue(venue) }    }} >SELECT</button>
                                             </div>
 
                                         ))}
@@ -263,6 +283,7 @@ const BookEvent = () => {
                                                 <button className="btn btn-primary collapsed w-25 mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                                                     NEXT
                                                 </button>
+                                                
                                                 
                                             </div>
                                             <div className="grid-child">
@@ -317,6 +338,9 @@ const BookEvent = () => {
                                         </div>
                                     </div>
                                 </div>
+                                <br/>
+                                <span id="counterror"></span>
+                                <br/>
                                 <button className="btn btn-warning w-25 mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                                     BACK
                                 </button>

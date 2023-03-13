@@ -15,5 +15,11 @@ public class AuthenticationResponse {
 	public String getRole() {
 		return role;
 	}
+	@Override
+	public String toString() {
+		return "AuthenticationResponse [jwt=" + jwt + ", role=" + role + "]";
+	}
+	
+	
 	
 }

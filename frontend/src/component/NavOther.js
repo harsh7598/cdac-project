@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "../images/logonav.jpg";
+import logo from "../images/whitelogoevent-removebg-preview.png";
 import React from "react";
 // import{Link} from "react-scroll";
 

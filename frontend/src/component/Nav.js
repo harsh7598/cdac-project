@@ -1,5 +1,5 @@
 // import { Link } from "react-router-dom";
-import logo from "../images/logonav.jpg";
+import logo from "../images/whitelogoevent-removebg-preview.png";
 import React from "react";
 import{Link} from "react-scroll";
 
@@ -12,7 +12,7 @@ const Nav = () => {
           <Link className="navbar-brand" to={"/"}>
             <img src={logo} alt="not found" width="100" height="40"/>
           </Link>
-          <Link className="navbar-brand fs-3" to={"/"}>ShubhKaryaa Events</Link>
+          <Link className="navbar-brand fs-3" to={"/"}></Link>
           <button
             className="navbar-toggler"
             type="button"

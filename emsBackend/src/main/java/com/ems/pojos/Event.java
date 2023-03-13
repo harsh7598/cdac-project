@@ -10,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -33,6 +36,10 @@ import lombok.Setter;
 @Table(name = "event")
 public class Event extends BaseEntity{
 	
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	private int event_id;
+//	
 	@Column(length = 20)
 //	@NotBlank(message = "Enter Name")
 	private String name;
@@ -88,6 +95,9 @@ public class Event extends BaseEntity{
 //	@ManyToMany(mappedBy="events")
 //	List<Menu> menus = new ArrayList<>();
 
+	
+	
+	
 	public Event(String name, EventType type, LocalDate date, int guestCount, boolean photography, boolean videography,
 			boolean album, boolean drone, boolean crane, Venue bookedVenue) {
 		super();
@@ -102,6 +112,196 @@ public class Event extends BaseEntity{
 		this.crane = crane;
 		this.bookedVenue = bookedVenue;
 	}
+
+	
+//	
+//	public int getEvent_id() {
+//		return event_id;
+//	}
+//
+//
+//
+//	public void setEvent_id(int event_id) {
+//		this.event_id = event_id;
+//	}
+
+
+
+	public Event() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public EventType getType() {
+		return type;
+	}
+
+
+	public void setType(EventType type) {
+		this.type = type;
+	}
+
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+
+	public int getGuestCount() {
+		return guestCount;
+	}
+
+
+	public void setGuestCount(int guestCount) {
+		this.guestCount = guestCount;
+	}
+
+
+	public double getTotalCost() {
+		return totalCost;
+	}
+
+
+	public void setTotalCost(double totalCost) {
+		this.totalCost = totalCost;
+	}
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
+	public String getProgress() {
+		return progress;
+	}
+
+
+	public void setProgress(String progress) {
+		this.progress = progress;
+	}
+
+
+	public boolean isPhotography() {
+		return photography;
+	}
+
+
+	public void setPhotography(boolean photography) {
+		this.photography = photography;
+	}
+
+
+	public boolean isVideography() {
+		return videography;
+	}
+
+
+	public void setVideography(boolean videography) {
+		this.videography = videography;
+	}
+
+
+	public boolean isAlbum() {
+		return album;
+	}
+
+
+	public void setAlbum(boolean album) {
+		this.album = album;
+	}
+
+
+	public boolean isDrone() {
+		return drone;
+	}
+
+
+	public void setDrone(boolean drone) {
+		this.drone = drone;
+	}
+
+
+	public boolean isCrane() {
+		return crane;
+	}
+
+
+	public void setCrane(boolean crane) {
+		this.crane = crane;
+	}
+
+
+	public String getCustomerEmail() {
+		return customerEmail;
+	}
+
+
+	public void setCustomerEmail(String customerEmail) {
+		this.customerEmail = customerEmail;
+	}
+
+
+	public Studio getStudio() {
+		return studio;
+	}
+
+
+	public void setStudio(Studio studio) {
+		this.studio = studio;
+	}
+
+
+	public Venue getBookedVenue() {
+		return bookedVenue;
+	}
+
+
+	public void setBookedVenue(Venue bookedVenue) {
+		this.bookedVenue = bookedVenue;
+	}
+
+
+	public Caters getBookedCater() {
+		return bookedCater;
+	}
+
+
+	public void setBookedCater(Caters bookedCater) {
+		this.bookedCater = bookedCater;
+	}
+
+
+	public List<Menu> getMenus() {
+		return menus;
+	}
+
+
+	public void setMenus(List<Menu> menus) {
+		this.menus = menus;
+	}
+
 
 	@Override
 	public String toString() {

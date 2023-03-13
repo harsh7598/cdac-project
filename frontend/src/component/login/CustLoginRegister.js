@@ -6,6 +6,7 @@ import authHeader from "../services/auth-header"
 
 
 import log from "../../images/log.svg"
+import birthdaygif from "../../images/birthdaygif.gif"
 import register from "../../images/register.svg"
 import { useHistory } from "react-router-dom";
 import { url } from "../common/constants";
@@ -40,6 +41,11 @@ const CustLoginRegister = () => {
   const [errortype, seterrortype] = useState("");
 
 
+  // for session management
+
+  if(localStorage.getItem('jwttoken') && localStorage.getItem('role',"CUSTOMER") ) {
+    history.push("/customer/welcome");
+  }
 
   const login = (e) => {
     e.preventDefault();
@@ -47,6 +53,7 @@ const CustLoginRegister = () => {
     axios.post(url + "/login", customer, { authHeader }).then((Response) => {
       if (Response.data.jwt)
         localStorage.setItem('jwttoken', JSON.stringify(Response.data.jwt));
+
       if (Response.data.role == '[ROLE_CUSTOMER]') {
         localStorage.setItem('role', "CUSTOMER");
         history.push("/customer/welcome");
@@ -71,58 +78,103 @@ const CustLoginRegister = () => {
 
   const registerCustomer = (e) => {
     e.preventDefault();
-    if(password.length > 5){
-    if (password === cPassword) {
 
+    const Eerror = document.getElementById("Eerror");
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      Eerror.textContent = "";
 
-      const customer = {
-        name,
-        email,
-        contactNumber,
-        dob,
-        adharNumber,
-        password,
-        role
-      }
-      toast.info("Registering Your Details, Please wait for a while.....");
-      axios.post(url + "/registration", customer).then(Response => {
-        Swal.fire(
-          ' You are Registered Successfully',
-          '',
-          'success'
-        )
-        history.push("/customer");
-        const container = document.querySelector(".container-l");
-        container.classList.remove("sign-up-mode");
-      }).catch(error => {
-        reset();
-        
+      if (/[1236547890!@#$%^&*()+=:;"'<,>/_]/.test(name)) {
+        console.log("invalid Name");
         Swal.fire({
           icon: 'error',
-          title: 'Please fill all the Details',
+          title: 'Only Alphabates and spaces are allowed in Name',
           text: '',
           footer: ''
-      })
-      });
+        })
+      } else {
+
+        if (password.length > 5) {
+          if (password === cPassword) {
+
+            if (contactNumber.length == 10 && adharNumber.length == 12) {
+              const customer = {
+                name,
+                email,
+                contactNumber,
+                dob,
+                adharNumber,
+                password,
+                role
+              }
+              toast.info("Registering Your Details, Please wait for a while.....");
+              axios.post(url + "/registration", customer).then(Response => {
+                Swal.fire(
+                  ' You are Registered Successfully',
+                  '',
+                  'success'
+                )
+                history.push("/customer");
+                const container = document.querySelector(".container-l");
+                container.classList.remove("sign-up-mode");
+              }).catch(error => {
+                reset();
+
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Something Went Wrong',
+                  text: '',
+                  footer: ''
+                })
+              });
+            }
+            else {
+              if (contactNumber.length != 10) {
+
+                console.log("invalid Contact Number");
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Please Check, Contact Number must be 10 digit',
+                  text: '',
+                  footer: ''
+                })
+              } else if (adharNumber.length != 12) {
+
+                console.log("invalid Adhar Number");
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Please Check, Adhar Number must be 12 digit',
+                  text: '',
+                  footer: ''
+                })
+              }
+
+            }
+
+          }
+          else {
+            console.log("invalid password not matched");
+            Swal.fire({
+              icon: 'error',
+              title: 'Please Check Confirm Password should be same as Password',
+              text: '',
+              footer: ''
+            })
+          }
+        } else {
+          console.log("invalid password length");
+          Swal.fire({
+            icon: 'error',
+            title: 'Password Length should be greater than 5',
+            text: '',
+            footer: ''
+          })
+        }
+      }
+
+    } else {
+      Eerror.textContent = "You have entered an invalid email address!";
+      Eerror.style.color = "red"
     }
-    else {
-      console.log("invalid password not matched");
-      Swal.fire({
-        icon: 'error',
-        title: 'Please Check Confirm Password should be same as Password',
-        text: '',
-        footer: ''
-      })
-    }
-  }else{
-    console.log("invalid password length");
-      Swal.fire({
-        icon: 'error',
-        title: 'Password Length should be greater than 5',
-        text: '',
-        footer: ''
-      })
-  }
   }
 
   useEffect(() => {
@@ -145,19 +197,21 @@ const CustLoginRegister = () => {
           <div className="signin-signup">
             <form action="#" className="sign-in-form l-form">
               <h2 className="title fw-bold">Sign In</h2>
-              <input type="text" className="input-fields-l" placeholder="Email" value={email} onChange={(e) => { setemail(e.target.value) }} />
-              <input type="password" className="input-fields-l" minLength={6} placeholder="Password" value={password} onChange={(e) => { setpassword(e.target.value) }} />
+              <input type="text" className="input-fields-l" placeholder="Email" onChange={(e) => { setemail(e.target.value) }} required />
+              <input type="password" className="input-fields-l" minLength={6} placeholder="Password" onChange={(e) => { setpassword(e.target.value) }} required />
               <input type="submit" value="Login" className="btn-l solid" onClick={login} />
               <Link className="btn text-white" to={"/forgotpassword"}>Forgot Password ?</Link>
               <div className={errortype} role="alert">{error}</div>
             </form>
             <form className="sign-up-form l-form">
               <h2 className="title fw-bold">Sign Up</h2>
-              <input type="text" className="input-fields-r" placeholder="Enter Full Name" value={name} onChange={(e) => { setname(e.target.value) }} />
-              <input type="email" className="input-fields-r" placeholder="Enter Email" value={email} onChange={(e) => { setemail(e.target.value) }} />
-              <input type="text" className="input-fields-r" placeholder="Enter Contact Number" value={contactNumber} onChange={(e) => { setcontactNumber(e.target.value) }} />
-              <input type="date" className="input-fields-r" placeholder="Enter Date of Birth" value={dob} onChange={(e) => { setdob(e.target.value) }} />
-              <input type="text" className="input-fields-r" placeholder="Enter Aadhar Number" value={adharNumber} onChange={(e) => { setadharNumber(e.target.value) }} />
+              <input type="text" className="input-fields-r" placeholder="Enter Full Name" value={name} onChange={(e) => { setname(e.target.value) }} required />
+
+              <input type="email" className="input-fields-r" placeholder="Enter Email" onChange={(e) => { setemail(e.target.value) }} required />
+              <span id="Eerror"></span>
+              <input type="number" className="input-fields-r" placeholder="Enter Contact Number" value={contactNumber} onChange={(e) => { setcontactNumber(e.target.value) }} required />
+              <input type="date" className="input-fields-r" placeholder="Enter Date of Birth" value={dob} onChange={(e) => { setdob(e.target.value) }} required />
+              <input type="number" className="input-fields-r" placeholder="Enter Aadhar Number" value={adharNumber} onChange={(e) => { setadharNumber(e.target.value) }} required />
               <input type="password" className="input-fields-r" minLength={6} placeholder="Enter New Password" value={password} onChange={(e) => { setpassword(e.target.value) }} />
               <input type="password" className="input-fields-r" minLength={6} placeholder="Confirm Password" value={cPassword} onChange={(e) => { setCpassword(e.target.value) }} />
               <input type="submit" className="btn-l" value="Sign up" onClick={registerCustomer} />

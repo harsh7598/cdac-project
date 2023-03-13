@@ -7,11 +7,20 @@ import { Link, useHistory } from "react-router-dom";
 import { url } from "../common/constants";
 
 const EmployeeLogin = () => {
+
+
+
+
+
+
   const history = useHistory();
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [error, seterror] = useState("");
   const [errortype, seterrortype] = useState("");
+
+  
+
   const Login = (e) => {
     e.preventDefault();
     const employee = { email, password };
