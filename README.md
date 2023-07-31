@@ -1,2 +1,2 @@
 # EMS
-Complete Codes of EMS using MySQL, Java and React 
+Complete Codes of Event Management System using MySQL, Java and React 
